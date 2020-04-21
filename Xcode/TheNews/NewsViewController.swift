@@ -53,6 +53,7 @@ class NewsViewController: UIViewController, Configurable {
         collectionView?.register(BbcCell.self, forCellWithReuseIdentifier: BbcCell.ReuseIdentifier)
         collectionView?.register(RedditCell.self, forCellWithReuseIdentifier: RedditCell.ReuseIdentifier)
         collectionView?.register(CnnCell.self, forCellWithReuseIdentifier: CnnCell.ReuseIdentifier)
+        collectionView?.register(LilCell.self, forCellWithReuseIdentifier: LilCell.ReuseIdentifier)
 
         collectionView?.register(LabelCell.self, forCellWithReuseIdentifier: LabelCell.ReuseIdentifier)
     }
@@ -100,6 +101,16 @@ extension NewsViewController: UICollectionViewDataSource {
             let identifier = article.identifier
 
             switch settings.style {
+            case .lilnews:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LilCell.ReuseIdentifier, for: indexPath) as! LilCell
+                cell.configure(article)
+
+                downloader.getImage(imageUrl: article.urlToImage, size: CnnCell.ImageSize) { (image) in
+                    cell.update(image: image, identifier: identifier)
+                }
+
+                return cell
+
             case .cnn:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CnnCell.ReuseIdentifier, for: indexPath) as! CnnCell
                 cell.configure(article)
@@ -203,6 +214,7 @@ enum Style: String, CaseIterable {
     case bbc = "BBC"
     case cnn = "CNN"
     case facebook = "Facebook"
+    case lilnews = "Lil News"
     case nyt = "NYT"
     case reddit = "Reddit"
     case twitter = "Twitter"
@@ -216,6 +228,11 @@ private extension NewsViewController {
 
     func reload() {
         switch settings.style {
+        case .lilnews:
+            collectionView?.backgroundColor = .white
+            view.backgroundColor = .white
+            collectionView?.collectionViewLayout = imageLayout()
+
         case .reddit:
             collectionView?.backgroundColor = .newsLightGray
             view.backgroundColor = .newsLightGray
@@ -294,6 +311,18 @@ private extension NewsViewController {
 
 // MARK: - Layout
 private extension NewsViewController {
+
+    func imageLayout() -> UICollectionViewLayout {
+        return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
+            switch Section(rawValue: sectionNumber) {
+            case .articles:
+                return self.imageSection()
+            default:
+                return self.categoriesSection()
+            }
+        }
+    }
+
     func fullscreenLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
             switch Section(rawValue: sectionNumber) {
@@ -341,6 +370,20 @@ private extension NewsViewController {
                                                        subitem: item, count: 3)
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
+
+        return section
+    }
+
+    func imageSection() -> NSCollectionLayoutSection {
+        let size = NSCollectionLayoutSize(
+            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
+            heightDimension: NSCollectionLayoutDimension.fractionalHeight(0.895)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .paging
 
         return section
     }

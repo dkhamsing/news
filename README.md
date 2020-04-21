@@ -1,12 +1,14 @@
 ## The News
 
-iOS news app in the style of the NYT, CNN, BBC, Reddit, Twitter, Facebook :newspaper:
+iOS news app in the style of the NYT, CNN, BBC, Reddit, Twitter, Facebook, Lil News :newspaper:
 
 <img src=Images/nyt.png height=400> <img src=Images/cnn.png height=400>
 
 <img src=Images/bbc.png height=400> <img src=Images/reddit.png height=400>
 
 <img src=Images/twitter.png height=400> <img src=Images/facebook.png height=400>
+
+<img src=Images/lilnews.png height=400>
 
 ## Requirements
 
@@ -15,6 +17,7 @@ iOS 13
 ## Credits
 
 - [newsapi.org](https://newsapi.org)
+- [lil news](https://lil.software/)
 
 ## Contact
 

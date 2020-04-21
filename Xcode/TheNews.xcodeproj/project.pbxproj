@@ -23,6 +23,7 @@
 		657812AB2444BE7E000FCC79 /* CnnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657812AA2444BE7E000FCC79 /* CnnCell.swift */; };
 		65B5D733244CEC1A000CC18C /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5D732244CEC1A000CC18C /* LabelCell.swift */; };
 		65B5D737244E0EB2000CC18C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5D736244E0EB2000CC18C /* Configuration.swift */; };
+		65B5D739244E63DF000CC18C /* LilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5D738244E63DF000CC18C /* LilCell.swift */; };
 		65CCEAFE2443A8E400704FCE /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CCEAFD2443A8E400704FCE /* Protocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		657812AA2444BE7E000FCC79 /* CnnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CnnCell.swift; sourceTree = "<group>"; };
 		65B5D732244CEC1A000CC18C /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		65B5D736244E0EB2000CC18C /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		65B5D738244E63DF000CC18C /* LilCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilCell.swift; sourceTree = "<group>"; };
 		65CCEAFD2443A8E400704FCE /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +67,7 @@
 				65215EDA24427669008B4D5A /* BbcCell.swift */,
 				657812AA2444BE7E000FCC79 /* CnnCell.swift */,
 				65293A4824417741002E5BC3 /* FacebookCell.swift */,
+				65B5D738244E63DF000CC18C /* LilCell.swift */,
 				65215ED72442692B008B4D5A /* NytCell.swift */,
 				65215EDC2442A85A008B4D5A /* RedditCell.swift */,
 				65293A4624417367002E5BC3 /* TwitterCell.swift */,
@@ -187,6 +190,7 @@
 				65B5D737244E0EB2000CC18C /* Configuration.swift in Sources */,
 				65215EE124439742008B4D5A /* Extension.swift in Sources */,
 				65293A45244172F2002E5BC3 /* NewsViewController.swift in Sources */,
+				65B5D739244E63DF000CC18C /* LilCell.swift in Sources */,
 				65215ED82442692B008B4D5A /* NytCell.swift in Sources */,
 				65215EDF24438F08008B4D5A /* ImageDownloader.swift in Sources */,
 				6560AE6524411D6B00581008 /* NewsApi.swift in Sources */,
