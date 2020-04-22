@@ -14,7 +14,7 @@ class ImageDownloader {
     func getImage(imageUrl: String?, size: CGSize, completion: @escaping (UIImage?) -> Void) {
         guard
             let str = imageUrl,
-            let url = URL.init(string: str)
+            let url = URL(string: str)
         else {
             DispatchQueue.main.async {
                 completion(nil)

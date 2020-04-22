@@ -40,7 +40,7 @@ private extension Configuration {
     static var SavedCategory: NewsCategory {
         let defaults = UserDefaults.standard
         if let s = defaults.object(forKey: Configuration.CategoryKey) as? String {
-            let style = NewsCategory.init(rawValue: s)
+            let style = NewsCategory(rawValue: s)
             if let unwrapped = style {
                 return unwrapped
             }
@@ -52,7 +52,7 @@ private extension Configuration {
     static var SavedStyle: Style {
         let defaults = UserDefaults.standard
         if let s = defaults.object(forKey: Configuration.StyleKey) as? String {
-            let style = Style.init(rawValue: s)
+            let style = Style(rawValue: s)
             if let unwrapped = style {
                 return unwrapped
             }

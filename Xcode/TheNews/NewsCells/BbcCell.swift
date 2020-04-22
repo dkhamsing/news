@@ -40,7 +40,7 @@ class BbcCell: UICollectionViewCell {
 
 extension BbcCell: Displayable {
     static var ReuseIdentifier = "BbcCell"
-    static var ImageSize = CGSize.init(width: 150, height: 90)
+    static var ImageSize = CGSize(width: 150, height: 90)
     
     func configure(_ article: Article) {
         title.attributedText = article.bbcAttributedTitle
@@ -98,9 +98,7 @@ extension BbcCell: Configurable {
 
 private extension Article {
     var bbcAttributedTitle: NSAttributedString {
-        guard let t = title else {
-            return NSAttributedString()
-        }
+        guard let t = title else { return NSAttributedString() }
         
         let nameAttribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 15)
@@ -110,15 +108,11 @@ private extension Article {
     }
     
     var bbcAgo: NSAttributedString {
-        guard let publishedAt = self.publishedAt else {
-            return NSAttributedString()
-        }
+        guard let publishedAt = self.publishedAt else { return NSAttributedString() }
         
         let f = ISO8601DateFormatter()
         let da = f.date(from: publishedAt)
-        guard let date = da else {
-            return NSAttributedString()
-        }
+        guard let date = da else { return NSAttributedString() }
         
         let nameAttribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 15),

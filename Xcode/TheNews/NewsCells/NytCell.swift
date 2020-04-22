@@ -104,9 +104,7 @@ private extension Article {
     var nytAttributedTitle: NSAttributedString {
         guard let t = title,
             let font = UIFont(name: "TimesNewRomanPS-BoldMT", size: 23)
-            else {
-                return NSAttributedString()
-        }
+            else { return NSAttributedString()}
         
         let nameAttribute: [NSAttributedString.Key: Any] = [
             .font: font
@@ -116,10 +114,7 @@ private extension Article {
     }
     
     var nytAttributedContent: NSAttributedString {
-        guard let font = UIFont(name: "Times New Roman", size: 18)
-            else {
-                return NSAttributedString()
-        }
+        guard let font = UIFont(name: "Times New Roman", size: 18) else { return NSAttributedString() }
         
         let color = UIColor.colorFor(red: 80, green: 80, blue: 80)
         let attribute: [NSAttributedString.Key: Any] = [

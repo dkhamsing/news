@@ -103,20 +103,13 @@ extension TwitterCell: Configurable {
 
 private extension Article {
     var twitterAttributedFirstLine: NSAttributedString {
-        guard let name = source?.name
-            else {
-                return NSAttributedString()
-        }
-        
-        guard let publishedAt = self.publishedAt else {
-            return NSAttributedString()
-        }
-        
+        guard let name = source?.name,
+            let publishedAt = self.publishedAt
+            else { return NSAttributedString() }
+
         let f = ISO8601DateFormatter()
         let da = f.date(from: publishedAt)
-        guard let date = da else {
-            return NSAttributedString()
-        }
+        guard let date = da else { return NSAttributedString() }
         
         let nameAttribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 17)
@@ -128,7 +121,7 @@ private extension Article {
             .font: UIFont.systemFont(ofSize: 17),
             .foregroundColor: UIColor.gray
         ]
-        let b = NSAttributedString.init(string: str, attributes: titleAttribute)
+        let b = NSAttributedString(string: str, attributes: titleAttribute)
         a.append(b)
         
         return a

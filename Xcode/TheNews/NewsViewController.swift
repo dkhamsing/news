@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class NewsViewController: UIViewController, Configurable {
+class NewsViewController: UIViewController {
     // Data
     private var items: [Article] = []
     private let downloader = ImageDownloader()
@@ -26,7 +26,9 @@ class NewsViewController: UIViewController, Configurable {
         config()
         loadData(settings.category.rawValue)
     }
+}
 
+extension NewsViewController: Configurable {
     func setup() {
         // Settings
         settings.loadSaved()
@@ -36,26 +38,17 @@ class NewsViewController: UIViewController, Configurable {
 
         // Navigation item
         let styleImage = UIImage(systemName: "textformat.size")
-        let styleBarbutton = UIBarButtonItem.init(image: styleImage, style: .plain, target: self, action: #selector(selectStyle))
+        let styleBarbutton = UIBarButtonItem(image: styleImage, style: .plain, target: self, action: #selector(selectStyle))
         styleBarbutton.tintColor = .black
         navigationItem.rightBarButtonItems = [styleBarbutton]
 
         // Collection view
-        collectionView = UICollectionView.init(frame: self.view.bounds, collectionViewLayout: insetLayout())
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: listInsetLayout())
         collectionView?.dataSource = self
         collectionView?.delegate = self
         collectionView?.backgroundColor = .white
         collectionView?.showsVerticalScrollIndicator = false
-
-        collectionView?.register(TwitterCell.self, forCellWithReuseIdentifier: TwitterCell.ReuseIdentifier)
-        collectionView?.register(FacebookCell.self, forCellWithReuseIdentifier: FacebookCell.ReuseIdentifier)
-        collectionView?.register(NytCell.self, forCellWithReuseIdentifier: NytCell.ReuseIdentifier)
-        collectionView?.register(BbcCell.self, forCellWithReuseIdentifier: BbcCell.ReuseIdentifier)
-        collectionView?.register(RedditCell.self, forCellWithReuseIdentifier: RedditCell.ReuseIdentifier)
-        collectionView?.register(CnnCell.self, forCellWithReuseIdentifier: CnnCell.ReuseIdentifier)
-        collectionView?.register(LilCell.self, forCellWithReuseIdentifier: LilCell.ReuseIdentifier)
-
-        collectionView?.register(LabelCell.self, forCellWithReuseIdentifier: LabelCell.ReuseIdentifier)
+        collectionView?.registerCells()
     }
 
     func config() {
@@ -64,19 +57,55 @@ class NewsViewController: UIViewController, Configurable {
 
         // Collection view
         guard let cv = collectionView else { return }
+
         view.autolayoutAddSubview(cv)
+    }
+}
+
+private extension NewsViewController {
+    func loadData(_ category: String) {
+        title = "\(settings.category.rawValue.capitalizingFirstLetter()) News"
+
+        guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(Configuration.ApiKey)&category=\(category)") else {
+            print("error")
+            return
+        }
+
+        items = []
+        collectionView?.reloadData()
+
+        url.get(type: Headline.self) { [weak self] (result) in
+            self?.refreshControl.endRefreshing()
+
+            switch result {
+            case .success(let headline):
+                self?.items = headline.articles
+                self?.reload()
+
+            case .failure(let e):
+                print(e.localizedDescription)
+            }
+        }
     }
 }
 
 extension NewsViewController: Selectable {
     func didSelect(_ category: String) {
-        guard let c = NewsCategory.init(rawValue: category) else { return }
-        settings.category = c
         loadData(category)
+
+        guard let c = NewsCategory(rawValue: category) else { return }
+        
+        settings.category = c
     }
 }
 
+// MARK: - Collection view
 extension NewsViewController: UICollectionViewDataSource {
+    enum Section: Int, CaseIterable {
+        case categories
+        case articles
+    }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return Section.allCases.count
     }
@@ -190,14 +219,13 @@ extension NewsViewController: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
 
         guard let section = Section(rawValue: indexPath.section) else { return }
+        
         switch section {
         case .articles:
             let article = items[indexPath.row]
-            guard let url = article.url else {
-                return
-            }
+            guard let url = article.url else { return }
 
-            let sfvc = SFSafariViewController.init(url: url)
+            let sfvc = SFSafariViewController(url: url)
             self.present(sfvc, animated: true, completion: nil)
 
         default:
@@ -210,24 +238,19 @@ extension NewsViewController: UICollectionViewDelegate {
     }
 }
 
-enum Style: String, CaseIterable {
-    case bbc = "BBC"
-    case cnn = "CNN"
-    case facebook = "Facebook"
-    case lilnews = "Lil News"
-    case nyt = "NYT"
-    case reddit = "Reddit"
-    case twitter = "Twitter"
-}
-
+// MARK: - Layout
 private extension NewsViewController {
-    enum Section: Int, CaseIterable {
-        case categories
-        case articles
+    func reload() {
+        updateLayout(settings.style)
+
+        collectionView?.reloadData()
+
+        let topIndexPath = IndexPath(row: 0, section: 0)
+        collectionView?.scrollToItem(at: topIndexPath, at: .top, animated: false)
     }
 
-    func reload() {
-        switch settings.style {
+    func updateLayout(_ style: Style) {
+        switch style {
         case .lilnews:
             collectionView?.backgroundColor = .white
             view.backgroundColor = .white
@@ -236,81 +259,19 @@ private extension NewsViewController {
         case .reddit:
             collectionView?.backgroundColor = .newsLightGray
             view.backgroundColor = .newsLightGray
-            collectionView?.collectionViewLayout = fullscreenLayout()
+            collectionView?.collectionViewLayout = listFullWidthLayout()
 
         case .bbc:
             collectionView?.backgroundColor = .newsLightGray
             view.backgroundColor = .newsLightGray
-            collectionView?.collectionViewLayout = insetLayout()
+            collectionView?.collectionViewLayout = listInsetLayout()
 
         default:
             collectionView?.backgroundColor = .white
             view.backgroundColor = .white
-            collectionView?.collectionViewLayout = fullscreenLayout()
-        }
-
-        collectionView?.reloadData()
-
-        let ip = IndexPath.init(row: 0, section: 0)
-        collectionView?.scrollToItem(at: ip, at: .top, animated: false)
-    }
-
-    @objc func loadDataForCurrentCategory() {
-        loadData(settings.category.rawValue)
-    }
-
-    func loadData(_ category: String) {
-        title = "\(settings.category.rawValue.capitalizingFirstLetter()) News"
-
-        guard let url = URL.init(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(Configuration.ApiKey)&category=\(category)") else {
-            print("error")
-            return
-        }
-
-        items = []
-        collectionView?.reloadData()
-
-        url.get(type: Headline.self) { (result) in
-            self.refreshControl.endRefreshing()
-
-            switch result {
-            case .success(let headline):
-                self.items = headline.articles
-                self.reload()
-
-            case .failure(let e):
-                print(e.localizedDescription)                
-            }
+            collectionView?.collectionViewLayout = listFullWidthLayout()
         }
     }
-
-    @objc func selectStyle() {
-        let ac = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
-        ac.fixiOSAutolayoutNegativeConstraints()
-
-        for s in Style.allCases {
-            ac.addAction(UIAlertAction.init(title: s.rawValue, style: .default, handler: handleStyle))
-        }
-
-        ac.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-
-        present(ac, animated: true, completion: nil)
-    }
-
-    func handleStyle(_ action: UIAlertAction) {
-        guard let selected = action.title else { return }
-
-        let styles = Style.allCases
-        let f = styles.filter { $0.rawValue == selected }
-        guard let s = f.first else { return }
-
-        settings.style = s
-        reload()
-    }
-}
-
-// MARK: - Layout
-private extension NewsViewController {
 
     func imageLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
@@ -323,40 +284,26 @@ private extension NewsViewController {
         }
     }
 
-    func fullscreenLayout() -> UICollectionViewLayout {
+    func listFullWidthLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
             switch Section(rawValue: sectionNumber) {
             case .articles:
-                return self.articlesSection()
+                return self.listFullWidthSection()
             default:
                 return self.categoriesSection()
             }
         }
     }
 
-    func insetLayout() -> UICollectionViewLayout {
+    func listInsetLayout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
             switch Section(rawValue: sectionNumber) {
             case .articles:
-                return self.insetsSection()
+                return self.listInsetSection()
             default:
                 return self.categoriesSection()
             }
         }
-    }
-
-    func articlesSection() -> NSCollectionLayoutSection {
-        let size = NSCollectionLayoutSize(
-            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(400)
-        )
-        let item = NSCollectionLayoutItem(layoutSize: size)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-
-        return section
     }
 
     private func categoriesSection() -> NSCollectionLayoutSection {
@@ -388,7 +335,21 @@ private extension NewsViewController {
         return section
     }
 
-    func insetsSection() -> NSCollectionLayoutSection {
+    func listFullWidthSection() -> NSCollectionLayoutSection {
+        let size = NSCollectionLayoutSize(
+            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
+            heightDimension: NSCollectionLayoutDimension.estimated(400)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+
+        return section
+    }
+
+    func listInsetSection() -> NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
             heightDimension: NSCollectionLayoutDimension.absolute(BbcCell.ImageSize.height)
@@ -405,6 +366,47 @@ private extension NewsViewController {
     }
 }
 
+// MARK: - OBJC
+private extension NewsViewController {
+    @objc func loadDataForCurrentCategory() {
+        loadData(settings.category.rawValue)
+    }
+
+    @objc func selectStyle() {
+        let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        ac.fixiOSAutolayoutNegativeConstraints()
+
+        for s in Style.allCases {
+            ac.addAction(UIAlertAction(title: s.rawValue, style: .default, handler: handleStyle))
+        }
+
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        present(ac, animated: true, completion: nil)
+    }
+
+    func handleStyle(_ action: UIAlertAction) {
+        guard let selected = action.title else { return }
+
+        let styles = Style.allCases
+        let f = styles.filter { $0.rawValue == selected }
+        guard let s = f.first else { return }
+
+        settings.style = s
+        reload()
+    }
+}
+
+enum Style: String, CaseIterable {
+    case bbc = "BBC"
+    case cnn = "CNN"
+    case facebook = "Facebook"
+    case lilnews = "Lil News"
+    case nyt = "NYT"
+    case reddit = "Reddit"
+    case twitter = "Twitter"
+}
+
 private extension String {
     func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()
@@ -412,6 +414,20 @@ private extension String {
 
     mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
+    }
+}
+
+private extension UICollectionView {
+    func registerCells() {
+        register(LabelCell.self, forCellWithReuseIdentifier: LabelCell.ReuseIdentifier)
+
+        register(TwitterCell.self, forCellWithReuseIdentifier: TwitterCell.ReuseIdentifier)
+        register(FacebookCell.self, forCellWithReuseIdentifier: FacebookCell.ReuseIdentifier)
+        register(NytCell.self, forCellWithReuseIdentifier: NytCell.ReuseIdentifier)
+        register(BbcCell.self, forCellWithReuseIdentifier: BbcCell.ReuseIdentifier)
+        register(RedditCell.self, forCellWithReuseIdentifier: RedditCell.ReuseIdentifier)
+        register(CnnCell.self, forCellWithReuseIdentifier: CnnCell.ReuseIdentifier)
+        register(LilCell.self, forCellWithReuseIdentifier: LilCell.ReuseIdentifier)
     }
 }
 

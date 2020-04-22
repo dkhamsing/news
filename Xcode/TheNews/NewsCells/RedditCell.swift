@@ -40,7 +40,7 @@ class RedditCell: UICollectionViewCell {
 
 extension RedditCell: Displayable {
     static var ReuseIdentifier = "RedditCell"
-    static var ImageSize = CGSize.init(width: 100, height: 70)
+    static var ImageSize = CGSize(width: 100, height: 70)
     
     func configure(_ article: Article) {
         top.attributedText = article.redditAttributed
@@ -104,9 +104,7 @@ private extension Article {
         
         let f = ISO8601DateFormatter()
         let da = f.date(from: publishedAt)
-        guard let date = da else {
-            return NSAttributedString()
-        }
+        guard let date = da else { return NSAttributedString() }
         
         let fontSize: CGFloat = 12
         
@@ -114,7 +112,7 @@ private extension Article {
             .font: UIFont.systemFont(ofSize: fontSize),
             .foregroundColor: UIColor.gray
         ]
-        let a = NSMutableAttributedString.init(string: "r/", attributes: aAttribute)
+        let a = NSMutableAttributedString(string: "r/", attributes: aAttribute)
         
         let bAttribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: fontSize),
@@ -125,7 +123,7 @@ private extension Article {
         
         let user = "u/\(name)".replacingOccurrences(of: " ", with: "")
         let str = "\(user) · \(date.shortTimeAgoSinceDate())"
-        let c = NSAttributedString.init(string: str, attributes: aAttribute)
+        let c = NSAttributedString(string: str, attributes: aAttribute)
         a.append(c)
         
         return a

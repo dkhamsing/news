@@ -111,18 +111,14 @@ extension LilCell: Configurable {
 
 private extension Article {
     var lilAgo: String {
-           guard let publishedAt = self.publishedAt else {
-               return ""
-           }
-
-           let f = ISO8601DateFormatter()
-           let da = f.date(from: publishedAt)
-           guard let date = da else {
-               return ""
-           }
-
+        guard let publishedAt = self.publishedAt else { return "" }
+        
+        let f = ISO8601DateFormatter()
+        let da = f.date(from: publishedAt)
+        guard let date = da else { return ""}
+        
         return date.lilTimeAgoSinceDate()
-       }
+    }
 }
 
 private extension Date {

@@ -115,9 +115,7 @@ private extension Article {
     }
     
     var facebookAttributedContent: NSAttributedString {
-        guard let t = title else {
-            return NSAttributedString()
-        }
+        guard let t = title else { return NSAttributedString() }
         
         let nameAttribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 15),
@@ -127,15 +125,11 @@ private extension Article {
     }
     
     var facebookAgo: NSAttributedString {
-        guard let publishedAt = self.publishedAt else {
-            return NSAttributedString()
-        }
+        guard let publishedAt = self.publishedAt else { return NSAttributedString() }
         
         let f = ISO8601DateFormatter()
         let da = f.date(from: publishedAt)
-        guard let date = da else {
-            return NSAttributedString()
-        }
+        guard let date = da else { return NSAttributedString() }
         
         let nameAttribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 15),

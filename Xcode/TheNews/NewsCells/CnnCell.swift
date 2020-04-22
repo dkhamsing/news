@@ -44,7 +44,7 @@ class CnnCell: UICollectionViewCell {
 
 extension CnnCell: Displayable {
     static var ReuseIdentifier = "CnnCell"
-    static var ImageSize = CGSize.init(width: 450, height: 280)
+    static var ImageSize = CGSize(width: 450, height: 280)
     
     func configure(_ article: Article) {
         ago.text = article.cnnAgo
@@ -129,15 +129,11 @@ extension CnnCell: Configurable {
 
 private extension Article {
     var cnnAgo: String {
-        guard let publishedAt = self.publishedAt else {
-            return ""
-        }
+        guard let publishedAt = self.publishedAt else { return "" }
         
         let f = ISO8601DateFormatter()
         let da = f.date(from: publishedAt)
-        guard let date = da else {
-            return ""
-        }
+        guard let date = da else { return "" }
         
         return date.shortTimeAgoSinceDate()
     }
