@@ -130,6 +130,16 @@ extension NewsViewController: UICollectionViewDataSource {
             let identifier = article.identifier
 
             switch settings.style {
+            case .flipboard:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FlipboardCell.ReuseIdentifier, for: indexPath) as! FlipboardCell
+                cell.configure(article)
+
+                downloader.getImage(imageUrl: article.urlToImage, size: FlipboardCell.ImageSize) { (image) in
+                    cell.update(image: image, identifier: identifier)
+                }
+
+                return cell
+
             case .lilnews:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LilCell.ReuseIdentifier, for: indexPath) as! LilCell
                 cell.configure(article)
@@ -256,7 +266,7 @@ private extension NewsViewController {
             view.backgroundColor = .white
             collectionView?.collectionViewLayout = imageLayout()
 
-        case .reddit:
+        case .reddit, .flipboard:
             collectionView?.backgroundColor = .newsLightGray
             view.backgroundColor = .newsLightGray
             collectionView?.collectionViewLayout = listFullWidthLayout()
@@ -401,6 +411,7 @@ enum Style: String, CaseIterable {
     case bbc = "BBC"
     case cnn = "CNN"
     case facebook = "Facebook"
+    case flipboard = "Flipboard"
     case lilnews = "Lil News"
     case nyt = "NYT"
     case reddit = "Reddit"
@@ -428,6 +439,7 @@ private extension UICollectionView {
         register(RedditCell.self, forCellWithReuseIdentifier: RedditCell.ReuseIdentifier)
         register(CnnCell.self, forCellWithReuseIdentifier: CnnCell.ReuseIdentifier)
         register(LilCell.self, forCellWithReuseIdentifier: LilCell.ReuseIdentifier)
+        register(FlipboardCell.self, forCellWithReuseIdentifier: FlipboardCell.ReuseIdentifier)
     }
 }
 
