@@ -8,28 +8,9 @@
 
 import UIKit
 
-class CnnCell: UICollectionViewCell {
-    var identifier: String?
-    
-    private let imageView = UIImageView()
-    private let top = UILabel()
-    private let imageLabel = UILabel()
-    private let content = UILabel()
-    private let ago = UILabel()
-    private let line = UIView()
+class CnnCell: NewsCell {        
     private let separator = UIView()
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        identifier = nil
-        top.text = nil
-        imageLabel.text = nil
-        content.text = nil
-        ago.text = nil
-        imageView.image = nil
-    }
-    
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -40,23 +21,18 @@ class CnnCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
 
-extension CnnCell: Displayable {
-    static var ReuseIdentifier = "CnnCell"
-    static var ImageSize = CGSize(width: 450, height: 280)
-    
-    func configure(_ article: Article) {
-        ago.text = article.cnnAgo
-        top.text = article.source?.name?.uppercased()
-        imageLabel.text = article.title
+    override func configure(_ article: Article) {
+        super.configure(article)
+
+        ago.text = article.publishedAt?.shortTimeAgoSinceDate
+        source.text = article.source?.name?.uppercased()
+        title.text = article.title
         content.text = article.descriptionOrContent
-        identifier = article.identifier
     }
 
-    func update(image: UIImage?, identifier ident: String?) {
-        guard identifier == ident else { return }
-        imageView.image = image
+    override func update(image: UIImage?, matchingIdentifier: String?) {
+        super.update(image: image, matchingIdentifier: matchingIdentifier)
 
         guard imageView.layer.sublayers?.count == nil else { return }
         imageView.addGradient()
@@ -65,16 +41,18 @@ extension CnnCell: Displayable {
 
 extension CnnCell: Configurable {
     func setup() {
+        imageSize = CGSize(width: 450, height: 280)
+
         contentView.backgroundColor = .white
         
         ago.textColor = .cnnRed
         ago.font = UIFont.systemFont(ofSize: 14)
         
-        top.textColor = .white
-        top.font = UIFont.boldSystemFont(ofSize: 12)
+        source.textColor = .white
+        source.font = UIFont.boldSystemFont(ofSize: 12)
         
-        imageLabel.numberOfLines = 0
-        imageLabel.textColor = .white
+        title.numberOfLines = 0
+        title.textColor = .white
         
         content.numberOfLines = 0
         content.textColor = .darkGray
@@ -88,22 +66,22 @@ extension CnnCell: Configurable {
     }
     
     func config() {
-        [imageView, top, imageLabel, content, ago, line, separator].forEach { contentView.autolayoutAddSubview($0) }
+        [imageView, source, title, content, ago, line, separator].forEach { contentView.addSubviewForAutoLayout($0) }
         
         let inset: CGFloat = 15
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: CnnCell.ImageSize.height),
+            imageView.heightAnchor.constraint(equalToConstant: imageSizeUnwrapped.height),
             
-            top.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: inset),
-            top.heightAnchor.constraint(equalToConstant: 35),
-            top.bottomAnchor.constraint(equalTo: imageLabel.topAnchor),
+            source.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: inset),
+            source.heightAnchor.constraint(equalToConstant: 35),
+            source.bottomAnchor.constraint(equalTo: title.topAnchor),
             
-            imageLabel.leadingAnchor.constraint(equalTo: top.leadingAnchor),
-            imageLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: (-2 * inset)),
-            imageLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -inset),
+            title.leadingAnchor.constraint(equalTo: source.leadingAnchor),
+            title.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: (-2 * inset)),
+            title.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -inset),
             
             content.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: inset),
             content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: (2 * inset)),
@@ -124,18 +102,6 @@ extension CnnCell: Configurable {
             separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
-    }
-}
-
-private extension Article {
-    var cnnAgo: String {
-        guard let publishedAt = self.publishedAt else { return "" }
-        
-        let f = ISO8601DateFormatter()
-        let da = f.date(from: publishedAt)
-        guard let date = da else { return "" }
-        
-        return date.shortTimeAgoSinceDate()
     }
 }
 

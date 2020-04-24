@@ -50,7 +50,7 @@ extension LabelCell: Configurable {
     }
 
     func config() {
-        contentView.autolayoutAddSubview(name)
+        contentView.addSubviewForAutoLayout(name)
 
         NSLayoutConstraint.activate([
             name.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

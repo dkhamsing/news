@@ -8,18 +8,8 @@
 
 import UIKit
 
-extension Article {
-    var profileImage: UIImage? {
-        guard let name = source?.name,
-            let first = name.first else { return nil }
-
-        let systemName = "\(first).circle.fill".lowercased()
-        return UIImage(systemName: systemName)
-    }
-}
-
 extension Date {
-    func shortTimeAgoSinceDate() -> String {
+    var shortTimeAgoSinceDate: String {
         // From Time
         let fromDate = self
 
@@ -60,7 +50,7 @@ extension Date {
         return "a moment ago"
     }
 
-    func timeAgoSinceDate() -> String {
+    var timeAgoSinceDate: String {
         // From Time
         let fromDate = self
 
@@ -111,7 +101,7 @@ extension UIColor {
 
 // Credits: https://stackoverflow.com/questions/55653187/swift-default-alertviewcontroller-breaking-constraints
 extension UIAlertController {
-    func fixiOSAutolayoutNegativeConstraints() {
+    func fixiOSAlertControllerAutolayoutConstraint() {
         for subView in self.view.subviews {
             for constraint in subView.constraints where constraint.debugDescription.contains("width == - 16") {
                 subView.removeConstraint(constraint)
@@ -121,7 +111,7 @@ extension UIAlertController {
 }
 
 extension UIView {
-    func autolayoutAddSubview(_ view: UIView) {
+    func addSubviewForAutoLayout(_ view: UIView) {
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -132,4 +122,44 @@ extension UIView {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
+}
+
+extension URL {
+    func get<T: Codable>(type: T.Type, completion: @escaping (Result<T, ApiError>) -> Void) {
+        let session = URLSession.shared
+        let task = session.dataTask(with: self) { data, _, error in
+            if let _ = error {
+                DispatchQueue.main.async {
+                    completion(.failure(.generic))
+                }
+                return
+            }
+
+            guard let unwrapped = data else {
+                DispatchQueue.main.async {
+                    completion(.failure(.generic))
+                }
+                return
+            }
+
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            if let result = try? decoder.decode(type, from: unwrapped) {
+                DispatchQueue.main.async {
+                    completion(.success(result))
+                }
+            }
+            else {
+                DispatchQueue.main.async {
+                    completion(.failure(.generic))
+                }
+            }
+        }
+
+        task.resume()
+    }
+}
+
+enum ApiError: Error {
+    case generic
 }

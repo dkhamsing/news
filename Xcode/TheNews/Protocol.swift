@@ -13,15 +13,6 @@ protocol Configurable {
     func config()
 }
 
-protocol Displayable {
-    static var ReuseIdentifier: String { get }
-    static var ImageSize: CGSize  { get }
-    var identifier: String? { get set }
-
-    func configure(_ article: Article)
-    func update(image: UIImage?, identifier ident: String?)
-}
-
 protocol Selectable {
     func didSelect(_ string: String)
 }

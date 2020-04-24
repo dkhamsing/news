@@ -39,9 +39,9 @@ struct Configuration {
 private extension Configuration {
     static var SavedCategory: NewsCategory {
         let defaults = UserDefaults.standard
-        if let s = defaults.object(forKey: Configuration.CategoryKey) as? String {
-            let style = NewsCategory(rawValue: s)
-            if let unwrapped = style {
+        if let saved = defaults.object(forKey: Configuration.CategoryKey) as? String {
+            let category = NewsCategory(rawValue: saved)
+            if let unwrapped = category {
                 return unwrapped
             }
         }
@@ -51,8 +51,8 @@ private extension Configuration {
 
     static var SavedStyle: Style {
         let defaults = UserDefaults.standard
-        if let s = defaults.object(forKey: Configuration.StyleKey) as? String {
-            let style = Style(rawValue: s)
+        if let saved = defaults.object(forKey: Configuration.StyleKey) as? String {
+            let style = Style(rawValue: saved)
             if let unwrapped = style {
                 return unwrapped
             }

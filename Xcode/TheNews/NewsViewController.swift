@@ -43,7 +43,7 @@ extension NewsViewController: Configurable {
         navigationItem.rightBarButtonItems = [styleBarbutton]
 
         // Collection view
-        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: listInsetLayout())
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: listInsetLayout)
         collectionView?.dataSource = self
         collectionView?.delegate = self
         collectionView?.backgroundColor = .white
@@ -58,7 +58,7 @@ extension NewsViewController: Configurable {
         // Collection view
         guard let cv = collectionView else { return }
 
-        view.autolayoutAddSubview(cv)
+        view.addSubviewForAutoLayout(cv)
     }
 }
 
@@ -125,99 +125,39 @@ extension NewsViewController: UICollectionViewDataSource {
         guard let section = Section(rawValue: indexPath.section) else { return NytCell() }
 
         switch section {
+
+        case .categories:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCell.ReuseIdentifier, for: indexPath) as! LabelCell
+            
+            let name = NewsCategory.allCases[indexPath.row].rawValue.capitalizingFirstLetter()
+            cell.configure(name, settings.category.rawValue == name.lowercased())
+
+            return cell
+
         case .articles:
             let article = items[indexPath.row]
             let identifier = article.identifier
 
-            switch settings.style {
-            case .flipboard:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FlipboardCell.ReuseIdentifier, for: indexPath) as! FlipboardCell
-                cell.configure(article)
-
-                downloader.getImage(imageUrl: article.urlToImage, size: FlipboardCell.ImageSize) { (image) in
-                    cell.update(image: image, identifier: identifier)
-                }
-
-                return cell
-
-            case .lilnews:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LilCell.ReuseIdentifier, for: indexPath) as! LilCell
-                cell.configure(article)
-
-                downloader.getImage(imageUrl: article.urlToImage, size: CnnCell.ImageSize) { (image) in
-                    cell.update(image: image, identifier: identifier)
-                }
-
-                return cell
-
-            case .cnn:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CnnCell.ReuseIdentifier, for: indexPath) as! CnnCell
-                cell.configure(article)
-
-                downloader.getImage(imageUrl: article.urlToImage, size: CnnCell.ImageSize) { (image) in
-                    cell.update(image: image, identifier: identifier)
-                }
-
-                return cell
-
-            case .reddit:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RedditCell.ReuseIdentifier, for: indexPath) as! RedditCell
-                cell.configure(article)
-
-                downloader.getImage(imageUrl: article.urlToImage, size: RedditCell.ImageSize) { (image) in
-                    guard cell.identifier == identifier else { return }
-                    cell.update(image: image, identifier: identifier)
-                }
-
-                return cell
-
-            case .bbc:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BbcCell.ReuseIdentifier, for: indexPath) as! BbcCell
-                cell.configure(article)
-                cell.configure(badgeNumber: indexPath.row + 1)
-                downloader.getImage(imageUrl: article.urlToImage, size: BbcCell.ImageSize) { (image) in
-                    guard cell.identifier == identifier else { return }
-                    cell.update(image: image, identifier: identifier)
-                }
-
-                return cell
-
-            case .nyt:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NytCell.ReuseIdentifier, for: indexPath) as! NytCell
-                cell.configure(article)
-                downloader.getImage(imageUrl: article.urlToImage, size: NytCell.ImageSize) { (image) in
-                    guard cell.identifier == identifier else { return }
-                    cell.update(image: image, identifier: identifier)
-                }
-
-                return cell
-
-            case .twitter:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TwitterCell.ReuseIdentifier, for: indexPath) as! TwitterCell
-                cell.configure(article)
-                downloader.getImage(imageUrl: article.urlToImage, size: TwitterCell.ImageSize) { (image) in
-                    guard cell.identifier == identifier else { return }
-                    cell.update(image: image, identifier: identifier)
-                }
-
-                return cell
-
-            case .facebook:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FacebookCell.ReuseIdentifier, for: indexPath) as! FacebookCell
-                cell.configure(article)
-                downloader.getImage(imageUrl: article.urlToImage, size: FacebookCell.ImageSize) { (image) in
-                    guard cell.identifier == identifier else { return }
-                    cell.update(image: image, identifier: identifier)
-                }
-
-                return cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: settings.style.rawValue, for: indexPath) as! NewsCell
+            cell.configure(article)
+            downloader.getImage(imageUrl: article.urlToImage, size: cell.imageSizeUnwrapped) { (image) in
+                cell.update(image: image, matchingIdentifier: identifier)
             }
 
-        default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCell.ReuseIdentifier, for: indexPath) as! LabelCell
+            switch settings.style {
+            case .bbc:
+                let thisCell = cell as? BbcCell
+                thisCell?.configure(badgeNumber: indexPath.row + 1)
 
-            let name = NewsCategory.allCases[indexPath.row].rawValue.capitalizingFirstLetter()
-            cell.configure(name, settings.category.rawValue == name.lowercased())
+            case .facebook, .flipboard, .reddit, .twitter:
+                downloader.getImage(imageUrl: article.urlToSourceLogo, size: CGSize(width: 60, height: 60)) { (image) in
+                    let thisCell = cell as? NewsProfileCell
+                    thisCell?.updateSourceLogo(image: image, matchingIdentifier: identifier)
+                }
+                
+            default:
+                ()
+            }
 
             return cell
         }
@@ -235,8 +175,9 @@ extension NewsViewController: UICollectionViewDelegate {
             let article = items[indexPath.row]
             guard let url = article.url else { return }
 
-            let sfvc = SFSafariViewController(url: url)
-            self.present(sfvc, animated: true, completion: nil)
+            let safariViewController = SFSafariViewController(url: url)
+            safariViewController.modalPresentationStyle = .formSheet
+            self.present(safariViewController, animated: true, completion: nil)
 
         default:
             let categories = NewsCategory.allCases
@@ -264,59 +205,59 @@ private extension NewsViewController {
         case .lilnews:
             collectionView?.backgroundColor = .white
             view.backgroundColor = .white
-            collectionView?.collectionViewLayout = imageLayout()
+            collectionView?.collectionViewLayout = imageLayout
 
         case .reddit, .flipboard:
             collectionView?.backgroundColor = .newsLightGray
             view.backgroundColor = .newsLightGray
-            collectionView?.collectionViewLayout = listFullWidthLayout()
+            collectionView?.collectionViewLayout = listFullWidthLayout
 
         case .bbc:
             collectionView?.backgroundColor = .newsLightGray
             view.backgroundColor = .newsLightGray
-            collectionView?.collectionViewLayout = listInsetLayout()
+            collectionView?.collectionViewLayout = listInsetLayout
 
         default:
             collectionView?.backgroundColor = .white
             view.backgroundColor = .white
-            collectionView?.collectionViewLayout = listFullWidthLayout()
+            collectionView?.collectionViewLayout = listFullWidthLayout
         }
     }
 
-    func imageLayout() -> UICollectionViewLayout {
+    var imageLayout: UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
             switch Section(rawValue: sectionNumber) {
             case .articles:
-                return self.imageSection()
+                return self.imageSection
             default:
-                return self.categoriesSection()
+                return self.categoriesSection
             }
         }
     }
 
-    func listFullWidthLayout() -> UICollectionViewLayout {
+    var listFullWidthLayout: UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
             switch Section(rawValue: sectionNumber) {
             case .articles:
-                return self.listFullWidthSection()
+                return self.listFullWidthSection
             default:
-                return self.categoriesSection()
+                return self.categoriesSection
             }
         }
     }
 
-    func listInsetLayout() -> UICollectionViewLayout {
+    var listInsetLayout: UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
             switch Section(rawValue: sectionNumber) {
             case .articles:
-                return self.listInsetSection()
+                return self.listInsetSection
             default:
-                return self.categoriesSection()
+                return self.categoriesSection
             }
         }
     }
 
-    private func categoriesSection() -> NSCollectionLayoutSection {
+    var categoriesSection: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -331,7 +272,7 @@ private extension NewsViewController {
         return section
     }
 
-    func imageSection() -> NSCollectionLayoutSection {
+    var imageSection: NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
             heightDimension: NSCollectionLayoutDimension.fractionalHeight(0.895)
@@ -345,10 +286,10 @@ private extension NewsViewController {
         return section
     }
 
-    func listFullWidthSection() -> NSCollectionLayoutSection {
+    var listFullWidthSection: NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(400)
+            heightDimension: NSCollectionLayoutDimension.estimated(450)
         )
         let item = NSCollectionLayoutItem(layoutSize: size)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
@@ -359,10 +300,10 @@ private extension NewsViewController {
         return section
     }
 
-    func listInsetSection() -> NSCollectionLayoutSection {
+    var listInsetSection: NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.absolute(BbcCell.ImageSize.height)
+            heightDimension: NSCollectionLayoutDimension.absolute(90)
         )
         let item = NSCollectionLayoutItem(layoutSize: size)
 
@@ -384,7 +325,7 @@ private extension NewsViewController {
 
     @objc func selectStyle() {
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        ac.fixiOSAutolayoutNegativeConstraints()
+        ac.fixiOSAlertControllerAutolayoutConstraint()
 
         for s in Style.allCases {
             ac.addAction(UIAlertAction(title: s.rawValue, style: .default, handler: handleStyle))
@@ -399,13 +340,24 @@ private extension NewsViewController {
         guard let selected = action.title else { return }
 
         let styles = Style.allCases
-        let f = styles.filter { $0.rawValue == selected }
-        guard let s = f.first else { return }
+        let filtered = styles.filter { $0.rawValue == selected }
+        guard let style = filtered.first else { return }
 
-        settings.style = s
+        settings.style = style
         reload()
     }
 }
+
+enum NewsCategory: String, CaseIterable {
+    case general
+    case business
+    case entertainment
+    case health
+    case science
+    case sports
+    case technology
+}
+
 
 enum Style: String, CaseIterable {
     case bbc = "BBC"
@@ -413,9 +365,10 @@ enum Style: String, CaseIterable {
     case facebook = "Facebook"
     case flipboard = "Flipboard"
     case lilnews = "Lil News"
-    case nyt = "NYT"
     case reddit = "Reddit"
     case twitter = "Twitter"
+    case nyt = "The New York Times"
+    case washingtonPost = "The Washington Post"
 }
 
 private extension String {
@@ -432,14 +385,15 @@ private extension UICollectionView {
     func registerCells() {
         register(LabelCell.self, forCellWithReuseIdentifier: LabelCell.ReuseIdentifier)
 
-        register(TwitterCell.self, forCellWithReuseIdentifier: TwitterCell.ReuseIdentifier)
-        register(FacebookCell.self, forCellWithReuseIdentifier: FacebookCell.ReuseIdentifier)
-        register(NytCell.self, forCellWithReuseIdentifier: NytCell.ReuseIdentifier)
-        register(BbcCell.self, forCellWithReuseIdentifier: BbcCell.ReuseIdentifier)
-        register(RedditCell.self, forCellWithReuseIdentifier: RedditCell.ReuseIdentifier)
-        register(CnnCell.self, forCellWithReuseIdentifier: CnnCell.ReuseIdentifier)
-        register(LilCell.self, forCellWithReuseIdentifier: LilCell.ReuseIdentifier)
-        register(FlipboardCell.self, forCellWithReuseIdentifier: FlipboardCell.ReuseIdentifier)
+        register(TwitterCell.self, forCellWithReuseIdentifier: Style.twitter.rawValue)
+        register(FacebookCell.self, forCellWithReuseIdentifier: Style.facebook.rawValue)
+        register(NytCell.self, forCellWithReuseIdentifier: Style.nyt.rawValue)
+        register(BbcCell.self, forCellWithReuseIdentifier: Style.bbc.rawValue)
+        register(RedditCell.self, forCellWithReuseIdentifier: Style.reddit.rawValue)
+        register(CnnCell.self, forCellWithReuseIdentifier: Style.cnn.rawValue)
+        register(LilCell.self, forCellWithReuseIdentifier: Style.lilnews.rawValue)
+        register(FlipboardCell.self, forCellWithReuseIdentifier: Style.flipboard.rawValue)
+        register(WashingtonCell.self, forCellWithReuseIdentifier: Style.washingtonPost.rawValue)
     }
 }
 

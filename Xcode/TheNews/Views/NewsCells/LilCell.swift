@@ -8,26 +8,7 @@
 
 import UIKit
 
-class LilCell: UICollectionViewCell {
-    var identifier: String?
-
-    private let imageView = UIImageView()
-    private let title = UILabel()
-    private let content = UILabel()
-    private let source = UILabel()
-    private let ago = UILabel()
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-
-        identifier = nil
-        content.text = nil
-        title.text = nil
-        source.text = nil
-        ago.text = nil
-        imageView.image = nil
-    }
-
+class LilCell: NewsCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -38,31 +19,28 @@ class LilCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
 
-extension LilCell: Displayable {
-    static var ReuseIdentifier = "LilCell"
-    static var ImageSize = CGSize.zero
-
-    func configure(_ article: Article) {
+    override func configure(_ article: Article) {
+        super.configure(article)
+        
         title.text = article.title
         content.text = article.descriptionOrContent
-        ago.text = article.publishedAt
-        ago.text = article.lilAgo
-        identifier = article.identifier
+        ago.text = article.publishedAt?.timeAgoSinceDate
         source.text = article.source?.name
     }
 
-    func update(image: UIImage?, identifier ident: String?) {
-        guard identifier == ident else { return }
-        imageView.image = image
+    override func update(image: UIImage?, matchingIdentifier: String?) {
+        super.update(image: image, matchingIdentifier: matchingIdentifier)
 
         guard imageView.layer.sublayers?.count == nil else { return }
         imageView.addGradient()
     }
 }
+
 extension LilCell: Configurable {
     func setup() {
+        imageSize = CGSize(width: 500, height: 300)
+
         title.numberOfLines = 0
         title.textColor = .white
         title.font = .boldSystemFont(ofSize: 24)
@@ -82,7 +60,7 @@ extension LilCell: Configurable {
     }
 
     func config() {
-        [imageView, source, title, content, ago].forEach { contentView.autolayoutAddSubview($0) }
+        [imageView, source, title, content, ago].forEach { contentView.addSubviewForAutoLayout($0) }
 
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -106,17 +84,5 @@ extension LilCell: Configurable {
             source.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             source.heightAnchor.constraint(equalToConstant: 30),
         ])
-    }
-}
-
-private extension Article {
-    var lilAgo: String {
-        guard let publishedAt = self.publishedAt else { return "" }
-        
-        let f = ISO8601DateFormatter()
-        let da = f.date(from: publishedAt)
-        guard let date = da else { return ""}
-        
-        return date.timeAgoSinceDate()
     }
 }

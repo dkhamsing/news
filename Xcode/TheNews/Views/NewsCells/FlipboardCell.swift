@@ -8,29 +8,7 @@
 
 import UIKit
 
-class FlipboardCell: UICollectionViewCell {
-    var identifier: String?
-
-    private let line = UIView()
-    private let imageView = UIImageView()
-    private let title = UILabel()
-    private let subtitle = UILabel()
-    private let logo = UIImageView()
-    private let from = UILabel()
-    private let ago = UILabel()
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-
-        identifier = nil
-        imageView.image = nil
-        title.text = nil
-        subtitle.attributedText = nil
-        logo.image = nil
-        from.text = nil
-        ago.text = nil
-    }
-
+class FlipboardCell: NewsProfileCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -41,51 +19,45 @@ class FlipboardCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
 
-extension FlipboardCell: Displayable {
-    static var ReuseIdentifier = "FlipboardCell"
-    static var ImageSize = CGSize(width: 400, height: 240)
-
-    func configure(_ article: Article) {
-        identifier = article.identifier
+    override func configure(_ article: Article) {
+        super.configure(article)
 
         title.text = article.title
-        subtitle.attributedText = article.flipboardAttributedSubtitle
-        ago.text = article.flipboardAgo
-        from.text = article.source?.name
-
-        logo.image = article.profileImage
-        logo.tintColor = .flipboardRed
-    }
-
-    func update(image: UIImage?, identifier ident: String?) {
-        guard identifier == ident else { return }
-        imageView.image = image
+        content.attributedText = article.flipboardAttributedSubtitle
+        ago.text = article.publishedAt?.timeAgoSinceDate
+        source.text = article.source?.name
     }
 }
 
 extension FlipboardCell: Configurable {
+    static var LogoSize = CGSize(width: 38, height: 38)
+
     func setup() {
+        imageSize = CGSize(width: 400, height: 240)
+
         line.backgroundColor = .flipboardLineGray
 
         contentView.backgroundColor = .flipboardWhite
 
-        subtitle.numberOfLines = 0
+        content.numberOfLines = 0
 
         imageView.contentMode = .scaleAspectFit
 
-        from.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 17)
+        source.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 17)
 
         ago.textColor = .flipboardAgoGray
         ago.font = .systemFont(ofSize: 14)
 
         title.numberOfLines = 0
         title.font = UIFont(name: "TimesNewRomanPSMT", size: 28)
+
+        sourceLogo.layer.cornerRadius = FlipboardCell.LogoSize.width / 2
+        sourceLogo.layer.masksToBounds = true
     }
 
     func config() {
-        [line, imageView, title, subtitle, logo, from, ago].forEach { contentView.autolayoutAddSubview($0) }
+        [line, imageView, title, content, sourceLogo, source, ago].forEach { contentView.addSubviewForAutoLayout($0) }
 
         NSLayoutConstraint.activate([
             line.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -96,25 +68,25 @@ extension FlipboardCell: Configurable {
             imageView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 20),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            imageView.heightAnchor.constraint(equalToConstant: FlipboardCell.ImageSize.height),
+            imageView.heightAnchor.constraint(equalToConstant: imageSizeUnwrapped.height),
 
             title.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 18),
             title.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
             title.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
 
-            subtitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8),
-            subtitle.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-            subtitle.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            content.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8),
+            content.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            content.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
 
-            logo.topAnchor.constraint(equalTo: subtitle.bottomAnchor, constant: 15),
-            logo.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-            logo.widthAnchor.constraint(equalToConstant: 38),
-            logo.heightAnchor.constraint(equalToConstant: 38),
+            sourceLogo.topAnchor.constraint(equalTo: content.bottomAnchor, constant: 15),
+            sourceLogo.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            sourceLogo.widthAnchor.constraint(equalToConstant: FlipboardCell.LogoSize.width),
+            sourceLogo.heightAnchor.constraint(equalToConstant: FlipboardCell.LogoSize.width),
 
-            from.leadingAnchor.constraint(equalTo: logo.trailingAnchor, constant: 10),
-            from.centerYAnchor.constraint(equalTo: logo.centerYAnchor),
+            source.leadingAnchor.constraint(equalTo: sourceLogo.trailingAnchor, constant: 10),
+            source.centerYAnchor.constraint(equalTo: sourceLogo.centerYAnchor),
 
-            ago.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 22),
+            ago.topAnchor.constraint(equalTo: sourceLogo.bottomAnchor, constant: 22),
             ago.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
             ago.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -22),
         ])
@@ -136,16 +108,6 @@ private extension Article {
         ]
 
         return NSAttributedString.init(string: d, attributes: attributes)
-    }
-
-    var flipboardAgo: String {
-        guard let publishedAt = self.publishedAt else { return "" }
-
-        let f = ISO8601DateFormatter()
-        let da = f.date(from: publishedAt)
-        guard let date = da else { return "" }
-
-        return date.timeAgoSinceDate()
     }
 }
 
