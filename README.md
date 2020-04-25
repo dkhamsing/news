@@ -1,6 +1,6 @@
 ## The News
 
-iOS news app in the style of the NYT, CNN, BBC, Reddit, Twitter, Facebook, Flipboard, Lil News, Washington Post :newspaper:
+iOS news app in the style of the NYT, CNN, BBC, Reddit, Twitter, Facebook, Flipboard, Lil News, Washington Post, Wall Street Journal :newspaper:
 
 <img src=Images/nyt.png height=400> <img src=Images/cnn.png height=400>
 
@@ -10,7 +10,7 @@ iOS news app in the style of the NYT, CNN, BBC, Reddit, Twitter, Facebook, Flipb
 
 <img src=Images/flipboard.png height=400> <img src=Images/lilnews.png height=400>
 
-<img src=Images/washingtonpost.png height=400>
+<img src=Images/washingtonpost.png height=400> <img src=Images/wsj.png height=400>
 
 ## Requirements
 

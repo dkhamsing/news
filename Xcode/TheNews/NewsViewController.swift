@@ -368,6 +368,7 @@ enum Style: String, CaseIterable {
     case reddit = "Reddit"
     case twitter = "Twitter"
     case nyt = "The New York Times"
+    case wsj = "The Wall Street Journal"
     case washingtonPost = "The Washington Post"
 }
 
@@ -394,6 +395,7 @@ private extension UICollectionView {
         register(LilCell.self, forCellWithReuseIdentifier: Style.lilnews.rawValue)
         register(FlipboardCell.self, forCellWithReuseIdentifier: Style.flipboard.rawValue)
         register(WashingtonCell.self, forCellWithReuseIdentifier: Style.washingtonPost.rawValue)
+        register(WsjCell.self, forCellWithReuseIdentifier: Style.wsj.rawValue)
     }
 }
 
