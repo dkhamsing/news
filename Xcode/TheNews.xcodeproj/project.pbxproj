@@ -30,6 +30,18 @@
 		65CCEAFE2443A8E400704FCE /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CCEAFD2443A8E400704FCE /* Protocol.swift */; };
 		65E65B062452890800A14693 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E65B052452890800A14693 /* NewsModel.swift */; };
 		65E65B0824534D2F00A14693 /* WsjCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E65B0724534D2F00A14693 /* WsjCell.swift */; };
+		65F36889245684B000A8C398 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F36888245684B000A8C398 /* AppDelegate.swift */; };
+		65F3688B245684B000A8C398 /* TvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F3688A245684B000A8C398 /* TvViewController.swift */; };
+		65F36892245684B500A8C398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F36891245684B500A8C398 /* Assets.xcassets */; };
+		65F36895245684B500A8C398 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F36893245684B500A8C398 /* LaunchScreen.storyboard */; };
+		65F3689A2456853A00A8C398 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65215EE024439742008B4D5A /* Extension.swift */; };
+		65F3689B2456855D00A8C398 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CCEAFD2443A8E400704FCE /* Protocol.swift */; };
+		65F3689C245685E400A8C398 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B5D736244E0EB2000CC18C /* Configuration.swift */; };
+		65F3689D245685F800A8C398 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E65B052452890800A14693 /* NewsModel.swift */; };
+		65F3689E2457940400A8C398 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65215EDE24438F08008B4D5A /* ImageDownloader.swift */; };
+		65F368A02457DD0800A8C398 /* TvNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F3689F2457DD0800A8C398 /* TvNewsCell.swift */; };
+		65F368A224588D8300A8C398 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F368A124588D8300A8C398 /* InsetLabel.swift */; };
+		65F368A42458952E00A8C398 /* TvExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F368A32458952E00A8C398 /* TvExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,10 +70,26 @@
 		65CCEAFD2443A8E400704FCE /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		65E65B052452890800A14693 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		65E65B0724534D2F00A14693 /* WsjCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WsjCell.swift; sourceTree = "<group>"; };
+		65F36886245684B000A8C398 /* TheNews.tvos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheNews.tvos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65F36888245684B000A8C398 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		65F3688A245684B000A8C398 /* TvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvViewController.swift; sourceTree = "<group>"; };
+		65F36891245684B500A8C398 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		65F36894245684B500A8C398 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		65F36896245684B500A8C398 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65F3689F2457DD0800A8C398 /* TvNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvNewsCell.swift; sourceTree = "<group>"; };
+		65F368A124588D8300A8C398 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		65F368A32458952E00A8C398 /* TvExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6560AE4A24411C4A00581008 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65F36883245684B000A8C398 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -92,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				6560AE4F24411C4A00581008 /* TheNews */,
+				65F36887245684B000A8C398 /* TheNews.tvos */,
 				6560AE4E24411C4A00581008 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				6560AE4D24411C4A00581008 /* TheNews.app */,
+				65F36886245684B000A8C398 /* TheNews.tvos.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +164,21 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		65F36887245684B000A8C398 /* TheNews.tvos */ = {
+			isa = PBXGroup;
+			children = (
+				65F36896245684B500A8C398 /* Info.plist */,
+				65F36888245684B000A8C398 /* AppDelegate.swift */,
+				65F368A124588D8300A8C398 /* InsetLabel.swift */,
+				65F368A32458952E00A8C398 /* TvExtension.swift */,
+				65F3689F2457DD0800A8C398 /* TvNewsCell.swift */,
+				65F3688A245684B000A8C398 /* TvViewController.swift */,
+				65F36891245684B500A8C398 /* Assets.xcassets */,
+				65F36893245684B500A8C398 /* LaunchScreen.storyboard */,
+			);
+			path = TheNews.tvos;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,18 +199,38 @@
 			productReference = 6560AE4D24411C4A00581008 /* TheNews.app */;
 			productType = "com.apple.product-type.application";
 		};
+		65F36885245684B000A8C398 /* TheNews.tvos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65F36897245684B500A8C398 /* Build configuration list for PBXNativeTarget "TheNews.tvos" */;
+			buildPhases = (
+				65F36882245684B000A8C398 /* Sources */,
+				65F36883245684B000A8C398 /* Frameworks */,
+				65F36884245684B000A8C398 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TheNews.tvos;
+			productName = TheNews.tvos;
+			productReference = 65F36886245684B000A8C398 /* TheNews.tvos.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		6560AE4524411C4A00581008 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = dk;
 				TargetAttributes = {
 					6560AE4C24411C4A00581008 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					65F36885245684B000A8C398 = {
+						CreatedOnToolsVersion = 11.4;
 					};
 				};
 			};
@@ -183,6 +248,7 @@
 			projectRoot = "";
 			targets = (
 				6560AE4C24411C4A00581008 /* TheNews */,
+				65F36885245684B000A8C398 /* TheNews.tvos */,
 			);
 		};
 /* End PBXProject section */
@@ -194,6 +260,15 @@
 			files = (
 				6560AE5D24411C4C00581008 /* LaunchScreen.storyboard in Resources */,
 				6560AE5A24411C4C00581008 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65F36884245684B000A8C398 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65F36895245684B500A8C398 /* LaunchScreen.storyboard in Resources */,
+				65F36892245684B500A8C398 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +303,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		65F36882245684B000A8C398 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65F3689D245685F800A8C398 /* NewsModel.swift in Sources */,
+				65F368A224588D8300A8C398 /* InsetLabel.swift in Sources */,
+				65F3689C245685E400A8C398 /* Configuration.swift in Sources */,
+				65F368A02457DD0800A8C398 /* TvNewsCell.swift in Sources */,
+				65F3689E2457940400A8C398 /* ImageDownloader.swift in Sources */,
+				65F36889245684B000A8C398 /* AppDelegate.swift in Sources */,
+				65F3688B245684B000A8C398 /* TvViewController.swift in Sources */,
+				65F368A42458952E00A8C398 /* TvExtension.swift in Sources */,
+				65F3689A2456853A00A8C398 /* Extension.swift in Sources */,
+				65F3689B2456855D00A8C398 /* Protocol.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -235,6 +327,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				6560AE5C24411C4C00581008 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		65F36893245684B500A8C398 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65F36894245684B500A8C398 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -362,6 +462,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TheNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,6 +480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TheNews/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,6 +489,44 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		65F36898245684B500A8C398 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TheNews.tvos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dk.TheNews-tvos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13;
+			};
+			name = Debug;
+		};
+		65F36899245684B500A8C398 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TheNews.tvos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "dk.TheNews-tvos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13;
 			};
 			name = Release;
 		};
@@ -407,6 +547,15 @@
 			buildConfigurations = (
 				6560AE6224411C4C00581008 /* Debug */,
 				6560AE6324411C4C00581008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65F36897245684B500A8C398 /* Build configuration list for PBXNativeTarget "TheNews.tvos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65F36898245684B500A8C398 /* Debug */,
+				65F36899245684B500A8C398 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

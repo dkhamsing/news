@@ -1,6 +1,10 @@
-## The News
+## NewsApi Swift Apps
 
-iOS news app in the style of the NYT, CNN, BBC, Reddit, Twitter, Facebook, Flipboard, Lil News, Washington Post, Wall Street Journal :newspaper:
+#### tvOS news app :tv:
+
+<img src=Images/tvos.png width=375>
+
+#### iOS news app in the style of the New York Times, Washington Post, Wall Street Journal, CNN, BBC, Reddit, Twitter, Facebook, Flipboard, Lil News :newspaper:
 
 <img src=Images/nyt.png height=400> <img src=Images/cnn.png height=400>
 
@@ -14,7 +18,8 @@ iOS news app in the style of the NYT, CNN, BBC, Reddit, Twitter, Facebook, Flipb
 
 ## Requirements
 
-iOS 13
+- iOS 13
+- tvOS 13
 
 ## Credits
 

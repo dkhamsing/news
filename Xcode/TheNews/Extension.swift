@@ -125,6 +125,12 @@ extension UIView {
 }
 
 extension URL {
+    static func newsApiUrlForCategory(_ category: String) -> URL? {
+        guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(Configuration.ApiKey)&category=\(category)") else { return nil }
+
+        return url
+    }
+
     func get<T: Codable>(type: T.Type, completion: @escaping (Result<T, ApiError>) -> Void) {
         let session = URLSession.shared
         let task = session.dataTask(with: self) { data, _, error in

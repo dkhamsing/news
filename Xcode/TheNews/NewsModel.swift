@@ -8,15 +8,6 @@
 
 import Foundation
 
-extension ApiError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .generic:
-            return NSLocalizedString("Could not retrieve data.", comment: "")
-        }
-    }
-}
-
 struct Headline: Codable {
     var articles: [Article]
 }
@@ -50,4 +41,36 @@ extension Article {
 
         return "https://logo.clearbit.com/\(host)"
     }
+}
+
+extension ApiError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .generic:
+            return NSLocalizedString("Could not retrieve data.", comment: "")
+        }
+    }
+}
+
+enum NewsCategory: String, CaseIterable {
+    case general
+    case business
+    case entertainment
+    case health
+    case science
+    case sports
+    case technology
+}
+
+enum Style: String, CaseIterable {
+    case bbc = "BBC"
+    case cnn = "CNN"
+    case facebook = "Facebook"
+    case flipboard = "Flipboard"
+    case lilnews = "Lil News"
+    case reddit = "Reddit"
+    case twitter = "Twitter"
+    case nyt = "The New York Times"
+    case wsj = "The Wall Street Journal"
+    case washingtonPost = "The Washington Post"
 }

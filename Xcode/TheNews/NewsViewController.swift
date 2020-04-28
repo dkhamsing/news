@@ -66,8 +66,8 @@ private extension NewsViewController {
     func loadData(_ category: String) {
         title = "\(settings.category.rawValue.capitalizingFirstLetter()) News"
 
-        guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(Configuration.ApiKey)&category=\(category)") else {
-            print("error")
+        guard let url = URL.newsApiUrlForCategory(category) else {
+            print("load data error")
             return
         }
 
@@ -348,29 +348,8 @@ private extension NewsViewController {
     }
 }
 
-enum NewsCategory: String, CaseIterable {
-    case general
-    case business
-    case entertainment
-    case health
-    case science
-    case sports
-    case technology
-}
 
 
-enum Style: String, CaseIterable {
-    case bbc = "BBC"
-    case cnn = "CNN"
-    case facebook = "Facebook"
-    case flipboard = "Flipboard"
-    case lilnews = "Lil News"
-    case reddit = "Reddit"
-    case twitter = "Twitter"
-    case nyt = "The New York Times"
-    case wsj = "The Wall Street Journal"
-    case washingtonPost = "The Washington Post"
-}
 
 private extension String {
     func capitalizingFirstLetter() -> String {
