@@ -54,7 +54,7 @@ extension NytCell: Configurable {
         NSLayoutConstraint.activate([
             line.topAnchor.constraint(equalTo: contentView.topAnchor),
             line.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
-            line.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25),
+            contentView.trailingAnchor.constraint(equalTo: line.trailingAnchor, constant: 25),
             line.heightAnchor.constraint(equalToConstant: 0.5),
             
             title.leadingAnchor.constraint(equalTo: line.leadingAnchor),
@@ -64,14 +64,14 @@ extension NytCell: Configurable {
             content.leadingAnchor.constraint(equalTo: line.leadingAnchor),
             content.trailingAnchor.constraint(equalTo: line.trailingAnchor),
             content.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
-            content.bottomAnchor.constraint(equalTo: imageView.topAnchor, constant: -5),
-            
+            imageView.topAnchor.constraint(equalTo: content.bottomAnchor, constant: 5),
+
             imageView.leadingAnchor.constraint(equalTo: line.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: line.trailingAnchor),
             imageView.heightAnchor.constraint(equalToConstant: imageSizeUnwrapped.height),
             
             source.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-            source.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            contentView.bottomAnchor.constraint(equalTo: source.bottomAnchor, constant: 8),
             source.trailingAnchor.constraint(equalTo: line.trailingAnchor),
         ])
     }

@@ -70,14 +70,14 @@ extension LilCell: Configurable {
 
             ago.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             ago.heightAnchor.constraint(equalToConstant: 30),
-            ago.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
+            contentView.bottomAnchor.constraint(equalTo: ago.bottomAnchor, constant: 30),
 
             title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            contentView.trailingAnchor.constraint(equalTo: title.trailingAnchor, constant: 20),
             title.bottomAnchor.constraint(equalTo: content.topAnchor, constant: -6),
 
-            content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            content.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            content.leadingAnchor.constraint(equalTo: title.leadingAnchor),
+            content.trailingAnchor.constraint(equalTo: title.trailingAnchor),
             content.bottomAnchor.constraint(equalTo: ago.topAnchor),
 
             source.bottomAnchor.constraint(equalTo: title.topAnchor),

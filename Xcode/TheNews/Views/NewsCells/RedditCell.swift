@@ -62,15 +62,15 @@ extension RedditCell: Configurable {
             source.leadingAnchor.constraint(equalTo: sourceLogo.trailingAnchor, constant: 10),
             
             title.leadingAnchor.constraint(equalTo: sourceLogo.leadingAnchor),
-            title.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -15),
+            imageView.leadingAnchor.constraint(equalTo: title.trailingAnchor, constant: 15),
             title.topAnchor.constraint(equalTo: sourceLogo.bottomAnchor, constant: 10),
-            title.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+            contentView.bottomAnchor.constraint(equalTo: title.bottomAnchor, constant: 15),
             
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            contentView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 15),
             imageView.topAnchor.constraint(equalTo: title.topAnchor),
             imageView.widthAnchor.constraint(equalToConstant: imageSizeUnwrapped.width),
             imageView.heightAnchor.constraint(equalToConstant: imageSizeUnwrapped.height),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+            contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15),
         ])
     }
 }

@@ -65,7 +65,7 @@ extension WsjCell: Configurable {
 
             title.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30),
             title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            contentView.trailingAnchor.constraint(equalTo: title.trailingAnchor, constant: 15),
 
             content.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8),
             content.leadingAnchor.constraint(equalTo: title.leadingAnchor),
@@ -73,7 +73,7 @@ extension WsjCell: Configurable {
 
             ago.topAnchor.constraint(equalTo: content.bottomAnchor, constant: 20),
             ago.leadingAnchor.constraint(equalTo: title.leadingAnchor),
-            ago.bottomAnchor.constraint(equalTo: line.topAnchor, constant: -30),
+            line.topAnchor.constraint(equalTo: ago.bottomAnchor, constant: 30),
 
             line.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             line.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

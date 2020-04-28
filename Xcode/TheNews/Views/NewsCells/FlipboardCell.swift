@@ -67,7 +67,7 @@ extension FlipboardCell: Configurable {
 
             imageView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 20),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            contentView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 15),
             imageView.heightAnchor.constraint(equalToConstant: imageSizeUnwrapped.height),
 
             title.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 18),
@@ -88,7 +88,7 @@ extension FlipboardCell: Configurable {
 
             ago.topAnchor.constraint(equalTo: sourceLogo.bottomAnchor, constant: 22),
             ago.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-            ago.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -22),
+            contentView.bottomAnchor.constraint(equalTo: ago.bottomAnchor, constant: 22),
         ])
     }
 }

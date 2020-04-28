@@ -67,12 +67,12 @@ extension TwitterCell: Configurable {
             source.bottomAnchor.constraint(equalTo: title.topAnchor),
             
             title.leadingAnchor.constraint(equalTo: sourceLogo.trailingAnchor, constant: profileInset),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            title.bottomAnchor.constraint(equalTo: imageView.topAnchor, constant: -10),
+            contentView.trailingAnchor.constraint(equalTo: title.trailingAnchor, constant: 20),
+            imageView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
             
             imageView.leadingAnchor.constraint(equalTo: sourceLogo.trailingAnchor, constant: profileInset),
             imageView.trailingAnchor.constraint(equalTo: title.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
             imageView.heightAnchor.constraint(equalToConstant: imageSizeUnwrapped.height),
         ])
     }

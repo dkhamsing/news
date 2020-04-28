@@ -73,12 +73,12 @@ extension FacebookCell: Configurable {
             
             title.topAnchor.constraint(equalTo: sourceLogo.bottomAnchor, constant: 2),
             title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 13),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -13),
+            contentView.trailingAnchor.constraint(equalTo: title.trailingAnchor, constant: 13),
             
             imageView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
             imageView.heightAnchor.constraint(equalToConstant: imageSizeUnwrapped.height),
         ])
     }

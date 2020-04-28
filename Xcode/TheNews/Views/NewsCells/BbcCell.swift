@@ -65,7 +65,8 @@ extension BbcCell: Configurable {
     
     func config() {
         [title, ago, imageView, badge].forEach { contentView.addSubviewForAutoLayout($0) }
-        
+
+        let inset: CGFloat = 10
         NSLayoutConstraint.activate([
             badge.topAnchor.constraint(equalTo: contentView.topAnchor),
             badge.widthAnchor.constraint(equalToConstant: 30),
@@ -77,13 +78,13 @@ extension BbcCell: Configurable {
             imageView.heightAnchor.constraint(equalToConstant: imageSizeUnwrapped.height),
             
             title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
-            title.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            title.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: inset),
+            contentView.trailingAnchor.constraint(equalTo: title.trailingAnchor, constant: inset),
             title.bottomAnchor.constraint(equalTo: ago.topAnchor),
             
-            ago.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            ago.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            ago.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
+            ago.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: inset),
+            contentView.trailingAnchor.constraint(equalTo: ago.trailingAnchor, constant: inset),
+            contentView.bottomAnchor.constraint(equalTo: ago.bottomAnchor, constant: 4),
         ])
     }
 }

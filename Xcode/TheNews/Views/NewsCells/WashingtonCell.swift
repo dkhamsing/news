@@ -58,7 +58,7 @@ extension WashingtonCell: Configurable {
 
             imageView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 15),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            contentView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 15),
             imageView.heightAnchor.constraint(equalToConstant: imageSizeUnwrapped.height),
 
             title.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
@@ -72,7 +72,7 @@ extension WashingtonCell: Configurable {
             source.topAnchor.constraint(equalTo: content.bottomAnchor, constant: 10),
             source.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
             source.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-            source.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3),
+            contentView.bottomAnchor.constraint(equalTo: source.bottomAnchor, constant: 3),
         ])
     }
 }

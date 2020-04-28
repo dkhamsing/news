@@ -69,6 +69,7 @@ extension CnnCell: Configurable {
         [imageView, source, title, content, ago, line, separator].forEach { contentView.addSubviewForAutoLayout($0) }
         
         let inset: CGFloat = 15
+        let insetDouble = inset * 2
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -80,12 +81,12 @@ extension CnnCell: Configurable {
             source.bottomAnchor.constraint(equalTo: title.topAnchor),
             
             title.leadingAnchor.constraint(equalTo: source.leadingAnchor),
-            title.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: (-2 * inset)),
+            title.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -insetDouble),
             title.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -inset),
             
             content.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: inset),
-            content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: (2 * inset)),
-            content.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: (-2 * inset)),
+            content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: insetDouble),
+            contentView.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: insetDouble),
             
             line.topAnchor.constraint(equalTo: content.bottomAnchor, constant: 10),
             line.leadingAnchor.constraint(equalTo: content.leadingAnchor),
