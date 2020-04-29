@@ -15,6 +15,7 @@ class TvViewController: UIViewController {
     private let tableView = UITableView()
     private let backgroundImageView = UIImageView()
     private let content = InsetLabel()
+    private let qrImageView = UIImageView()
 
     // Date
     private var items: [Article] = []
@@ -45,6 +46,9 @@ extension TvViewController: Configurable {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(TvNewsCell.self, forCellReuseIdentifier: TvNewsCell.ReuseIdentifier)
+
+        qrImageView.layer.cornerRadius = 6
+        qrImageView.layer.masksToBounds = true
     }
     
     func config() {
@@ -64,12 +68,18 @@ extension TvViewController: Configurable {
             tableView.widthAnchor.constraint(equalToConstant: tableWidth),
         ])
         
-        // Content
+        // Content, QR code
         view.addSubviewForAutoLayout(content)
+        view.addSubviewForAutoLayout(qrImageView)
         NSLayoutConstraint.activate([
             content.leadingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: 75),
             view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: content.bottomAnchor),
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            qrImageView.leadingAnchor.constraint(equalTo: content.trailingAnchor, constant: 40),
+
+            qrImageView.heightAnchor.constraint(equalToConstant: 200),
+            qrImageView.widthAnchor.constraint(equalToConstant: 200),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: qrImageView.trailingAnchor),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: qrImageView.bottomAnchor),
         ])
     }
 }
@@ -139,6 +149,11 @@ private extension TvViewController {
 
         content.alpha = 0.6
         content.label.text = item.descriptionOrContent
+
+        guard let ciImage = item.url?.qrImage else { return }
+
+        let image = UIImage.init(ciImage: ciImage)
+        qrImageView.image = image
     }
 
     func updateImage(url: String?) {
