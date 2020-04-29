@@ -85,9 +85,9 @@ extension WsjCell: Configurable {
 
 private extension Article {
     var wsjAttributedContent: NSAttributedString {
-        guard let font = UIFont(name: "Palatino-Roman", size: 17),
-            let c = descriptionOrContent
-            else { return NSAttributedString() }
+        guard
+            let font = UIFont(name: "Palatino-Roman", size: 17),
+            let c = descriptionOrContent else { return NSAttributedString() }
 
         let style = NSMutableParagraphStyle()
         style.lineHeightMultiple = 1.2

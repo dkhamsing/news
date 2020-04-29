@@ -80,9 +80,9 @@ extension TwitterCell: Configurable {
 
 private extension Article {
     var twitterAttributedFirstLine: NSAttributedString {
-        guard let name = source?.name,
-            let date = publishedAt
-            else { return NSAttributedString() }
+        guard
+            let name = source?.name,
+            let date = publishedAt else { return NSAttributedString() }
         
         let nameAttribute: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 17)

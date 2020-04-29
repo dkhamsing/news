@@ -141,7 +141,7 @@ extension URL {
                 return
             }
 
-            guard let unwrapped = data else {
+            guard let unwrappedData = data else {
                 DispatchQueue.main.async {
                     completion(.failure(.generic))
                 }
@@ -150,9 +150,9 @@ extension URL {
 
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            if let result = try? decoder.decode(type, from: unwrapped) {
+            if let decoded = try? decoder.decode(type, from: unwrappedData) {
                 DispatchQueue.main.async {
-                    completion(.success(result))
+                    completion(.success(decoded))
                 }
             }
             else {

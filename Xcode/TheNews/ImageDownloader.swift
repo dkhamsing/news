@@ -31,7 +31,8 @@ class ImageDownloader {
         }
 
         DispatchQueue.global().async { [weak self] in
-            guard let data = try? Data(contentsOf: url),
+            guard
+                let data = try? Data(contentsOf: url),
                 let image = UIImage(data: data) else {
                     DispatchQueue.main.async {
                         completion(nil)
@@ -63,7 +64,7 @@ private extension UIImage {
     func resized(size: CGSize) -> UIImage? {
         let renderer = UIGraphicsImageRenderer(size: size)
         let image = self
-        return renderer.image { (context) in
+        return renderer.image { _ in
             image.draw(in: CGRect(origin: .zero, size: size))
         }
     }

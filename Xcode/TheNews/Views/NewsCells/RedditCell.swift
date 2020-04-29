@@ -77,9 +77,9 @@ extension RedditCell: Configurable {
 
 private extension Article {
     var redditAttributed: NSAttributedString {
-        guard let name = source?.name,
-            let date = publishedAt
-            else { return NSAttributedString() }
+        guard
+            let name = source?.name,
+            let date = publishedAt else { return NSAttributedString() }
         
         let fontSize: CGFloat = 12
         

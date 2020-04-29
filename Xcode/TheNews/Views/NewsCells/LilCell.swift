@@ -33,6 +33,7 @@ class LilCell: NewsCell {
         super.update(image: image, matchingIdentifier: matchingIdentifier)
 
         guard imageView.layer.sublayers?.count == nil else { return }
+
         imageView.addGradient()
     }
 }
