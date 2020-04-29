@@ -30,9 +30,6 @@ class NewsViewController: UIViewController {
 
 extension NewsViewController: Configurable {
     func setup() {
-        // Settings
-        settings.loadSaved()
-
         // Refresh control
         refreshControl.addTarget(self, action: #selector(loadDataForCurrentCategory), for: UIControl.Event.valueChanged)
 
@@ -347,9 +344,6 @@ private extension NewsViewController {
         reload()
     }
 }
-
-
-
 
 private extension String {
     func capitalizingFirstLetter() -> String {

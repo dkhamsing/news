@@ -16,48 +16,49 @@ struct Configuration {
     static let StyleDefault: Style = .cnn
     static let CategoryDefault: NewsCategory = .general
 
-    var category: NewsCategory = Configuration.CategoryDefault {
+    var category: NewsCategory = UserDefaultsConfig.savedCategory {
         didSet {
-            let defaults = UserDefaults.standard
-            defaults.set(category.rawValue, forKey: Configuration.CategoryKey)
+            UserDefaultsConfig.savedCategory = category
         }
     }
 
-    var style: Style = Configuration.StyleDefault {
+    var style: Style = UserDefaultsConfig.savedStyle {
         didSet {
-            let defaults = UserDefaults.standard
-            defaults.set(style.rawValue, forKey: Configuration.StyleKey)
+            UserDefaultsConfig.savedStyle = style
         }
-    }
-
-    mutating func loadSaved() {
-        category = Configuration.SavedCategory
-        style = Configuration.SavedStyle
     }
 }
 
-private extension Configuration {
-    static var SavedCategory: NewsCategory {
-        let defaults = UserDefaults.standard
-        if let saved = defaults.object(forKey: Configuration.CategoryKey) as? String {
-            let category = NewsCategory(rawValue: saved)
-            if let unwrapped = category {
-                return unwrapped
-            }
-        }
+// Credits: https://www.avanderlee.com/swift/property-wrappers/
+struct UserDefaultsConfig {
+    @UserDefault(Configuration.CategoryKey, defaultValue: Configuration.CategoryDefault)
+    static var savedCategory: NewsCategory
 
-        return Configuration.CategoryDefault
+    @UserDefault(Configuration.StyleKey, defaultValue: Configuration.StyleDefault)
+    static var savedStyle: Style
+}
+
+@propertyWrapper
+struct UserDefault<T: Codable> {
+    let key: String
+    let defaultValue: T
+
+    init(_ key: String, defaultValue: T) {
+        self.key = key
+        self.defaultValue = defaultValue
     }
 
-    static var SavedStyle: Style {
-        let defaults = UserDefaults.standard
-        if let saved = defaults.object(forKey: Configuration.StyleKey) as? String {
-            let style = Style(rawValue: saved)
-            if let unwrapped = style {
-                return unwrapped
+    var wrappedValue: T {
+        get {
+            guard
+                let saved = UserDefaults.standard.object(forKey: key) as? Data,
+                let decoded = try? JSONDecoder().decode(T.self, from: saved) else { return defaultValue }
+            return decoded
+        }
+        set {
+            if let encoded = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.set(encoded, forKey: key)
             }
         }
-
-        return Configuration.StyleDefault
     }
 }

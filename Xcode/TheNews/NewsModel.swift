@@ -52,7 +52,7 @@ extension ApiError: LocalizedError {
     }
 }
 
-enum NewsCategory: String, CaseIterable {
+enum NewsCategory: String, CaseIterable, Codable {
     case general
     case business
     case entertainment
@@ -62,7 +62,7 @@ enum NewsCategory: String, CaseIterable {
     case technology
 }
 
-enum Style: String, CaseIterable {
+enum Style: String, CaseIterable, Codable {
     case bbc = "BBC"
     case cnn = "CNN"
     case facebook = "Facebook"
