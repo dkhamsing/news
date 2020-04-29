@@ -94,6 +94,6 @@ private extension Article {
 }
 
 private extension UIColor {
-    static let lineGray = UIColor.colorFor(red: 210, green: 210, blue: 210)
-    static let bottomTextGray = UIColor.colorFor(red: 80, green: 80, blue: 80)
+    static let lineGray = UIColor.colorForSameRgbValue(210)
+    static let bottomTextGray = UIColor.colorForSameRgbValue(80)
 }

@@ -35,7 +35,7 @@ extension FacebookCell: Configurable {
     func setup() {
         imageSize = CGSize(width: 420, height: 260)
 
-        line.backgroundColor = UIColor.colorFor(red: 210, green: 210, blue: 210)
+        line.backgroundColor = UIColor.colorForSameRgbValue(210)
         
         title.numberOfLines = 0
         title.font = .systemFont(ofSize: 15)

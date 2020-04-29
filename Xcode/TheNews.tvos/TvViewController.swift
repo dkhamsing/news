@@ -112,7 +112,7 @@ extension TvViewController: UITableViewDelegate {
     // TODO: prevent issue of image updating when fast scrolling
     func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         context.previouslyFocusedView?.backgroundColor = .clear
-        context.nextFocusedView?.backgroundColor = .colorFor(red: 50, green: 50, blue: 50)
+        context.nextFocusedView?.backgroundColor = .colorForSameRgbValue(50)
 
         guard let indexPath = context.nextFocusedIndexPath else { return }
 

@@ -97,6 +97,10 @@ extension UIColor {
     static func colorFor(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1)
     }
+
+    static func colorForSameRgbValue(_ value: CGFloat) -> UIColor {
+        return colorFor(red: value, green: value, blue: value)
+    }
 }
 
 // Credits: https://stackoverflow.com/questions/55653187/swift-default-alertviewcontroller-breaking-constraints

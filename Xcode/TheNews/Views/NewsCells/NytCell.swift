@@ -42,7 +42,7 @@ extension NytCell: Configurable {
         
         content.numberOfLines = 0
         content.font = UIFont(name: "Times New Roman", size: 18)
-        content.textColor = .colorFor(red: 80, green: 80, blue: 80)
+        content.textColor = .colorForSameRgbValue(80)
 
         source.textColor = .lightGray
         source.font = UIFont.systemFont(ofSize: 12)
