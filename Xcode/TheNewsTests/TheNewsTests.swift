@@ -19,8 +19,8 @@ class TheNewsTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
 
-        UserDefaults.standard.removeObject(forKey: Configuration.CategoryKey)
-        UserDefaults.standard.removeObject(forKey: Configuration.StyleKey)
+        UserDefaults.standard.removeObject(forKey: Settings.CategoryKey)
+        UserDefaults.standard.removeObject(forKey: Settings.StyleKey)
     }
 
     func testUserDefaultsPropertyWrapperDefaultSetter() throws {
@@ -43,16 +43,16 @@ class TheNewsTests: XCTestCase {
 
     func testDefaultConfiguration() throws {
         // Given
-        let settings = Configuration()
+        let settings = Settings()
 
         // Then
-        XCTAssertTrue(settings.category.rawValue == Configuration.CategoryDefault.rawValue)
-        XCTAssertTrue(settings.style.rawValue == Configuration.StyleDefault.rawValue)
+        XCTAssertTrue(settings.category.rawValue == Settings.CategoryDefault.rawValue)
+        XCTAssertTrue(settings.style.rawValue == Settings.StyleDefault.rawValue)
     }
 
     func testChangingCategoryConfiguration() throws {
         // Given
-        var settings = Configuration()
+        var settings = Settings()
 
         // When
         let category = NewsCategory.business
@@ -64,7 +64,7 @@ class TheNewsTests: XCTestCase {
 
     func testChangingStyleConfiguration() throws {
         // Given
-        var settings = Configuration()
+        var settings = Settings()
 
         // When
         let style = Style.cnn

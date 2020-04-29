@@ -130,7 +130,7 @@ extension UIView {
 
 extension URL {
     static func newsApiUrlForCategory(_ category: String) -> URL? {
-        guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(Configuration.ApiKey)&category=\(category)") else { return nil }
+        guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(Settings.ApiKey)&category=\(category)") else { return nil }
 
         return url
     }

@@ -13,7 +13,7 @@ class NewsViewController: UIViewController {
     // Data
     private var items: [Article] = []
     private let downloader = ImageDownloader()
-    private var settings = Configuration()
+    private var settings = Settings()
 
     // UI
     private var collectionView: UICollectionView?

@@ -1,5 +1,5 @@
 //
-//  Configuration.swift
+//  Settings.swift
 //  TheNews
 //
 //  Created by Daniel on 4/20/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Configuration {
+struct Settings {
     static let StyleKey = "style"
     static let CategoryKey = "category"
     static let ApiKey = "8815d577462a4195a64f6f50af3ada08"
@@ -31,10 +31,10 @@ struct Configuration {
 
 // Credits: https://www.avanderlee.com/swift/property-wrappers/
 struct UserDefaultsConfig {
-    @UserDefault(Configuration.CategoryKey, defaultValue: Configuration.CategoryDefault)
+    @UserDefault(Settings.CategoryKey, defaultValue: Settings.CategoryDefault)
     static var savedCategory: NewsCategory
 
-    @UserDefault(Configuration.StyleKey, defaultValue: Configuration.StyleDefault)
+    @UserDefault(Settings.StyleKey, defaultValue: Settings.StyleDefault)
     static var savedStyle: Style
 }
 
