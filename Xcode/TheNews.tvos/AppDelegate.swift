@@ -27,7 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         let tabController = UITabBarController()
+        tabController.delegate = self
         tabController.viewControllers = controllers
+
+        let settings = Settings()
+        tabController.selectedIndex = NewsCategory.allCases.map { $0.rawValue }.firstIndex(of: settings.category.rawValue) ?? 0
 
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = tabController
@@ -56,3 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let c = viewController as? TvViewController else { return }
+
+        var settings = Settings()
+        settings.category = c.category
+    }
+}
