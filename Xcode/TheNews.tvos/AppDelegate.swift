@@ -17,21 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        var controllers: [UIViewController] = []
-        for cat in NewsCategory.allCases {
-            let controller = TvViewController()
-            controller.category = cat
-            controller.tabBarItem.title = cat.rawValue
-
-            controllers.append(controller)
-        }
-
-        let tabController = UITabBarController()
-        tabController.delegate = self
-        tabController.viewControllers = controllers
-
-        let settings = Settings()
-        tabController.selectedIndex = NewsCategory.allCases.map { $0.rawValue }.firstIndex(of: settings.category.rawValue) ?? 0
+        let tabController = TvTabBarController()
 
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.rootViewController = tabController
@@ -58,13 +44,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-}
-
-extension AppDelegate: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        guard let c = viewController as? TvViewController else { return }
-
-        var settings = Settings()
-        settings.category = c.category
-    }
 }
