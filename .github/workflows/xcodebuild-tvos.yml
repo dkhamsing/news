@@ -1,0 +1,21 @@
+name: Xcode build tvOS
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_11.4.app
+
+    - name: Xcode version
+      run: /usr/bin/xcodebuild -version
+
+    - name: Xcode tvOS build
+      run: |
+        cd Xcode/
+        xcodebuild clean build -scheme TheNews.tvos -destination 'platform=tvOS Simulator,name=Apple TV'
