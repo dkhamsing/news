@@ -316,11 +316,13 @@ private extension NewsViewController {
 
 // MARK: - OBJC
 private extension NewsViewController {
-    @objc func loadDataForCurrentCategory() {
+    @objc
+    func loadDataForCurrentCategory() {
         loadData(settings.category.rawValue)
     }
 
-    @objc func selectStyle() {
+    @objc
+    func selectStyle() {
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         ac.fixiOSAlertControllerAutolayoutConstraint()
 
