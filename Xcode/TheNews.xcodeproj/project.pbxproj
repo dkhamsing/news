@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6500625E245B65E800465121 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6500625D245B65E800465121 /* UserDefault.swift */; };
+		6500625F245B65E800465121 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6500625D245B65E800465121 /* UserDefault.swift */; };
 		65215ED82442692B008B4D5A /* NytCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65215ED72442692B008B4D5A /* NytCell.swift */; };
 		65215EDB24427669008B4D5A /* BbcCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65215EDA24427669008B4D5A /* BbcCell.swift */; };
 		65215EDD2442A85A008B4D5A /* RedditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65215EDC2442A85A008B4D5A /* RedditCell.swift */; };
@@ -57,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6500625D245B65E800465121 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		65215ED72442692B008B4D5A /* NytCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NytCell.swift; sourceTree = "<group>"; };
 		65215EDA24427669008B4D5A /* BbcCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BbcCell.swift; sourceTree = "<group>"; };
 		65215EDC2442A85A008B4D5A /* RedditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditCell.swift; sourceTree = "<group>"; };
@@ -171,6 +174,7 @@
 				65CCEAFD2443A8E400704FCE /* Protocol.swift */,
 				6560AE5224411C4A00581008 /* SceneDelegate.swift */,
 				65B5D736244E0EB2000CC18C /* Settings.swift */,
+				6500625D245B65E800465121 /* UserDefault.swift */,
 				6560AE5924411C4C00581008 /* Assets.xcassets */,
 				6560AE5B24411C4C00581008 /* LaunchScreen.storyboard */,
 				6595AFEF24519ADA0076E632 /* Views */,
@@ -358,6 +362,7 @@
 				6595AFF12451F6F90076E632 /* WashingtonCell.swift in Sources */,
 				65215EE124439742008B4D5A /* Extension.swift in Sources */,
 				65293A45244172F2002E5BC3 /* NewsViewController.swift in Sources */,
+				6500625E245B65E800465121 /* UserDefault.swift in Sources */,
 				6595AFEC2451362A0076E632 /* NewsCell.swift in Sources */,
 				65B5D739244E63DF000CC18C /* LilCell.swift in Sources */,
 				65215ED82442692B008B4D5A /* NytCell.swift in Sources */,
@@ -388,6 +393,7 @@
 				65F3689E2457940400A8C398 /* ImageDownloader.swift in Sources */,
 				65F36889245684B000A8C398 /* AppDelegate.swift in Sources */,
 				65F3688B245684B000A8C398 /* TvViewController.swift in Sources */,
+				6500625F245B65E800465121 /* UserDefault.swift in Sources */,
 				65F368A42458952E00A8C398 /* TvExtension.swift in Sources */,
 				65F3689A2456853A00A8C398 /* Extension.swift in Sources */,
 				65F3689B2456855D00A8C398 /* Protocol.swift in Sources */,
