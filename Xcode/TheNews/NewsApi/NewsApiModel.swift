@@ -1,6 +1,5 @@
 //
-//  NewsModel.swift
-//  TheNews
+//  NewsApiModel.swift
 //
 //  Created by Daniel on 4/23/20.
 //  Copyright © 2020 dk. All rights reserved.
@@ -43,15 +42,6 @@ extension Article {
     }
 }
 
-extension ApiError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .generic:
-            return NSLocalizedString("Could not retrieve data.", comment: "")
-        }
-    }
-}
-
 enum NewsCategory: String, CaseIterable, Codable {
     case general
     case business
@@ -60,17 +50,4 @@ enum NewsCategory: String, CaseIterable, Codable {
     case science
     case sports
     case technology
-}
-
-enum Style: String, CaseIterable, Codable {
-    case bbc = "BBC"
-    case cnn = "CNN"
-    case facebook = "Facebook"
-    case flipboard = "Flipboard"
-    case lilnews = "Lil News"
-    case reddit = "Reddit"
-    case twitter = "Twitter"
-    case nyt = "The New York Times"
-    case wsj = "The Wall Street Journal"
-    case washingtonPost = "The Washington Post"
 }

@@ -1,6 +1,10 @@
-## NewsApi Swift Apps
+## News
 
-#### tvOS news app :tv:
+News API Swift Apps :newspaper:
+
+<img src=Images/hero.png width=100%>
+
+#### tvOS news app
 
 <img src=Images/tvos.png width=375>
 
@@ -16,6 +20,10 @@
 
 <img src=Images/washingtonpost.png height=400> <img src=Images/wsj.png height=400>
 
+#### Today Extension
+
+<img src=Images/today.png height=400>
+
 ## Requirements
 
 - iOS 13
@@ -24,6 +32,7 @@
 ## Credits
 
 - [newsapi.org](https://newsapi.org)
+- [app icon by xwoodhillx](https://thenounproject.com/term/news/2385047/)
 - [logos provided by clearbit](https://clearbit.com)
 - [lil news](https://lil.software/)
 

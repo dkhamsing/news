@@ -98,7 +98,7 @@ private extension Article {
             .foregroundColor: UIColor.gray,
         ]
 
-        let a = NSAttributedString.init(string: c, attributes: attributes)
+        let a = NSAttributedString(string: c, attributes: attributes)
         return a
     }
 }

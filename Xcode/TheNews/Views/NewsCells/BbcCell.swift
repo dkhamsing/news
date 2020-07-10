@@ -51,7 +51,7 @@ extension BbcCell: Configurable {
         badge.textColor = .white
         badge.font = UIFont.systemFont(ofSize: 12)
         
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemBackground
         
         title.numberOfLines = 3
         title.font = .systemFont(ofSize: 15)
@@ -59,8 +59,7 @@ extension BbcCell: Configurable {
         imageView.contentMode = .scaleAspectFit
 
         ago.font = .systemFont(ofSize: 15)
-        ago.textColor = .gray
-
+        ago.textColor = .systemGray
     }
     
     func config() {

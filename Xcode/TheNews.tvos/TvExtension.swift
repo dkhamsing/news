@@ -11,8 +11,8 @@ import UIKit
 extension UIView {
     func addGradientLeftRight() {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.startPoint = CGPoint.init(x: 0, y: 0.5)
-        gradientLayer.endPoint = CGPoint.init(x: 1, y: 0.5)
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
         gradientLayer.frame = self.bounds
         gradientLayer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
         self.layer.insertSublayer(gradientLayer, at: 0)

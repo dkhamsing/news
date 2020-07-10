@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "tvos.png",
       "idiom" : "tv"
     }
   ],

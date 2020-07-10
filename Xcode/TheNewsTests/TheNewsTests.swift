@@ -67,7 +67,7 @@ class TheNewsTests: XCTestCase {
         var settings = Settings()
 
         // When
-        let style = Style.cnn
+        let style = NewsStyle.cnn
         settings.style = style
 
         // Then

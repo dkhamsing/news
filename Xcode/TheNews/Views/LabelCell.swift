@@ -34,7 +34,7 @@ extension LabelCell {
 
     func configure(_ string: String, _ same: Bool) {
         name.text = string
-        contentView.backgroundColor = same ? .black : .gray
+        contentView.backgroundColor = same ? .systemGray : .systemGray2
     }
 }
 

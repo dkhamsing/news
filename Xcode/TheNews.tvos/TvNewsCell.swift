@@ -10,7 +10,7 @@ import UIKit
 
 class TvNewsCell: UITableViewCell {
     static let ReuseIdentifier = "TvNewsCell"
-    static let LogoSize = CGSize.init(width: 50, height: 50)
+    static let LogoSize = CGSize(width: 50, height: 50)
 
     private var tvTitle = UILabel()
     private var tvLogo = UIImageView()

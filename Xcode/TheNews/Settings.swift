@@ -11,9 +11,8 @@ import Foundation
 struct Settings {
     static let StyleKey = "style"
     static let CategoryKey = "category"
-    static let ApiKey = "8815d577462a4195a64f6f50af3ada08"
 
-    static let StyleDefault: Style = .cnn
+    static let StyleDefault: NewsStyle = .cnn
     static let CategoryDefault: NewsCategory = .general
 
     var category: NewsCategory = UserDefaultsConfig.savedCategory {
@@ -22,7 +21,7 @@ struct Settings {
         }
     }
 
-    var style: Style = UserDefaultsConfig.savedStyle {
+    var style: NewsStyle = UserDefaultsConfig.savedStyle {
         didSet {
             UserDefaultsConfig.savedStyle = style
         }
@@ -34,5 +33,5 @@ struct UserDefaultsConfig {
     static var savedCategory: NewsCategory
 
     @UserDefault(Settings.StyleKey, defaultValue: Settings.StyleDefault)
-    static var savedStyle: Style
+    static var savedStyle: NewsStyle
 }

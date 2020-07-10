@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina6_5" orientation="landscape" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="Today" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nji-ov-nRo">
+                                <rect key="frame" x="54" y="0.0" width="146" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="4z4-Sf-JVK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csb-TO-BcH">
+                                <rect key="frame" x="54" y="15" width="146" height="90"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbf-SV-I4d">
+                                <rect key="frame" x="54" y="105" width="256" height="0.0"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nZv-nm-7bH">
+                                <rect key="frame" x="210" y="25" width="100" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="2tB-G0-FRW"/>
+                                    <constraint firstAttribute="width" constant="100" id="dDo-tJ-a9g"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-L2-c4b">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                                <connections>
+                                    <action selector="actionButton:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="9rr-gU-nlc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="csb-TO-BcH" firstAttribute="trailing" secondItem="nZv-nm-7bH" secondAttribute="leading" constant="-10" id="29i-RK-m3o"/>
+                            <constraint firstItem="nji-ov-nRo" firstAttribute="leading" secondItem="csb-TO-BcH" secondAttribute="leading" id="5vf-d1-Lca"/>
+                            <constraint firstAttribute="trailing" secondItem="wbf-SV-I4d" secondAttribute="trailing" constant="10" id="FvJ-ZY-9Rt"/>
+                            <constraint firstItem="csb-TO-BcH" firstAttribute="top" secondItem="nji-ov-nRo" secondAttribute="bottom" id="H6Y-Lc-Bv3"/>
+                            <constraint firstItem="tDI-L2-c4b" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" id="IMO-qI-MGo"/>
+                            <constraint firstItem="wbf-SV-I4d" firstAttribute="leading" secondItem="csb-TO-BcH" secondAttribute="leading" id="Ies-ZN-m7f"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="tDI-L2-c4b" secondAttribute="bottom" id="ROW-wd-g2l"/>
+                            <constraint firstItem="nZv-nm-7bH" firstAttribute="centerY" secondItem="csb-TO-BcH" secondAttribute="centerY" id="UxF-xJ-sqe"/>
+                            <constraint firstItem="csb-TO-BcH" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="10" id="WsK-ts-4Cx"/>
+                            <constraint firstItem="wbf-SV-I4d" firstAttribute="top" secondItem="csb-TO-BcH" secondAttribute="bottom" priority="800" id="YQS-lo-HkM"/>
+                            <constraint firstAttribute="trailing" secondItem="tDI-L2-c4b" secondAttribute="trailing" id="bjB-kt-wem"/>
+                            <constraint firstItem="tDI-L2-c4b" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="hNo-jb-fwc"/>
+                            <constraint firstItem="nZv-nm-7bH" firstAttribute="trailing" secondItem="S3S-Oj-5AN" secondAttribute="trailing" constant="-10" id="p0K-28-ebt"/>
+                            <constraint firstItem="nji-ov-nRo" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" id="tQn-63-mHM"/>
+                            <constraint firstItem="wbf-SV-I4d" firstAttribute="top" secondItem="nZv-nm-7bH" secondAttribute="bottom" constant="10" id="tqu-H2-xc9"/>
+                            <constraint firstItem="csb-TO-BcH" firstAttribute="trailing" secondItem="nji-ov-nRo" secondAttribute="trailing" id="xT4-uh-JWI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="37"/>
+                    <connections>
+                        <outlet property="agoLabel" destination="nji-ov-nRo" id="dIu-At-xB7"/>
+                        <outlet property="contentLabel" destination="wbf-SV-I4d" id="jfC-DR-VXf"/>
+                        <outlet property="imageView" destination="nZv-nm-7bH" id="smn-SH-MYG"/>
+                        <outlet property="titleLabel" destination="csb-TO-BcH" id="8Mm-Lg-UHA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="138"/>
+        </scene>
+    </scenes>
+</document>

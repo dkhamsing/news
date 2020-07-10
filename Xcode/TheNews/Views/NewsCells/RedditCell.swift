@@ -35,7 +35,7 @@ extension RedditCell: Configurable {
     func setup() {
         imageSize = CGSize(width: 100, height: 70)
 
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .systemBackground
         
         title.numberOfLines = 0
 

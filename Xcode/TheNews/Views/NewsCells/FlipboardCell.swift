@@ -107,13 +107,24 @@ private extension Article {
             .paragraphStyle: style,
         ]
 
-        return NSAttributedString.init(string: d, attributes: attributes)
+        return NSAttributedString(string: d, attributes: attributes)
     }
 }
 
 private extension UIColor {
+    
     static let flipboardAgoGray = UIColor.colorFor(red: 171, green: 173, blue: 174)
     static let flipboardLineGray = UIColor.colorFor(red: 231, green: 232, blue: 233)
     static let flipboardRed = UIColor.colorFor(red: 242, green: 38, blue: 38)
-    static let flipboardWhite = UIColor.colorFor(red: 254, green: 255, blue: 255)
+
+    static var flipboardWhite: UIColor {
+        return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+            if UITraitCollection.userInterfaceStyle == .dark {
+                return .systemBackground
+            } else {
+                return UIColor.colorFor(red: 254, green: 255, blue: 255)
+            }
+        }
+    }
+
 }

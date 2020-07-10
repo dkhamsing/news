@@ -123,24 +123,22 @@ extension TvViewController: UITableViewDelegate {
 
 private extension TvViewController {
     func loadData(_ category: String) {
-        guard let url = URL.newsApiUrlForCategory(category) else {
+        guard let url = NewsApi.urlForCategory(category)
+
+            else {
             print("load data error")
             return
         }
 
-        url.get(type: Headline.self) { [unowned self] (result) in
-            switch result {
-            case .success(let headline):
-                self.items = headline.articles
-                self.tableView.reloadData()
+        NewsApi.getArticles(url: url) { [weak self] (articles) in
+            guard let articles = articles else { return }
 
-                guard let item = headline.articles.first else { return }
+            self?.items = articles
+            self?.tableView.reloadData()
 
-                self.updateImage(url: item.urlToImage)
+            guard let item = articles.first else { return }
 
-            case .failure(let e):
-                print(e.localizedDescription)
-            }
+            self?.updateImage(url: item.urlToImage)
         }
     }
 
@@ -152,7 +150,7 @@ private extension TvViewController {
 
         guard let ciImage = item.url?.qrImage else { return }
 
-        let image = UIImage.init(ciImage: ciImage)
+        let image = UIImage(ciImage: ciImage)
         qrImageView.image = image
     }
 

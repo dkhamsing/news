@@ -8,6 +8,19 @@
 
 import UIKit
 
+extension NewsApi {
+    static func getArticles(url: URL?, completion: @escaping ([Article]?) -> Void) {
+        url?.get(completion: { (result: Result<Headline, ApiError>) in
+            switch result {
+            case .success(let headline):
+                completion(headline.articles)
+            case .failure(_):
+                completion(nil)
+            }
+        })
+    }
+}
+
 extension Date {
     var shortTimeAgoSinceDate: String {
         // From Time
@@ -49,47 +62,11 @@ extension Date {
 
         return "a moment ago"
     }
-
+    
     var timeAgoSinceDate: String {
-        // From Time
-        let fromDate = self
+        let dateFormatter = RelativeDateTimeFormatter()
 
-        // To Time
-        let toDate = Date()
-
-        // Estimation
-        // Year
-        if let interval = Calendar.current.dateComponents([.year], from: fromDate, to: toDate).year, interval > 0  {
-
-            return interval == 1 ? "\(interval)" + " " + "year ago" : "\(interval)" + " " + "years ago"
-        }
-
-        // Month
-        if let interval = Calendar.current.dateComponents([.month], from: fromDate, to: toDate).month, interval > 0  {
-
-            return interval == 1 ? "\(interval)" + " " + "month ago" : "\(interval)" + " " + "months ago"
-        }
-
-        // Day
-        if let interval = Calendar.current.dateComponents([.day], from: fromDate, to: toDate).day, interval > 0  {
-
-            return interval == 1 ? "\(interval)" + " " + "day ago" : "\(interval)" + " " + "days ago"
-        }
-
-        // Hours
-        if let interval = Calendar.current.dateComponents([.hour], from: fromDate, to: toDate).hour, interval > 0 {
-
-            return interval == 1 ? "\(interval)" + " " + "hour ago" : "\(interval)" + " " + "hours ago"
-
-        }
-
-        // Minute
-        if let interval = Calendar.current.dateComponents([.minute], from: fromDate, to: toDate).minute, interval > 0 {
-
-            return interval == 1 ? "\(interval)" + " " + "minute ago" : "\(interval)" + " " + "minutes ago"
-        }
-
-        return "a moment ago"
+        return dateFormatter.localizedString(for: self, relativeTo: Date())
     }
 }
 
@@ -126,50 +103,4 @@ extension UIView {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
-}
-
-extension URL {
-    static func newsApiUrlForCategory(_ category: String) -> URL? {
-        guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(Settings.ApiKey)&category=\(category)") else { return nil }
-
-        return url
-    }
-
-    func get<T: Codable>(type: T.Type, completion: @escaping (Result<T, ApiError>) -> Void) {
-        let session = URLSession.shared
-        let task = session.dataTask(with: self) { data, _, error in
-            if let _ = error {
-                DispatchQueue.main.async {
-                    completion(.failure(.generic))
-                }
-                return
-            }
-
-            guard let unwrappedData = data else {
-                DispatchQueue.main.async {
-                    completion(.failure(.generic))
-                }
-                return
-            }
-
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            if let decoded = try? decoder.decode(type, from: unwrappedData) {
-                DispatchQueue.main.async {
-                    completion(.success(decoded))
-                }
-            }
-            else {
-                DispatchQueue.main.async {
-                    completion(.failure(.generic))
-                }
-            }
-        }
-
-        task.resume()
-    }
-}
-
-enum ApiError: Error {
-    case generic
 }

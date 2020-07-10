@@ -36,14 +36,14 @@ extension NewsViewController: Configurable {
         // Navigation item
         let styleImage = UIImage(systemName: "textformat.size")
         let styleBarbutton = UIBarButtonItem(image: styleImage, style: .plain, target: self, action: #selector(selectStyle))
-        styleBarbutton.tintColor = .black
+        styleBarbutton.tintColor = .systemGray
         navigationItem.rightBarButtonItems = [styleBarbutton]
 
         // Collection view
-        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: listInsetLayout)
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: listInsetFixedHeightLayout)
         collectionView?.dataSource = self
         collectionView?.delegate = self
-        collectionView?.backgroundColor = .white
+        collectionView?.backgroundColor = .systemBackground
         collectionView?.showsVerticalScrollIndicator = false
         collectionView?.registerCells()
     }
@@ -55,6 +55,7 @@ extension NewsViewController: Configurable {
         // Collection view
         guard let cv = collectionView else { return }
 
+        cv.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubviewForAutoLayout(cv)
     }
 }
@@ -63,7 +64,7 @@ private extension NewsViewController {
     func loadData(_ category: String) {
         title = "\(settings.category.rawValue.capitalizingFirstLetter()) News"
 
-        guard let url = URL.newsApiUrlForCategory(category) else {
+        guard let url = NewsApi.urlForCategory(category) else {
             print("load data error")
             return
         }
@@ -71,17 +72,20 @@ private extension NewsViewController {
         items = []
         collectionView?.reloadData()
 
-        url.get(type: Headline.self) { [weak self] (result) in
+        NewsApi.getArticles(url: url) { [weak self] (articles) in
             self?.refreshControl.endRefreshing()
 
-            switch result {
-            case .success(let headline):
-                self?.items = headline.articles
-                self?.reload()
-
-            case .failure(let e):
-                print(e.localizedDescription)
+            guard let articles = articles else {
+                let ac = UIAlertController(title: nil, message: "Could not get articles 😅", preferredStyle: .alert)
+                ac.addAction(
+                    UIAlertAction.init(title: "OK", style: .default, handler: nil)
+                )
+                self?.present(ac, animated: true, completion: nil)
+                return
             }
+
+            self?.items = articles
+            self?.reload()
         }
     }
 }
@@ -197,11 +201,11 @@ private extension NewsViewController {
         collectionView?.scrollToItem(at: topIndexPath, at: .top, animated: false)
     }
 
-    func updateLayout(_ style: Style) {
+    func updateLayout(_ style: NewsStyle) {
         switch style {
         case .lilnews:
-            collectionView?.backgroundColor = .white
-            view.backgroundColor = .white
+            collectionView?.backgroundColor = .systemBackground
+            view.backgroundColor = .systemBackground
             collectionView?.collectionViewLayout = imageLayout
 
         case .reddit, .flipboard:
@@ -212,11 +216,11 @@ private extension NewsViewController {
         case .bbc:
             collectionView?.backgroundColor = .newsLightGray
             view.backgroundColor = .newsLightGray
-            collectionView?.collectionViewLayout = listInsetLayout
+            collectionView?.collectionViewLayout = listInsetFixedHeightLayout
 
         default:
-            collectionView?.backgroundColor = .white
-            view.backgroundColor = .white
+            collectionView?.backgroundColor = .systemBackground
+            view.backgroundColor = .systemBackground
             collectionView?.collectionViewLayout = listFullWidthLayout
         }
     }
@@ -254,15 +258,27 @@ private extension NewsViewController {
         }
     }
 
+    var listInsetFixedHeightLayout: UICollectionViewLayout {
+        return UICollectionViewCompositionalLayout { sectionNumber, env -> NSCollectionLayoutSection? in
+            switch Section(rawValue: sectionNumber) {
+            case .articles:
+                return self.listInsetFixedSection
+            default:
+                return self.categoriesSection
+            }
+        }
+    }
+
     var categoriesSection: NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3),
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalHeight(0.05))
+                                               heightDimension: .absolute(44))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitem: item, count: 3)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12)
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
 
@@ -300,12 +316,32 @@ private extension NewsViewController {
     var listInsetSection: NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
+            heightDimension: NSCollectionLayoutDimension.estimated(100)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: size)
+
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
+
+        let inset = view.readableInset
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: inset, bottom: 0, trailing: inset)
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+
+        return section
+    }
+
+    var listInsetFixedSection: NSCollectionLayoutSection {
+        let size = NSCollectionLayoutSize(
+            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
             heightDimension: NSCollectionLayoutDimension.absolute(90)
         )
         let item = NSCollectionLayoutItem(layoutSize: size)
 
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+
+        let inset = view.readableInset
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: inset, bottom: 0, trailing: inset)
 
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 10
@@ -322,11 +358,15 @@ private extension NewsViewController {
     }
 
     @objc
-    func selectStyle() {
+    func selectStyle(_ sender: UIBarButtonItem) {
         let ac = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         ac.fixiOSAlertControllerAutolayoutConstraint()
 
-        for s in Style.allCases {
+        if let popoverController = ac.popoverPresentationController {
+            popoverController.barButtonItem = sender
+        }
+
+        for s in NewsStyle.allCases {
             ac.addAction(UIAlertAction(title: s.rawValue, style: .default, handler: handleStyle))
         }
 
@@ -338,7 +378,7 @@ private extension NewsViewController {
     func handleStyle(_ action: UIAlertAction) {
         guard let selected = action.title else { return }
 
-        let styles = Style.allCases
+        let styles = NewsStyle.allCases
         let filtered = styles.filter { $0.rawValue == selected }
         guard let style = filtered.first else { return }
 
@@ -361,19 +401,28 @@ private extension UICollectionView {
     func registerCells() {
         register(LabelCell.self, forCellWithReuseIdentifier: LabelCell.ReuseIdentifier)
 
-        register(TwitterCell.self, forCellWithReuseIdentifier: Style.twitter.rawValue)
-        register(FacebookCell.self, forCellWithReuseIdentifier: Style.facebook.rawValue)
-        register(NytCell.self, forCellWithReuseIdentifier: Style.nyt.rawValue)
-        register(BbcCell.self, forCellWithReuseIdentifier: Style.bbc.rawValue)
-        register(RedditCell.self, forCellWithReuseIdentifier: Style.reddit.rawValue)
-        register(CnnCell.self, forCellWithReuseIdentifier: Style.cnn.rawValue)
-        register(LilCell.self, forCellWithReuseIdentifier: Style.lilnews.rawValue)
-        register(FlipboardCell.self, forCellWithReuseIdentifier: Style.flipboard.rawValue)
-        register(WashingtonCell.self, forCellWithReuseIdentifier: Style.washingtonPost.rawValue)
-        register(WsjCell.self, forCellWithReuseIdentifier: Style.wsj.rawValue)
+        register(TwitterCell.self, forCellWithReuseIdentifier: NewsStyle.twitter.rawValue)
+        register(FacebookCell.self, forCellWithReuseIdentifier: NewsStyle.facebook.rawValue)
+        register(NytCell.self, forCellWithReuseIdentifier: NewsStyle.nyt.rawValue)
+        register(BbcCell.self, forCellWithReuseIdentifier: NewsStyle.bbc.rawValue)
+        register(RedditCell.self, forCellWithReuseIdentifier: NewsStyle.reddit.rawValue)
+        register(CnnCell.self, forCellWithReuseIdentifier: NewsStyle.cnn.rawValue)
+        register(LilCell.self, forCellWithReuseIdentifier: NewsStyle.lilnews.rawValue)
+        register(FlipboardCell.self, forCellWithReuseIdentifier: NewsStyle.flipboard.rawValue)
+        register(WashingtonCell.self, forCellWithReuseIdentifier: NewsStyle.washingtonPost.rawValue)
+        register(WsjCell.self, forCellWithReuseIdentifier: NewsStyle.wsj.rawValue)
     }
 }
 
 private extension UIColor {
     static let newsLightGray = UIColor.colorFor(red: 228, green: 229, blue: 230)
 }
+
+private extension UIView {
+
+    var readableInset: CGFloat {
+        return readableContentGuide.layoutFrame.origin.x
+    }
+
+}
+
