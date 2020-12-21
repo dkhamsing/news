@@ -9,10 +9,12 @@
 import Foundation
 
 struct Settings {
+    static var shared = Settings()
+
     static let StyleKey = "style"
     static let CategoryKey = "category"
 
-    static let StyleDefault: NewsStyle = .cnn
+    static let StyleDefault: NewsViewModel.Style = .cnn
     static let CategoryDefault: NewsCategory = .general
 
     var category: NewsCategory = UserDefaultsConfig.savedCategory {
@@ -21,7 +23,7 @@ struct Settings {
         }
     }
 
-    var style: NewsStyle = UserDefaultsConfig.savedStyle {
+    var style: NewsViewModel.Style = UserDefaultsConfig.savedStyle {
         didSet {
             UserDefaultsConfig.savedStyle = style
         }
@@ -33,5 +35,5 @@ struct UserDefaultsConfig {
     static var savedCategory: NewsCategory
 
     @UserDefault(Settings.StyleKey, defaultValue: Settings.StyleDefault)
-    static var savedStyle: NewsStyle
+    static var savedStyle: NewsViewModel.Style
 }

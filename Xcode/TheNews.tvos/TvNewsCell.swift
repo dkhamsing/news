@@ -9,8 +9,8 @@
 import UIKit
 
 class TvNewsCell: UITableViewCell {
-    static let ReuseIdentifier = "TvNewsCell"
-    static let LogoSize = CGSize(width: 50, height: 50)
+    static let identifier = "TvNewsCell"
+    static let logoSize = CGSize(width: 50, height: 50)
 
     private var tvTitle = UILabel()
     private var tvLogo = UIImageView()
@@ -36,21 +36,21 @@ class TvNewsCell: UITableViewCell {
 
 extension TvNewsCell {
     func configure(_ item: Article) {
-        tvTitle.text = item.title
+        tvTitle.text = item.titleDisplay
     }
 
-    func configureLogo(_ image: UIImage?) {
-        tvLogo.image = image
+    func configureLogo(urlString: String?) {
+        tvLogo.load(urlString: urlString, size: TvNewsCell.logoSize, downloader: ImageDownloader.shared)
     }
 }
 
-extension TvNewsCell: Configurable {
+extension TvNewsCell {
     func setup() {
         focusStyle = .custom
 
         self.addTvCornerRadius()
 
-        tvLogo.layer.cornerRadius = 6
+        tvLogo.layer.cornerRadius = TvNewsCell.logoSize.height/2
         tvLogo.layer.masksToBounds = true
 
         tvTitle.numberOfLines = 0
@@ -69,9 +69,9 @@ extension TvNewsCell: Configurable {
 
             tvLogo.topAnchor.constraint(equalTo: tvTitle.bottomAnchor, constant: inset),
             tvLogo.leadingAnchor.constraint(equalTo: tvTitle.leadingAnchor),
-            tvLogo.widthAnchor.constraint(equalToConstant: TvNewsCell.LogoSize.width),
+            tvLogo.widthAnchor.constraint(equalToConstant: TvNewsCell.logoSize.width),
             contentView.bottomAnchor.constraint(equalTo: tvLogo.bottomAnchor, constant: inset),
-            tvLogo.heightAnchor.constraint(equalToConstant: TvNewsCell.LogoSize.height),
+            tvLogo.heightAnchor.constraint(equalToConstant: TvNewsCell.logoSize.height),
         ])
     }
 }

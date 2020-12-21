@@ -1,57 +1,81 @@
 //
-//  NewsCell.swift
-//  TheNews
-//
-//  Created by Daniel on 4/22/20.
-//  Copyright © 2020 dk. All rights reserved.
+//  Created by Daniel on 12/12/20.
 //
 
 import UIKit
 
-class NewsCell: UICollectionViewCell {
-    var identifier: String?
-    var imageSize: CGSize?
+class NewsCell: UITableViewCell {
     
-    let imageView = UIImageView()
-    let source = UILabel()
-    let title = UILabel()
-    let content = UILabel()
-    let ago = UILabel()
-    let line = UIView()
+    var articleImageView = UIImageView()
+    var logo = UIImageView()
+
+    var ago = UILabel()
+    var source = UILabel()
+    var summary = UILabel()
+    var title = UILabel()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        config()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
-        ago.attributedText = nil
-        ago.text = nil
-        
-        content.text = nil
-        content.attributedText = nil
-        
-        identifier = nil
-        
-        imageView.image = nil
-        
-        source.text = nil
-        source.attributedText = nil
-        
-        title.attributedText = nil
-        title.text = nil
+        articleImageView.image = nil
+        logo.image = nil
+    }
+    
+    func config() {
+        self.selectionStyle = .none
+
+        summary.numberOfLines = 0
+
+        title.numberOfLines = 0
+
+        articleImageView.backgroundColor = .secondarySystemBackground
+        articleImageView.contentMode = .scaleAspectFill
+        articleImageView.clipsToBounds = true
     }
 
-    var imageSizeUnwrapped: CGSize {
-        guard let unwrapped = imageSize else { return CGSize.zero }
+    func load(urlString: String?,
+              downloader: ImageDownloader,
+              size: CGSize? = nil,
+              debugString: String? = nil,
+              completion: (() -> Void)? = nil) {
+        articleImageView.load(urlString: urlString, size: size, downloader: downloader) { 
+            completion?()
+        }
         
-        return unwrapped
+        guard let string = urlString,
+              let _ = URL(string: string) else {
+
+            var message = "error for image url: \(urlString ?? "")"
+
+            if let debug = debugString {
+                message += " (" + debug + ")"
+            }
+
+            print(message)
+
+            return
+        }
     }
 
-    func configure(_ article: Article) {
-        identifier = article.identifier
-    }
+    func loadLogo(urlString: String?,
+                  size: CGSize,
+                  downloader: ImageDownloader = ImageDownloader.shared) {
+        self.logo.load(urlString: urlString, size: size, downloader: downloader)
 
-    func update(image: UIImage?, matchingIdentifier: String?) {
-        guard identifier == matchingIdentifier else { return }
-
-        imageView.image = image
+        guard let string = urlString,
+              let _ = URL(string: string) else {
+            print("error for image url: \(urlString ?? "")")
+            return
+        }
     }
+    
 }
+

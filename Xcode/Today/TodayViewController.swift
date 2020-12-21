@@ -28,7 +28,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     private var url: URL?
     private var article: Article?
-    private let downloader = ImageDownloader()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +45,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
 
-        loadData(Settings.CategoryDefault.rawValue)
+        loadData(NewsCategory.general.rawValue)
         
         completionHandler(NCUpdateResult.newData)
     }
@@ -73,20 +72,15 @@ private extension TodayViewController {
             let article = articles?.first
             self?.article = article
 
-//            print(article?.title ?? "")
-//            print(article?.descriptionOrContent ?? "")
-
             self?.url = article?.url
 
-            let topText = "\(article?.publishedAt?.shortTimeAgoSinceDate ?? "") - \(article?.source?.name ?? "")"
+            let topText = "\(article?.ago ?? "") - \(article?.source?.name ?? "")"
             self?.agoLabel.text = topText
 
             self?.titleLabel.text = article?.title
             self?.contentLabel.text = article?.descriptionOrContent
 
-            self?.downloader.getImage(imageUrl: article?.urlToImage, size: Constant.imageSize, completion: { (image) in
-                self?.imageView.image = image
-            })
+            self?.imageView.load(urlString: article?.urlToImage, size: Constant.imageSize, downloader: ImageDownloader.shared)
 
         }
     }

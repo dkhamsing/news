@@ -50,6 +50,14 @@ class TheNewsTests: XCTestCase {
         XCTAssertTrue(settings.style.rawValue == Settings.StyleDefault.rawValue)
     }
 
+    func testViewStyleIsTable() {
+        // When
+        let style = NewsViewModel.Style.lilnews
+
+        // Then
+        XCTAssertFalse(style.isTable)
+    }
+
     func testChangingCategoryConfiguration() throws {
         // Given
         var settings = Settings()
@@ -67,7 +75,7 @@ class TheNewsTests: XCTestCase {
         var settings = Settings()
 
         // When
-        let style = NewsStyle.cnn
+        let style = NewsViewModel.Style.cnn
         settings.style = style
 
         // Then

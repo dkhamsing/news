@@ -27,12 +27,32 @@ struct Source: Codable {
 }
 
 extension Article {
+    var ago: String? {
+        guard let date = publishedAt else { return nil }
+
+        let rdf = RelativeDateTimeFormatter()
+
+        return rdf.localizedString(for: date, relativeTo: Date())
+    }
+
+    var urlDisplay: String? {
+        return url?.absoluteString
+            .replacingOccurrences(of: "https://", with: "")
+            .replacingOccurrences(of: "https//", with: "")
+            .replacingOccurrences(of: "www.", with: "")
+    }
+
     var descriptionOrContent: String? {
         return description ?? content
     }
 
-    var identifier: String? {
-        return url?.absoluteString ?? urlToImage
+    var titleDisplay: String {
+        guard let title = title else { return "" }
+
+        let components = title.components(separatedBy: " - ")
+        guard let first = components.first else { return title }
+
+        return first
     }
 
     var urlToSourceLogo: String {
@@ -50,4 +70,23 @@ enum NewsCategory: String, CaseIterable, Codable {
     case science
     case sports
     case technology
+
+    var systemName: String {
+        switch self {
+        case .general:
+            return "newspaper"
+        case .business:
+            return "briefcase"
+        case .entertainment:
+            return "film"
+        case .health:
+            return "stethoscope"
+        case .science:
+            return "bolt"
+        case .sports:
+            return "sportscourt"
+        case .technology:
+            return "desktopcomputer"
+        }
+    }
 }

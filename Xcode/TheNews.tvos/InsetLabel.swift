@@ -18,13 +18,11 @@ class InsetLabel: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-          setup()
           config()
       }
 }
 
-extension InsetLabel: Configurable {
-    func setup() { }
+extension InsetLabel {
 
     func config() {
         self.addSubviewForAutoLayout(label)
@@ -37,4 +35,5 @@ extension InsetLabel: Configurable {
             self.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: inset),
         ])
     }
+
 }

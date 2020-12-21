@@ -19,7 +19,13 @@ class TvViewController: UIViewController {
 
     // Date
     private var items: [Article] = []
-    private let imageDownloader = ImageDownloader()
+
+    convenience init(_ category: NewsCategory) {
+        self.init()
+
+        self.category = category
+        self.tabBarItem.title = category.rawValue.capitalized
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,16 +42,17 @@ class TvViewController: UIViewController {
     }
 }
 
-extension TvViewController: Configurable {
+extension TvViewController {
     func setup() {
         content.label.numberOfLines = 0
+        content.label.textColor = .black
         content.backgroundColor = .lightGray
         content.alpha = 0
         content.addTvCornerRadius()
 
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(TvNewsCell.self, forCellReuseIdentifier: TvNewsCell.ReuseIdentifier)
+        tableView.register(TvNewsCell.self, forCellReuseIdentifier: TvNewsCell.identifier)
 
         qrImageView.layer.cornerRadius = 6
         qrImageView.layer.masksToBounds = true
@@ -92,13 +99,10 @@ extension TvViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = items[indexPath.row]
         
-        let c = tableView.dequeueReusableCell(withIdentifier: TvNewsCell.ReuseIdentifier) as! TvNewsCell
+        let c = tableView.dequeueReusableCell(withIdentifier: TvNewsCell.identifier) as! TvNewsCell
         
         c.configure(item)
-        
-        imageDownloader.getImage(imageUrl: item.urlToSourceLogo, size: TvNewsCell.LogoSize) { (image) in
-            c.configureLogo(image)
-        }
+        c.configureLogo(urlString: item.urlToSourceLogo)        
         
         return c
     }
@@ -112,7 +116,7 @@ extension TvViewController: UITableViewDelegate {
     // TODO: prevent issue of image updating when fast scrolling
     func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         context.previouslyFocusedView?.backgroundColor = .clear
-        context.nextFocusedView?.backgroundColor = .colorForSameRgbValue(50)
+        context.nextFocusedView?.backgroundColor = .systemGray
 
         guard let indexPath = context.nextFocusedIndexPath else { return }
 
@@ -123,9 +127,7 @@ extension TvViewController: UITableViewDelegate {
 
 private extension TvViewController {
     func loadData(_ category: String) {
-        guard let url = NewsApi.urlForCategory(category)
-
-            else {
+        guard let url = NewsApi.urlForCategory(category) else {
             print("load data error")
             return
         }
@@ -155,8 +157,6 @@ private extension TvViewController {
     }
 
     func updateImage(url: String?) {
-        imageDownloader.getImage(imageUrl: url, size: view.bounds.size) { [unowned self] (image) in
-            self.backgroundImageView.image = image
-        }
+        backgroundImageView.load(urlString: url, size: view.bounds.size, downloader: ImageDownloader.shared)
     }
 }

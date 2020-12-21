@@ -1,40 +1,62 @@
 ## News
 
-News API Swift Apps :newspaper:
+iOS news app in the style of Apollo, Apple News, Axios, BBC, CNN, Facebook, FastNews, Flipboard, Lil News, NBC News, Reddit, The New York Times, The Washington Post, The Wall Street Journal, Twitter, UIKit :newspaper:
 
 <img src=Images/hero.png width=100%>
+<img src=Images/hero2.png width=100%>
 
-#### tvOS news app
+<img width=300 src=Images/demo.gif>
 
-<img src=Images/tvos.png width=375>
+<img src=Images/apollo.png height=400> <img src=Images/applenews.png height=400>
 
-#### iOS news app in the style of the New York Times, Washington Post, Wall Street Journal, CNN, BBC, Reddit, Twitter, Facebook, Flipboard, Lil News :newspaper:
+<img src=Images/axios.png height=400> <img src=Images/bbc.png height=400>  
 
-<img src=Images/nyt.png height=400> <img src=Images/cnn.png height=400>
+<img src=Images/cnn.png height=400> <img src=Images/facebook.png height=400>
 
-<img src=Images/bbc.png height=400> <img src=Images/reddit.png height=400>
+<img src=Images/flipboard.png height=400> <img src=Images/fastnews.png height=400>
 
-<img src=Images/twitter.png height=400> <img src=Images/facebook.png height=400>
+<img src=Images/lilnews.png height=400> <img src=Images/nbcnews.png height=400>
 
-<img src=Images/flipboard.png height=400> <img src=Images/lilnews.png height=400>
+<img src=Images/reddit.png height=400>  <img src=Images/nyt.png height=400>
 
 <img src=Images/washingtonpost.png height=400> <img src=Images/wsj.png height=400>
 
-#### Today Extension
+<img src=Images/twitter.png height=400> <img src=Images/uikit.png height=400>
 
-<img src=Images/today.png height=400>
+#### Bonus
+
+| tvOS app | Today extension |
+|--------|-------|
+|<img src=Images/tvos.png height=300>| <img src=Images/today.png height=300>|
 
 ## Requirements
 
-- iOS 13
+- iOS 14
 - tvOS 13
 
 ## Credits
 
 - [newsapi.org](https://newsapi.org)
-- [app icon by xwoodhillx](https://thenounproject.com/term/news/2385047/)
-- [logos provided by clearbit](https://clearbit.com)
-- [lil news](https://lil.software/)
+- [App icon by xwoodhillx](https://thenounproject.com/term/news/2385047/)
+- [Logos provided by Clearbit](https://clearbit.com)
+
+### Styles
+
+- [Apollo](https://apolloapp.io)
+- [Apple News](https://apps.apple.com/app/apple-news/id1066498020)
+- [Axios](https://www.axios.com)
+- [BBC](https://www.bbc.com)
+- [CNN](https://www.cnn.com)
+- [Facebook](https://www.facebook.com)
+- FastNews (to be open-sourced)
+- [Flipboard](https://flipboard.com)
+- [Lil News](https://lil.software/)
+- [NBC News](https://www.nbcnews.com)
+- [Reddit](https://www.reddit.com)
+- [The New York Times](https://www.nytimes.com)
+- [The Wall Street Journal](https://www.wsj.com)
+- [The Washington Post](https://www.washingtonpost.com)
+- [Twitter](https://twitter.com)
 
 ## Contact
 

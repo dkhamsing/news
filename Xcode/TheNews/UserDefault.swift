@@ -21,9 +21,9 @@ struct UserDefault<T: Codable> {
 
     var wrappedValue: T {
         get {
-            guard
-                let saved = UserDefaults.standard.object(forKey: key) as? Data,
-                let decoded = try? JSONDecoder().decode(T.self, from: saved) else { return defaultValue }
+            guard let saved = UserDefaults.standard.object(forKey: key) as? Data,
+                  let decoded = try? JSONDecoder().decode(T.self, from: saved) else { return defaultValue }
+
             return decoded
         }
         set {

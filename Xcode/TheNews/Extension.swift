@@ -21,63 +21,17 @@ extension NewsApi {
     }
 }
 
-extension Date {
-    var shortTimeAgoSinceDate: String {
-        // From Time
-        let fromDate = self
+extension Bundle {
 
-        // To Time
-        let toDate = Date()
+    static var nameSpace: String? {
+        guard let info = Bundle.main.infoDictionary,
+              let projectName = info["CFBundleExecutable"] as? String else { return nil }
 
-        // Estimation
-        // Year
-        if let interval = Calendar.current.dateComponents([.year], from: fromDate, to: toDate).year, interval > 0  {
+        let nameSpace = projectName.replacingOccurrences(of: "-", with: "_")
 
-            return "\(interval)y"
-        }
-
-        // Month
-        if let interval = Calendar.current.dateComponents([.month], from: fromDate, to: toDate).month, interval > 0  {
-
-            return "\(interval)mo"
-        }
-
-        // Day
-        if let interval = Calendar.current.dateComponents([.day], from: fromDate, to: toDate).day, interval > 0  {
-
-            return "\(interval)d"
-        }
-
-        // Hours
-        if let interval = Calendar.current.dateComponents([.hour], from: fromDate, to: toDate).hour, interval > 0 {
-
-            return "\(interval)h"
-        }
-
-        // Minute
-        if let interval = Calendar.current.dateComponents([.minute], from: fromDate, to: toDate).minute, interval > 0 {
-
-            return "\(interval)m"
-        }
-
-        return "a moment ago"
-    }
-    
-    var timeAgoSinceDate: String {
-        let dateFormatter = RelativeDateTimeFormatter()
-
-        return dateFormatter.localizedString(for: self, relativeTo: Date())
-    }
-}
-
-extension UIColor {
-    static func colorFor(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
-        return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1)
+        return nameSpace
     }
 
-    static func colorForSameRgbValue(_ value: CGFloat) -> UIColor {
-        return colorFor(red: value, green: value, blue: value)
-    }
 }
 
 // Credits: https://stackoverflow.com/questions/55653187/swift-default-alertviewcontroller-breaking-constraints
@@ -91,16 +45,66 @@ extension UIAlertController {
     }
 }
 
+// Credits: https://github.com/onodude/OnoKit-iOS
+extension UICollectionView {
+    convenience init( frame: CGRect, direction: UICollectionView.ScrollDirection, identifiers: [String]) {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = direction
+        layout.minimumLineSpacing = 0
+
+        self.init(frame: frame, collectionViewLayout: layout)
+
+        guard let nameSpace = Bundle.nameSpace else { return }
+
+        for identifier in identifiers {
+            if let anyClass: AnyClass = NSClassFromString("\(nameSpace).\(identifier)") {
+                self.register(anyClass, forCellWithReuseIdentifier: identifier)
+            }
+        }
+    }
+
+}
+
+// Credits: https://github.com/onodude/OnoKit-iOS
+extension UITableView {
+
+    convenience init(frame: CGRect, style: UITableView.Style, identifiers: [String]) {
+        self.init(frame: frame, style: style)
+
+        guard let nameSpace = Bundle.nameSpace else { return }
+
+        for identifier in identifiers {
+            if let anyClass: AnyClass = NSClassFromString("\(nameSpace).\(identifier)") {
+                self.register(anyClass, forCellReuseIdentifier: identifier)
+            }
+        }
+    }
+
+}
+
 extension UIView {
     func addSubviewForAutoLayout(_ view: UIView) {
         self.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    func addGradient() {
+    func addGradient(count: Int, index: UInt32) {
+//        print(self.layer.sublayers?.count)
+
+        if self.layer.sublayers == nil {
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = self.bounds
+            gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+            self.layer.insertSublayer(gradientLayer, at: index)
+            return
+        }
+
+        guard self.layer.sublayers?.count == count else { return }
+
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        self.layer.insertSublayer(gradientLayer, at: 0)
+        self.layer.insertSublayer(gradientLayer, at: index)
     }
+
 }
