@@ -47,7 +47,8 @@ extension UIAlertController {
 
 // Credits: https://github.com/onodude/OnoKit-iOS
 extension UICollectionView {
-    convenience init( frame: CGRect, direction: UICollectionView.ScrollDirection, identifiers: [String]) {
+
+    convenience init(frame: CGRect, direction: UICollectionView.ScrollDirection, identifiers: [String]) {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = direction
         layout.minimumLineSpacing = 0
@@ -108,3 +109,4 @@ extension UIView {
     }
 
 }
+
