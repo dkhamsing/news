@@ -72,6 +72,8 @@
 		65C383B025872597008F1411 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C383AF25872597008F1411 /* UserDefault.swift */; };
 		65C383B125872597008F1411 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C383AF25872597008F1411 /* UserDefault.swift */; };
 		65C383B225872597008F1411 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C383AF25872597008F1411 /* UserDefault.swift */; };
+		65D47D9D25941149009701BB /* FacebookNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D47D9C25941149009701BB /* FacebookNewsCell.swift */; };
+		65D47DA725941163009701BB /* FacebookNewsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D47DA625941163009701BB /* FacebookNewsHandler.swift */; };
 		65F36889245684B000A8C398 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F36888245684B000A8C398 /* AppDelegate.swift */; };
 		65F3688B245684B000A8C398 /* TvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F3688A245684B000A8C398 /* TvViewController.swift */; };
 		65F36892245684B500A8C398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F36891245684B500A8C398 /* Assets.xcassets */; };
@@ -175,6 +177,8 @@
 		65C383992587255A008F1411 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		65C3839A2587255B008F1411 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		65C383AF25872597008F1411 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		65D47D9C25941149009701BB /* FacebookNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookNewsCell.swift; sourceTree = "<group>"; };
+		65D47DA625941163009701BB /* FacebookNewsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookNewsHandler.swift; sourceTree = "<group>"; };
 		65F36886245684B000A8C398 /* TheNews.tvos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheNews.tvos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F36888245684B000A8C398 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F3688A245684B000A8C398 /* TvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvViewController.swift; sourceTree = "<group>"; };
@@ -438,6 +442,7 @@
 				650785132587038E001ABDAE /* BBC */,
 				650785352587038E001ABDAE /* CNN */,
 				650785162587038E001ABDAE /* Facebook */,
+				65D47D9B25941140009701BB /* FacebookNews */,
 				650785192587038E001ABDAE /* FastNews */,
 				650785232587038E001ABDAE /* Flipboard */,
 				6507852B2587038E001ABDAE /* LilNews */,
@@ -469,6 +474,15 @@
 				65C383752587248F008F1411 /* NewsApi.swift */,
 			);
 			path = NewsApi;
+			sourceTree = "<group>";
+		};
+		65D47D9B25941140009701BB /* FacebookNews */ = {
+			isa = PBXGroup;
+			children = (
+				65D47D9C25941149009701BB /* FacebookNewsCell.swift */,
+				65D47DA625941163009701BB /* FacebookNewsHandler.swift */,
+			);
+			path = FacebookNews;
 			sourceTree = "<group>";
 		};
 		65F36887245684B000A8C398 /* TheNews.tvos */ = {
@@ -659,6 +673,7 @@
 				650785472587038F001ABDAE /* UIKitCell.swift in Sources */,
 				65C3837825872490008F1411 /* NewsApi.swift in Sources */,
 				655C9712258E657400095493 /* AppleNewsCell.swift in Sources */,
+				65D47DA725941163009701BB /* FacebookNewsHandler.swift in Sources */,
 				6507850E25870361001ABDAE /* NewsViewModel.swift in Sources */,
 				6560AE5124411C4A00581008 /* AppDelegate.swift in Sources */,
 				65580A90258EDA8E00D1287F /* AppleNewsCellStacked.swift in Sources */,
@@ -672,6 +687,7 @@
 				65C3839F2587255B008F1411 /* Settings.swift in Sources */,
 				6507853A2587038F001ABDAE /* BBCCell.swift in Sources */,
 				65293A45244172F2002E5BC3 /* NewsViewController.swift in Sources */,
+				65D47D9D25941149009701BB /* FacebookNewsCell.swift in Sources */,
 				650D8DBB258D5C7F006FFC70 /* ApolloCell.swift in Sources */,
 				65A01C5F258BD51E007565AB /* NBCNewsHandler.swift in Sources */,
 				650785512587038F001ABDAE /* CNNHandler.swift in Sources */,
