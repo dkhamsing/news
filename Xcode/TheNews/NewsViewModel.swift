@@ -85,6 +85,7 @@ class NewsViewModel {
              facebooknews,
              fastnews,
              flipboard,
+             instagram,
              lilnews,
              nbcnews,
              reddit,
@@ -118,7 +119,7 @@ class NewsViewModel {
                 return "UIKit"
             case .bbc, .cnn:
                 return self.rawValue.uppercased()
-            default:
+            case .apollo, .axios, .facebook, .flipboard, .instagram, .reddit:
                 return self.rawValue.capitalized
             }
         }
@@ -152,6 +153,8 @@ class NewsViewModel {
                 return [FastNewsCell.identifier]
             case .flipboard:
                 return [FlipboardCell.identifier]
+            case .instagram:
+                return [InstagramCell.identifier]
             case .lilnews:
                 return [LilNewsCell.identifier]
             case .nbcnews:
