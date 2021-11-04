@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabController
         window?.makeKeyAndVisible()
 
+        printContent("Useless change.")
+        
         return true
     }
 
