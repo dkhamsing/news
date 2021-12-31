@@ -56,6 +56,7 @@ iOS news app in the style of Apollo, Apple News, Axios, BBC, Cash App, CNN, Face
 - [Facebook News](https://www.facebook.com)
 - FastNews (to be open-sourced)
 - [Flipboard](https://flipboard.com)
+- [Instagram](https://www.instagram.com)
 - [Lil News](https://lil.software/)
 - [NBC News](https://www.nbcnews.com)
 - [Reddit](https://www.reddit.com)
