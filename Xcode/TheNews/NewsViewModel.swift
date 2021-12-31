@@ -80,6 +80,7 @@ class NewsViewModel {
              applenews,
              axios,
              bbc,
+             cashapp,
              cnn,
              facebook,
              facebooknews,
@@ -99,6 +100,8 @@ class NewsViewModel {
             switch self {
             case .applenews:
                 return "Apple News"
+            case .cashapp:
+                return "Cash App"
             case .facebooknews:
                 return "Facebook News"
             case .fastnews:
@@ -143,6 +146,8 @@ class NewsViewModel {
                 return [AxiosCell.identifier]
             case .bbc:
                 return [BBCCell.identifier]
+            case .cashapp:
+                return [CashAppCell.identifier]
             case .cnn:
                 return [CNNCell.identifier]
             case .facebook:
