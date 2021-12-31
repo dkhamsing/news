@@ -49,6 +49,9 @@
 		6560AE5D24411C4C00581008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6560AE5B24411C4C00581008 /* LaunchScreen.storyboard */; };
 		656F5BBB26EE799F007C3C53 /* InstagramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F5BBA26EE799F007C3C53 /* InstagramCell.swift */; };
 		656F5BC526EE79B5007C3C53 /* InstagramHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F5BC426EE79B5007C3C53 /* InstagramHandler.swift */; };
+		657B6582277C13DF002C955A /* RobinhoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657B6581277C13DF002C955A /* RobinhoodCell.swift */; };
+		657B6584277C1403002C955A /* RobinhoodCellLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657B6583277C1403002C955A /* RobinhoodCellLarge.swift */; };
+		657B6586277C1E1D002C955A /* RobinhoodHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657B6585277C1E1D002C955A /* RobinhoodHandler.swift */; };
 		65883ADB24744FF800C1A55A /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65883ADA24744FF800C1A55A /* NotificationCenter.framework */; };
 		65883ADE24744FF800C1A55A /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65883ADD24744FF800C1A55A /* TodayViewController.swift */; };
 		65883AE124744FF800C1A55A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65883ADF24744FF800C1A55A /* MainInterface.storyboard */; };
@@ -164,6 +167,9 @@
 		6560AE5E24411C4C00581008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		656F5BBA26EE799F007C3C53 /* InstagramCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramCell.swift; sourceTree = "<group>"; };
 		656F5BC426EE79B5007C3C53 /* InstagramHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramHandler.swift; sourceTree = "<group>"; };
+		657B6581277C13DF002C955A /* RobinhoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobinhoodCell.swift; sourceTree = "<group>"; };
+		657B6583277C1403002C955A /* RobinhoodCellLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobinhoodCellLarge.swift; sourceTree = "<group>"; };
+		657B6585277C1E1D002C955A /* RobinhoodHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobinhoodHandler.swift; sourceTree = "<group>"; };
 		65883AD824744FF800C1A55A /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		65883ADA24744FF800C1A55A /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		65883ADD24744FF800C1A55A /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -411,6 +417,16 @@
 			path = Instagram;
 			sourceTree = "<group>";
 		};
+		657B6580277C13C8002C955A /* Robinhood */ = {
+			isa = PBXGroup;
+			children = (
+				657B6581277C13DF002C955A /* RobinhoodCell.swift */,
+				657B6583277C1403002C955A /* RobinhoodCellLarge.swift */,
+				657B6585277C1E1D002C955A /* RobinhoodHandler.swift */,
+			);
+			path = Robinhood;
+			sourceTree = "<group>";
+		};
 		65883AD924744FF800C1A55A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +484,7 @@
 				65A01C51258BD4ED007565AB /* NBCNews */,
 				6507852E2587038E001ABDAE /* NYT */,
 				6507851D2587038E001ABDAE /* Reddit */,
+				657B6580277C13C8002C955A /* Robinhood */,
 				650785202587038E001ABDAE /* Twitter */,
 				650785262587038E001ABDAE /* UIKit */,
 				6590EC3F2589300000FCB10F /* WashingtonPost */,
@@ -690,6 +707,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657B6582277C13DF002C955A /* RobinhoodCell.swift in Sources */,
 				65A01C59258BD50A007565AB /* NBCNewsCell.swift in Sources */,
 				650785412587038F001ABDAE /* RedditHandler.swift in Sources */,
 				65C383B025872597008F1411 /* UserDefault.swift in Sources */,
@@ -715,6 +733,7 @@
 				6507853D2587038F001ABDAE /* FastNewsHandler.swift in Sources */,
 				65C3839F2587255B008F1411 /* Settings.swift in Sources */,
 				656F5BBB26EE799F007C3C53 /* InstagramCell.swift in Sources */,
+				657B6584277C1403002C955A /* RobinhoodCellLarge.swift in Sources */,
 				6507853A2587038F001ABDAE /* BBCCell.swift in Sources */,
 				65293A45244172F2002E5BC3 /* NewsViewController.swift in Sources */,
 				65D47D9D25941149009701BB /* FacebookNewsCell.swift in Sources */,
@@ -722,6 +741,7 @@
 				65A01C5F258BD51E007565AB /* NBCNewsHandler.swift in Sources */,
 				650785512587038F001ABDAE /* CNNHandler.swift in Sources */,
 				6590EC412589300A00FCB10F /* WashingtonPostCell.swift in Sources */,
+				657B6586277C1E1D002C955A /* RobinhoodHandler.swift in Sources */,
 				6507853C2587038F001ABDAE /* FacebookCell.swift in Sources */,
 				6507854C2587038F001ABDAE /* NYTHandler.swift in Sources */,
 				6590EC4B2589309200FCB10F /* WashingtonPostHandler.swift in Sources */,
