@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_12.2.app
+      run: sudo xcode-select -switch /Applications/Xcode_12.4.app
 
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
@@ -18,4 +18,4 @@ jobs:
     - name: Xcode iOS build
       run: |
         cd Xcode/
-        xcodebuild clean build -scheme TheNews -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.2'
+        xcodebuild clean build -scheme TheNews -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4'
