@@ -1,6 +1,6 @@
 ## News
 
-iOS news app in the style of Apollo, Apple News, Axios, BBC, CNN, Facebook, Facebook News, Instagram, FastNews, Flipboard, Lil News, NBC News, Reddit, The New York Times, The Washington Post, The Wall Street Journal, Twitter, UIKit :newspaper:
+iOS news app in the style of Apollo, Apple News, Axios, BBC, Cash App, CNN, Facebook, Facebook News, Instagram, FastNews, Flipboard, Lil News, NBC News, Reddit, The New York Times, The Washington Post, The Wall Street Journal, Twitter, UIKit :newspaper:
 
 <img src=Images/hero.png width=100%>
 <img src=Images/hero2.png width=100%>
@@ -11,19 +11,21 @@ iOS news app in the style of Apollo, Apple News, Axios, BBC, CNN, Facebook, Face
 
 <img src=Images/axios.png height=400> <img src=Images/bbc.png height=400>  
 
-<img src=Images/cnn.png height=400> <img src=Images/facebook.png height=400>
+<img src=Images/cashapp.png height=400> <img src=Images/cnn.png height=400>
 
-<img src=Images/facebooknews.png height=400> <img src=Images/flipboard.png height=400>
+<img src=Images/facebook.png height=400> <img src=Images/facebooknews.png height=400>
 
-<img src=Images/fastnews.png height=400> <img src=Images/instagram.png height=400>
+<img src=Images/flipboard.png height=400> <img src=Images/fastnews.png height=400>
 
-<img src=Images/lilnews.png height=400> <img src=Images/nbcnews.png height=400>
+<img src=Images/instagram.png height=400> <img src=Images/lilnews.png height=400>
 
-<img src=Images/reddit.png height=400> <img src=Images/nyt.png height=400>
+<img src=Images/nbcnews.png height=400> <img src=Images/reddit.png height=400>
 
-<img src=Images/washingtonpost.png height=400> <img src=Images/wsj.png height=400>
+<img src=Images/nyt.png height=400> <img src=Images/washingtonpost.png height=400>
 
-<img src=Images/twitter.png height=400> <img src=Images/uikit.png height=400>
+<img src=Images/wsj.png height=400> <img src=Images/twitter.png height=400>
+
+<img src=Images/uikit.png height=400>
 
 #### Bonus
 
@@ -48,12 +50,12 @@ iOS news app in the style of Apollo, Apple News, Axios, BBC, CNN, Facebook, Face
 - [Apple News](https://apps.apple.com/app/apple-news/id1066498020)
 - [Axios](https://www.axios.com)
 - [BBC](https://www.bbc.com)
+- [Cash App](https://cash.app)
 - [CNN](https://www.cnn.com)
 - [Facebook](https://www.facebook.com)
 - [Facebook News](https://www.facebook.com)
 - FastNews (to be open-sourced)
 - [Flipboard](https://flipboard.com)
-- [Instagram](https://www.instagram.com)
 - [Lil News](https://lil.software/)
 - [NBC News](https://www.nbcnews.com)
 - [Reddit](https://www.reddit.com)

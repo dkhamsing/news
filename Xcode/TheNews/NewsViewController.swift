@@ -16,6 +16,7 @@ class NewsViewController: UIViewController {
     var handlerApollo = ApolloHandler()
     var handlerAxios = AxiosHandler()
     var handlerBBC = BBCHandler()
+    var handlerCashApp = CashAppHandler()
     var handlerCNN = CNNHandler()
     var handlerFacebook = FacebookHandler()
     var handlerFacebookNews = FacebookNewsHandler()
@@ -55,6 +56,7 @@ class NewsViewController: UIViewController {
         handlerApollo.articles = articles
         handlerAxios.articles = articles
         handlerBBC.articles = articles
+        handlerCashApp.articles = articles
         handlerCNN.articles = articles
         handlerFacebook.articles = articles
         handlerFacebookNews.articles = articles
@@ -166,6 +168,9 @@ private extension NewsViewController {
         case .bbc:
             viewTable.dataSource = handlerBBC
             viewTable.delegate = handlerBBC
+        case .cashapp:
+            viewTable.dataSource = handlerCashApp
+            viewTable.delegate = handlerCashApp
         case .cnn:
             viewTable.dataSource = handlerCNN
             viewTable.delegate = handlerCNN
