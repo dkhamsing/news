@@ -8,7 +8,6 @@ class CNNCell: NewsCell {
 
     static let identifier: String = "CNNCell"
 
-
     override func config() {
         super.config()
 
@@ -24,7 +23,7 @@ class CNNCell: NewsCell {
         ago.textColor = .systemRed
         ago.font = .preferredFont(forTextStyle: .caption1)
 
-        [articleImageView, summary, ago].forEach { item in 
+        [articleImageView, summary, ago].forEach { item in
             contentView.addSubviewForAutoLayout(item)
         }
 

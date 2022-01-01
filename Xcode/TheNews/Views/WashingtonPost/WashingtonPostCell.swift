@@ -23,7 +23,7 @@ class WashingtonPostCell: NewsCell {
         }
 
         let imageHeight: CGFloat = 230
-        let inset: CGFloat = 15 
+        let inset: CGFloat = 15
         NSLayoutConstraint.activate([
             articleImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             articleImageView.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor, constant: inset),
@@ -49,7 +49,6 @@ class WashingtonPostCell: NewsCell {
         title.text = article.titleDisplay
         summary.text = article.description
         source.text = article.bottom
-
         load(urlString: article.urlToImage, downloader: downloader, debugString: title.text)
     }
 
@@ -70,4 +69,3 @@ private extension Article {
         return str
     }
 }
-

@@ -15,9 +15,6 @@ class TwitterHandler: NewsTableHandler {
 
         let article = articles[indexPath.row]
         cell.load(article: article, downloader: ImageDownloader.shared)
-        cell.loadLogo(urlString: article.urlToSourceLogo,
-                      size: TwitterCell.logoSize,
-                      downloader: ImageDownloader.shared)
 
         return cell
     }

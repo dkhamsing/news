@@ -5,7 +5,7 @@
 import UIKit
 
 class BBCHandler: NewsTableHandler {
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articles.count
     }
@@ -14,8 +14,7 @@ class BBCHandler: NewsTableHandler {
         let cell = tableView.dequeueReusableCell(withIdentifier: BBCCell.identifier) as! BBCCell
 
         let article = articles[indexPath.row]
-        cell.load(article: article, downloader: ImageDownloader.shared)
-        cell.loadBadge(row: indexPath.row)
+        cell.load(article: article, row: indexPath.row)
 
         return cell
     }

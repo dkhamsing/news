@@ -11,7 +11,7 @@ import UIKit
 class InstagramCell: NewsCell {
 
     static let identifier: String = "InstagramCell"
-    static let logoSize = CGSize(width: 32, height: 32)
+    private static let logoSize = CGSize(width: 32, height: 32)
 
     override func config() {
         super.config()
@@ -54,8 +54,8 @@ class InstagramCell: NewsCell {
     func load(article: Article) {
         source.text = article.username
         title.attributedText = article.text
-
         load(urlString: article.urlToImage, downloader: ImageDownloader.shared)
+        loadLogo(urlString: article.urlToSourceLogo, size: InstagramCell.logoSize)
     }
 
 }

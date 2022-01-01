@@ -10,7 +10,7 @@ import UIKit
 
 class TvNewsCell: UITableViewCell {
     static let identifier = "TvNewsCell"
-    static let logoSize = CGSize(width: 50, height: 50)
+    private static let logoSize = CGSize(width: 50, height: 50)
 
     private var tvTitle = UILabel()
     private var tvLogo = UIImageView()
@@ -71,7 +71,7 @@ extension TvNewsCell {
             tvLogo.leadingAnchor.constraint(equalTo: tvTitle.leadingAnchor),
             tvLogo.widthAnchor.constraint(equalToConstant: TvNewsCell.logoSize.width),
             contentView.bottomAnchor.constraint(equalTo: tvLogo.bottomAnchor, constant: inset),
-            tvLogo.heightAnchor.constraint(equalToConstant: TvNewsCell.logoSize.height),
+            tvLogo.heightAnchor.constraint(equalToConstant: TvNewsCell.logoSize.height)
         ])
     }
 }

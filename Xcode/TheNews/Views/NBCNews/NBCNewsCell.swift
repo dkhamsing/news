@@ -17,8 +17,7 @@ class NBCNewsCell: NewsCell {
         source.font = .monospacedSystemFont(ofSize: 15, weight: .regular)
         source.textColor = .systemBlue
 
-        let name = "HelveticaNeue-CondensedBold"
-        title.font = UIFont(name: name, size: 18)
+        title.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 18)
         title.numberOfLines = 3
 
         [articleImageView, source, title].forEach { item in
@@ -46,11 +45,7 @@ class NBCNewsCell: NewsCell {
     func load(article: Article, downloader: ImageDownloader) {
         title.text = article.titleDisplay
         source.text = article.source?.name?.uppercased()
-
         load(urlString: article.urlToImage, downloader: downloader)
     }
 
 }
-
-
-

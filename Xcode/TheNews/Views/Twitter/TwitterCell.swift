@@ -7,7 +7,7 @@ import UIKit
 class TwitterCell: NewsCell {
 
     static let identifier: String = "TwitterCell"
-    static let logoSize = CGSize(width: 50, height: 50)
+    private static let logoSize = CGSize(width: 50, height: 50)
 
     override func config() {
         super.config()
@@ -83,6 +83,8 @@ class TwitterCell: NewsCell {
         ago.text = article.ago
 
         load(urlString: article.urlToImage, downloader: downloader)
+
+        loadLogo(urlString: article.urlToSourceLogo, size: TwitterCell.logoSize, downloader: downloader)
     }
 
 }

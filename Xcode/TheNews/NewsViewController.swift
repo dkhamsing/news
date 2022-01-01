@@ -82,7 +82,7 @@ class NewsViewController: UIViewController {
             updateTable(style)
         } else {
             updateCollection(style)
-        }        
+        }
     }
 
 }

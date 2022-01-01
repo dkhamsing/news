@@ -9,7 +9,7 @@ class AppleNewsCellLarge: NewsCell {
 
     static let identifier: String = "AppleNewsCellLarge"
 
-    static let logoSize = CGSize(width: 24, height: 24)
+    private static let logoSize = CGSize(width: 24, height: 24)
 
     override func config() {
         super.config()
@@ -64,9 +64,8 @@ class AppleNewsCellLarge: NewsCell {
         title.text = article.titleDisplay
         source.text = article.source?.name
         ago.text = article.ago
-
         load(urlString: article.urlToImage, downloader: ImageDownloader.shared)
-        logo.load(urlString: article.urlToSourceLogo, size: AppleNewsCellLarge.logoSize, downloader: ImageDownloader.shared)
+        loadLogo(urlString: article.urlToSourceLogo, size: AppleNewsCellLarge.logoSize)
     }
 
 }

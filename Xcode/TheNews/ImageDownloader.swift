@@ -21,7 +21,7 @@ class ImageDownloader {
         if let cacheImage = imageCache.object(forKey: key) {
             completion(cacheImage, tag)
             if debug {
-                print("cache hit for key \(key)")                
+                print("cache hit for key \(key)")
             }
             return
         }

@@ -19,8 +19,6 @@ class CashAppHandler: NewsTableHandler {
 
         let article = articles[indexPath.row]
         cell.load(article: article)
-        cell.loadLogo(urlString: article.urlToSourceLogo,
-                      size: CashAppCell.logoSize)
 
         return cell
     }

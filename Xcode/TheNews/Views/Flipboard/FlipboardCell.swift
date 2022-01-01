@@ -7,7 +7,7 @@ import UIKit
 class FlipboardCell: NewsCell {
 
     static let identifier: String = "FlipboardCell"
-    static let logoSize = CGSize(width: 38, height: 38)
+    private static let logoSize = CGSize(width: 38, height: 38)
 
     override func config() {
         super.config()
@@ -63,8 +63,8 @@ class FlipboardCell: NewsCell {
         summary.attributedText = article.flipboardAttributedSubtitle
         source.text = article.source?.name
         ago.text = article.ago
-
         load(urlString: article.urlToImage, downloader: downloader)
+        loadLogo(urlString: article.urlToSourceLogo, size: FlipboardCell.logoSize, downloader: downloader)
     }
 
 }
@@ -80,7 +80,7 @@ private extension Article {
 
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
-            .paragraphStyle: style,
+            .paragraphStyle: style
         ]
 
         return NSAttributedString(string: d, attributes: attributes)

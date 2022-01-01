@@ -20,4 +20,3 @@ class WashingtonPostHandler: NewsTableHandler {
     }
 
 }
-

@@ -15,8 +15,6 @@ class FacebookHandler: NewsTableHandler {
 
         let article = articles[indexPath.row]
         cell.load(article: article)
-        cell.loadLogo(urlString: article.urlToSourceLogo,
-                      size: FacebookCell.logoSize)
 
         return cell
     }

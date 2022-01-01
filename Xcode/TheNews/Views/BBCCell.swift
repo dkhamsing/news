@@ -69,7 +69,7 @@ class BBCCell: NewsCell {
         NSLayoutConstraint.activate([
             badge.topAnchor.constraint(equalTo: articleImageView.topAnchor),
             badge.widthAnchor.constraint(equalToConstant: 30),
-            badge.heightAnchor.constraint(equalToConstant: 30),
+            badge.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 

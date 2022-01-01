@@ -17,7 +17,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     @IBAction func actionButton(_ sender: Any) {
         guard let url = url else { return }
-        
+
         self.extensionContext?.open(url, completionHandler: nil)
     }
 
@@ -40,13 +40,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
-        
+
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
 
         loadData(NewsCategory.general.rawValue)
-        
+
         completionHandler(NCUpdateResult.newData)
     }
 
@@ -59,7 +59,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         contentLabel.isHidden = !expanded
     }
-    
+
 }
 
 private extension TodayViewController {

@@ -11,7 +11,7 @@ import UIKit
 class CashAppCell: NewsCell {
 
     static let identifier: String = "CashAppCell"
-    static let logoSize = CGSize(width: 40, height: 40)
+    private static let logoSize = CGSize(width: 40, height: 40)
 
     override func config() {
         super.config()
@@ -54,6 +54,7 @@ class CashAppCell: NewsCell {
         source.text = article.source?.name
         ago.text = article.ago?.uppercased()
         title.attributedText = article.attributedTitle
+        loadLogo(urlString: article.urlToSourceLogo, size: CashAppCell.logoSize)
     }
 
 }

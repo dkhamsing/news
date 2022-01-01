@@ -15,7 +15,6 @@ class RobinhoodHandler: NewsTableHandler {
         return [first]
     }
 
-
     var items: [Article] {
         guard articles.count > 0 else { return [] }
         return articles.suffix(articles.count-1)

@@ -22,7 +22,7 @@ class WSJCell: NewsCell {
         ago.font = source.font
         ago.textColor = .systemGray
 
-        [source, articleImageView, title, summary, ago].forEach { item in 
+        [source, articleImageView, title, summary, ago].forEach { item in
             contentView.addSubviewForAutoLayout(item)
         }
 
@@ -58,7 +58,6 @@ class WSJCell: NewsCell {
         summary.text = article.description
         source.text = article.source?.name?.uppercased()
         ago.text = article.ago?.uppercased()
-
         load(urlString: article.urlToImage, downloader: downloader)
     }
 

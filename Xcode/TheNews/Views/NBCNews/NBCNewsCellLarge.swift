@@ -14,8 +14,7 @@ class NBCNewsCellLarge: NewsCell {
     override func config() {
         super.config()
 
-        let name = "HelveticaNeue-CondensedBold"
-        title.font = UIFont(name: name, size: 32)
+        title.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 32)
         title.numberOfLines = 0
         title.textColor = .white
 

@@ -72,7 +72,6 @@ class ApolloCell: NewsCell {
         source.text = article.source?.name
         ago.text = article.ago
         url.text = article.urlDisplay
-
         load(urlString: article.urlToImage, downloader: ImageDownloader.shared)
     }
 

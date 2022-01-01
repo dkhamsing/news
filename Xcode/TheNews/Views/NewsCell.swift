@@ -5,7 +5,7 @@
 import UIKit
 
 class NewsCell: UITableViewCell {
-    
+
     var articleImageView = UIImageView()
     var logo = UIImageView()
 
@@ -18,17 +18,17 @@ class NewsCell: UITableViewCell {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         config()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         articleImageView.image = nil
         logo.image = nil
     }
-    
+
     func config() {
         self.selectionStyle = .none
 
@@ -46,10 +46,10 @@ class NewsCell: UITableViewCell {
               size: CGSize? = nil,
               debugString: String? = nil,
               completion: (() -> Void)? = nil) {
-        articleImageView.load(urlString: urlString, size: size, downloader: downloader) { 
+        articleImageView.load(urlString: urlString, size: size, downloader: downloader) {
             completion?()
         }
-        
+
         guard let string = urlString,
               let _ = URL(string: string) else {
 
@@ -76,6 +76,5 @@ class NewsCell: UITableViewCell {
             return
         }
     }
-    
-}
 
+}

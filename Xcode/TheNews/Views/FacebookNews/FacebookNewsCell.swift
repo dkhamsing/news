@@ -8,7 +8,7 @@ import UIKit
 class FacebookNewsCell: NewsCell {
 
     static let identifier: String = "FacebookNewsCell"
-    static let logoSize = CGSize(width: 20, height: 20)
+    private static let logoSize = CGSize(width: 20, height: 20)
 
     override func config() {
         super.config()
@@ -56,9 +56,8 @@ class FacebookNewsCell: NewsCell {
     func load(article: Article) {
         title.text = article.titleDisplay
         source.text = article.fbSourceAgo
-
         load(urlString: article.urlToImage, downloader: ImageDownloader.shared)
-        logo.load(urlString: article.urlToSourceLogo, size: FacebookNewsCell.logoSize, downloader: ImageDownloader.shared)
+        loadLogo(urlString: article.urlToSourceLogo, size: FacebookNewsCell.logoSize)
     }
 
 }

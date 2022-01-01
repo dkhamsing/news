@@ -15,12 +15,8 @@ class RedditHandler: NewsTableHandler {
 
         let article = articles[indexPath.row]
         cell.load(article: article, downloader: ImageDownloader.shared)
-        cell.loadLogo(urlString: article.urlToSourceLogo,
-                      size: RedditCell.logoSize,
-                      downloader: ImageDownloader.shared)
 
         return cell
     }
 
 }
-

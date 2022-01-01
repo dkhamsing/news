@@ -32,7 +32,7 @@ extension InsetLabel {
             label.topAnchor.constraint(equalTo: self.topAnchor, constant: inset),
             label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: inset),
             self.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: inset),
-            self.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: inset),
+            self.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: inset)
         ])
     }
 

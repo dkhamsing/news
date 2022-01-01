@@ -87,8 +87,7 @@ extension URL {
                 DispatchQueue.main.async {
                     completion(.success(decoded))
                 }
-            }
-            else {
+            } else {
                 DispatchQueue.main.async {
                     completion(.failure(.generic))
                 }

@@ -7,7 +7,7 @@ import UIKit
 class FacebookCell: NewsCell {
 
     static let identifier: String = "FacebookCell"
-    static let logoSize = CGSize(width: 36, height: 36)
+    private static let logoSize = CGSize(width: 36, height: 36)
 
     let banner = UILabel()
 
@@ -76,11 +76,19 @@ class FacebookCell: NewsCell {
         title.text = article.titleDisplay
         source.text = article.source?.name
         ago.text = article.ago
-        banner.text = article.url?.host?
+        banner.text = article.banner
+        load(urlString: article.urlToImage, downloader: ImageDownloader.shared)
+        loadLogo(urlString: article.urlToSourceLogo, size: FacebookCell.logoSize)
+    }
+
+}
+
+private extension Article {
+
+    var banner: String? {
+        return url?.host?
             .replacingOccurrences(of: "www.", with: "")
             .uppercased()
-
-        load(urlString: article.urlToImage, downloader: ImageDownloader.shared)
     }
 
 }

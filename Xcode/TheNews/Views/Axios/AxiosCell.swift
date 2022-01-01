@@ -8,7 +8,7 @@ import UIKit
 class AxiosCell: NewsCell {
 
     static let identifier: String = "AxiosCell"
-    static let logoSize = CGSize(width: 40, height: 40)
+    private static let logoSize = CGSize(width: 40, height: 40)
 
     let author = UILabel()
 
@@ -22,13 +22,8 @@ class AxiosCell: NewsCell {
 
         author.font = .preferredFont(forTextStyle: .subheadline)
 
-//        source.font = .boldSystemFont(ofSize: 15)
-//
         ago.textColor = .secondaryLabel
         ago.font = .preferredFont(forTextStyle: .subheadline)
-//
-//        url.textColor = .secondaryLabel
-//        url.font = .preferredFont(forTextStyle: .subheadline)
 
         [logo, title, author, ago, articleImageView, summary].forEach {
             contentView.addSubviewForAutoLayout($0)
@@ -72,35 +67,38 @@ class AxiosCell: NewsCell {
         title.text = article.titleDisplay
         summary.attributedText = article.attributedSummary
         author.text = article.author
-
-        var strings: [String] = []
-        if let ago = article.ago {
-            strings.append(ago)
-        }
-        if let source = article.source?.name {
-            strings.append(source)
-        }
-        ago.text = strings.joined(separator: " - ")
-
+        ago.text = article.agoSource
         load(urlString: article.urlToImage, downloader: ImageDownloader.shared)
-        logo.load(urlString: article.urlToSourceLogo, size: AxiosCell.logoSize, downloader: ImageDownloader.shared)
+        loadLogo(urlString: article.urlToSourceLogo, size: AxiosCell.logoSize)
     }
 
 }
 
 private extension Article {
+
+    var agoSource: String {
+        var strings: [String] = []
+        if let ago = ago {
+            strings.append(ago)
+        }
+        if let source = source?.name {
+            strings.append(source)
+        }
+        return strings.joined(separator: " - ")
+    }
+
     var attributedSummary: NSAttributedString {
         guard let font = UIFont(name: "Georgia", size: 20),
-              let d = descriptionOrContent else { return NSAttributedString() }
+              let desc = descriptionOrContent else { return NSAttributedString() }
 
         let style = NSMutableParagraphStyle()
         style.lineHeightMultiple = 1.4
 
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
-            .paragraphStyle: style,
+            .paragraphStyle: style
         ]
 
-        return NSAttributedString(string: d, attributes: attributes)
+        return NSAttributedString(string: desc, attributes: attributes)
     }
 }

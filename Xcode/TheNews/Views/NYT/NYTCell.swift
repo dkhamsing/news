@@ -25,7 +25,6 @@ class NYTCell: NewsCell {
 
         let imageHeight: CGFloat = 200
         let inset: CGFloat = 15
-        //        heightConstraint = articleImageView.heightAnchor.constraint(equalToConstant: NYTCell.imageHeight)
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
             title.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor, constant: inset),
@@ -39,7 +38,6 @@ class NYTCell: NewsCell {
             articleImageView.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor, constant: inset),
             contentView.readableContentGuide.trailingAnchor.constraint(equalTo: articleImageView.trailingAnchor, constant: inset),
             articleImageView.heightAnchor.constraint(equalToConstant: imageHeight),
-            //            heightConstraint,
 
             source.topAnchor.constraint(equalTo: articleImageView.bottomAnchor, constant: 3),
             contentView.readableContentGuide.trailingAnchor.constraint(equalTo: source.trailingAnchor, constant: inset),
@@ -52,7 +50,6 @@ class NYTCell: NewsCell {
         title.text = article.titleDisplay
         summary.text = article.description
         source.text = article.source?.name
-
         load(urlString: article.urlToImage, downloader: downloader)
     }
 

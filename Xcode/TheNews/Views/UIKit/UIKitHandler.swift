@@ -20,4 +20,3 @@ class UIKitHandler: NewsTableHandler {
     }
 
 }
-

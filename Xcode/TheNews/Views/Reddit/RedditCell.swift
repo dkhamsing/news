@@ -65,6 +65,8 @@ class RedditCell: NewsCell {
 
         let size = CGSize(width: RedditCell.imageWidth, height: RedditCell.imageHeight)
         load(urlString: article.urlToImage, downloader: downloader, size: size)
+
+        loadLogo(urlString: article.urlToSourceLogo, size: RedditCell.logoSize, downloader: downloader)
     }
 
 }

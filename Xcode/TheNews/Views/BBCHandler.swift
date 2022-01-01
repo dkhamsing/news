@@ -5,7 +5,7 @@
 import UIKit
 
 class BBCHandler: NewsTableHandler {
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }

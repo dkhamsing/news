@@ -11,7 +11,7 @@ class NewsViewModel {
     var style: Style = Settings.shared.style
 
     var categoryName: String = ""
-    
+
     init(controller: NewsViewController) {
         self.controller = controller
     }
@@ -71,7 +71,7 @@ class NewsViewModel {
             }
         }
 
-        return UIMenu(title: "Change Style",children: menuActions)
+        return UIMenu(title: "Change Style", children: menuActions)
     }
 
     enum Style: String, CaseIterable, Codable {

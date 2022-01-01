@@ -7,7 +7,7 @@ import UIKit
 class FastNewsCell: NewsCell {
 
     static let identifier: String = "FastNewsCell"
-    static let logoSize = CGSize(width: 30, height: 30)
+    private static let logoSize = CGSize(width: 30, height: 30)
 
     override func config() {
         super.config()
@@ -59,7 +59,7 @@ class FastNewsCell: NewsCell {
         summary.text = article.description
         source.text = article.source?.name?.uppercased()
         ago.text = article.ago?.uppercased()
+        loadLogo(urlString: article.urlToSourceLogo, size: FastNewsCell.logoSize, downloader: downloader)
     }
 
 }
-

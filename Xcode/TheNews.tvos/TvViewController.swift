@@ -57,14 +57,14 @@ extension TvViewController {
         qrImageView.layer.cornerRadius = 6
         qrImageView.layer.masksToBounds = true
     }
-    
+
     func config() {
         // Image
         backgroundImageView.frame = view.bounds
         view.addSubview(backgroundImageView)
-        
+
         backgroundImageView.addGradientLeftRight()
-        
+
         // Table
         view.addSubviewForAutoLayout(tableView)
         let tableWidth = view.bounds.size.width / 3
@@ -72,9 +72,9 @@ extension TvViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: tableView.bottomAnchor),
-            tableView.widthAnchor.constraint(equalToConstant: tableWidth),
+            tableView.widthAnchor.constraint(equalToConstant: tableWidth)
         ])
-        
+
         // Content, QR code
         view.addSubviewForAutoLayout(content)
         view.addSubviewForAutoLayout(qrImageView)
@@ -86,7 +86,7 @@ extension TvViewController {
             qrImageView.heightAnchor.constraint(equalToConstant: 200),
             qrImageView.widthAnchor.constraint(equalToConstant: 200),
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: qrImageView.trailingAnchor),
-            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: qrImageView.bottomAnchor),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: qrImageView.bottomAnchor)
         ])
     }
 }
@@ -95,15 +95,15 @@ extension TvViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = items[indexPath.row]
-        
+
         let c = tableView.dequeueReusableCell(withIdentifier: TvNewsCell.identifier) as! TvNewsCell
-        
+
         c.configure(item)
-        c.configureLogo(urlString: item.urlToSourceLogo)        
-        
+        c.configureLogo(urlString: item.urlToSourceLogo)
+
         return c
     }
 }

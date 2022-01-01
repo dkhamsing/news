@@ -9,7 +9,7 @@ class AppleNewsCellStacked: NewsCell {
 
     static let identifier: String = "AppleNewsCellStacked"
 
-    static let logoSize = CGSize(width: 20, height: 20)
+    private static let logoSize = CGSize(width: 20, height: 20)
 
     fileprivate var stackLeft = AppleNewsStackedView()
     fileprivate var stackRight = AppleNewsStackedView()
@@ -55,7 +55,7 @@ class AppleNewsCellStacked: NewsCell {
 private class AppleNewsStackedView: UIView {
 
     static let imageHeight: CGFloat = 120
-    static let logoSize = CGSize(width: 20, height: 20)
+    private static let logoSize = CGSize(width: 20, height: 20)
 
     let articleImageView = UIImageView()
     let logo = UIImageView()
@@ -123,14 +123,13 @@ private class AppleNewsStackedView: UIView {
 
     func load(_ article: Article) {
         articleImageView.image = nil
+        let width: CGFloat = UIScreen.main.bounds.width / 2
+        let size = CGSize(width: width, height: AppleNewsStackedView.imageHeight)
+        articleImageView.load(urlString: article.urlToImage, size: size, downloader: ImageDownloader.shared)
 
         title.text = article.titleDisplay
         ago.text = article.ago
         source.text = article.source?.name
-
-        let width: CGFloat = UIScreen.main.bounds.width / 2
-        let size = CGSize(width: width, height: AppleNewsStackedView.imageHeight)
-        articleImageView.load(urlString: article.urlToImage, size: size, downloader: ImageDownloader.shared)
 
         logo.load(urlString: article.urlToSourceLogo, size: AppleNewsStackedView.logoSize, downloader: ImageDownloader.shared)
     }

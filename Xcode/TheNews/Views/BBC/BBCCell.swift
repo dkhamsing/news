@@ -65,25 +65,32 @@ class BBCCell: NewsCell {
         NSLayoutConstraint.activate([
             badge.topAnchor.constraint(equalTo: articleImageView.topAnchor),
             badge.widthAnchor.constraint(equalToConstant: 30),
-            badge.heightAnchor.constraint(equalToConstant: 30),
+            badge.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 
-    func load(article: Article, downloader: ImageDownloader) {
+    func load(article: Article,
+              row: Int,
+              downloader: ImageDownloader = ImageDownloader.shared) {
         title.text = article.titleDisplay
-
-        var bottom = article.ago ?? ""
-        if let source = article.source?.name {
-            bottom += " | " + source
-        }
-        ago.text = bottom
+        ago.text = article.agoSource
 
         let size = CGSize(width: BBCCell.imageWidth, height: BBCCell.imageHeight)
         load(urlString: article.urlToImage, downloader: downloader, size: size)
+
+        badge.text = String(row + 1)
     }
 
-    func loadBadge(row: Int) {
-        badge.text = String(row + 1)
+}
+
+private extension Article {
+
+    var agoSource: String {
+        var bottom = ago ?? ""
+        if let source = source?.name {
+            bottom += " | " + source
+        }
+        return bottom
     }
 
 }
