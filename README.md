@@ -36,7 +36,6 @@ iOS news app in the style of Apollo, Apple News, Axios, BBC, Cash App, CNN, Face
 - [CNN](https://www.cnn.com)
 - [Facebook](https://www.facebook.com)
 - [Facebook News](https://www.facebook.com)
-- FastNews (to be open-sourced)
 - [Flipboard](https://flipboard.com)
 - [Instagram](https://www.instagram.com)
 - [Lil News](https://lil.software/)
@@ -47,6 +46,7 @@ iOS news app in the style of Apollo, Apple News, Axios, BBC, Cash App, CNN, Face
 - [The Wall Street Journal](https://www.wsj.com)
 - [The Washington Post](https://www.washingtonpost.com)
 - [Twitter](https://twitter.com)
+- [UIKit](https://developer.apple.com/design/human-interface-guidelines/ios/views/tables/)
 
 ## Contact
 
