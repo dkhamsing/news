@@ -23,4 +23,4 @@ jobs:
     - uses: kishikawakatsumi/xcresulttool@v1
       with:
         path: Xcode/TestResults.xcresult
-      if: success() || failure() 
+      if: success() || failure()
