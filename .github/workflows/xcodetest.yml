@@ -3,7 +3,7 @@ name: Xcode test
 on: [push, pull_request]
 
 jobs:
-  test:
+  Test:
     runs-on: macOS-latest
 
     steps:
