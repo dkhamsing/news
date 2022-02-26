@@ -18,9 +18,13 @@ jobs:
     - name: Xcode unit tests
       run: |
         cd Xcode/
-        xcodebuild clean test -scheme TheNews -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4'
+        xcodebuild clean test -scheme TheNews -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4' -resultBundlePath TestResults
 
     - uses: actions/upload-artifact@v2
       with:
-        name: tests.xcresult
-        path: /Users/runner/Library/Developer/Xcode/DerivedData/*/Logs/Test/*.xcresult
+        path: Xcode/TestResults.xcresult
+        
+    - uses: kishikawakatsumi/xcresulttool@v1
+      with:
+        path: Xcode/TestResults.xcresult
+      if: success() || failure() 
