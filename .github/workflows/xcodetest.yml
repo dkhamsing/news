@@ -19,10 +19,6 @@ jobs:
       run: |
         cd Xcode/
         xcodebuild clean test -scheme TheNews -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4' -resultBundlePath TestResults
-
-    - uses: actions/upload-artifact@v2
-      with:
-        path: Xcode/TestResults.xcresult
         
     - uses: kishikawakatsumi/xcresulttool@v1
       with:
