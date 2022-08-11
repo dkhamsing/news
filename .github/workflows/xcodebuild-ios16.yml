@@ -1,0 +1,21 @@
+name: Xcode build iOS 16
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_14.0.app
+
+    - name: Xcode version
+      run: /usr/bin/xcodebuild -version
+
+    - name: Xcode iOS build
+      run: |
+        cd Xcode/
+        xcodebuild clean build -scheme TheNews -destination 'platform=iOS Simulator,name=iPhone 12,OS=16.0'
