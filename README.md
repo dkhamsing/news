@@ -2,6 +2,8 @@
 
 iOS news app in the style of Apollo, Apple News, Axios, BBC, Cash App, CNN, Facebook, Facebook News, FastNews, Flipboard, Instagram, Lil News, NBC News, Reddit, Robinhood, The New York Times, The Washington Post, The Wall Street Journal, Twitter, UIKit :newspaper:
 
+![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-ios14.yml/badge.svg) ![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-ios15.yml/badge.svg) ![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-ios16.yml/badge.svg) ![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-tvos13.yml/badge.svg)
+
 <img src=Images/hero.png width=100%>
 <img src=Images/hero2.png width=100%>
 
@@ -14,11 +16,6 @@ iOS news app in the style of Apollo, Apple News, Axios, BBC, Cash App, CNN, Face
 | tvOS app | Today extension |
 |--------|-------|
 |<img src=Images/tvos.png height=300>| <img src=Images/today.png height=300>|
-
-## Requirements
-
-- iOS 14
-- tvOS 13
 
 ## Credits
 
