@@ -89,6 +89,8 @@
 		65F368A02457DD0800A8C398 /* TvNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F3689F2457DD0800A8C398 /* TvNewsCell.swift */; };
 		65F368A224588D8300A8C398 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F368A124588D8300A8C398 /* InsetLabel.swift */; };
 		65F368A42458952E00A8C398 /* TvExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F368A32458952E00A8C398 /* TvExtension.swift */; };
+		D7044E2D2AD7635C00D5EC4A /* ArtifactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7044E2B2AD7635C00D5EC4A /* ArtifactCell.swift */; };
+		D7044E2E2AD7635C00D5EC4A /* ArtifactHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7044E2C2AD7635C00D5EC4A /* ArtifactHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +204,8 @@
 		65F3689F2457DD0800A8C398 /* TvNewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvNewsCell.swift; sourceTree = "<group>"; };
 		65F368A124588D8300A8C398 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		65F368A32458952E00A8C398 /* TvExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvExtension.swift; sourceTree = "<group>"; };
+		D7044E2B2AD7635C00D5EC4A /* ArtifactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtifactCell.swift; sourceTree = "<group>"; };
+		D7044E2C2AD7635C00D5EC4A /* ArtifactHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtifactHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,6 +475,7 @@
 				650785292587038E001ABDAE /* NewsTableHandler.swift */,
 				650D8DB9258D5C73006FFC70 /* Apollo */,
 				655C96FC258E5E4000095493 /* AppleNews */,
+				D7044E2F2AD7636200D5EC4A /* Artifact */,
 				65580AA325904AE100D1287F /* Axios */,
 				650785132587038E001ABDAE /* BBC */,
 				65A79AB6277BD55300505313 /* CashApp */,
@@ -544,6 +549,15 @@
 				65F36893245684B500A8C398 /* LaunchScreen.storyboard */,
 			);
 			path = TheNews.tvos;
+			sourceTree = "<group>";
+		};
+		D7044E2F2AD7636200D5EC4A /* Artifact */ = {
+			isa = PBXGroup;
+			children = (
+				D7044E2B2AD7635C00D5EC4A /* ArtifactCell.swift */,
+				D7044E2C2AD7635C00D5EC4A /* ArtifactHandler.swift */,
+			);
+			path = Artifact;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -761,9 +775,11 @@
 				650785AB25871091001ABDAE /* NewsCell.swift in Sources */,
 				650785502587038F001ABDAE /* WSJHandler.swift in Sources */,
 				650785432587038F001ABDAE /* TwitterCell.swift in Sources */,
+				D7044E2E2AD7635C00D5EC4A /* ArtifactHandler.swift in Sources */,
 				650785442587038F001ABDAE /* FlipboardHandler.swift in Sources */,
 				65580AA525904AE800D1287F /* AxiosCell.swift in Sources */,
 				65C3839D2587255B008F1411 /* Extension.swift in Sources */,
+				D7044E2D2AD7635C00D5EC4A /* ArtifactCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
