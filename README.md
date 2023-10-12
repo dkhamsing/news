@@ -1,6 +1,6 @@
 ## News
 
-iOS news app in the style of Apollo, Apple News, Axios, BBC, Cash App, CNN, Facebook, Facebook News, FastNews, Flipboard, Instagram, Lil News, NBC News, Reddit, Robinhood, The New York Times, The Washington Post, The Wall Street Journal, Twitter, UIKit :newspaper:
+iOS news app in the style of Apollo, Apple News, Artifact, Axios, BBC, Cash App, CNN, Facebook, Facebook News, FastNews, Flipboard, Instagram, Lil News, NBC News, Reddit, Robinhood, The New York Times, The Washington Post, The Wall Street Journal, Twitter, UIKit :newspaper:
 
 ![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-ios14.yml/badge.svg) ![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-ios15.yml/badge.svg) ![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-ios16.yml/badge.svg) ![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-tvos13.yml/badge.svg)
 
