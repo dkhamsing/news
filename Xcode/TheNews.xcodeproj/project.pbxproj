@@ -91,6 +91,8 @@
 		65F368A42458952E00A8C398 /* TvExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F368A32458952E00A8C398 /* TvExtension.swift */; };
 		D7044E2D2AD7635C00D5EC4A /* ArtifactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7044E2B2AD7635C00D5EC4A /* ArtifactCell.swift */; };
 		D7044E2E2AD7635C00D5EC4A /* ArtifactHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7044E2C2AD7635C00D5EC4A /* ArtifactHandler.swift */; };
+		D7563B882ADC56390093C3FF /* ThreadsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7563B862ADC56390093C3FF /* ThreadsCell.swift */; };
+		D7563B892ADC56390093C3FF /* ThreadsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7563B872ADC56390093C3FF /* ThreadsHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +208,8 @@
 		65F368A32458952E00A8C398 /* TvExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvExtension.swift; sourceTree = "<group>"; };
 		D7044E2B2AD7635C00D5EC4A /* ArtifactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtifactCell.swift; sourceTree = "<group>"; };
 		D7044E2C2AD7635C00D5EC4A /* ArtifactHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtifactHandler.swift; sourceTree = "<group>"; };
+		D7563B862ADC56390093C3FF /* ThreadsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsCell.swift; sourceTree = "<group>"; };
+		D7563B872ADC56390093C3FF /* ThreadsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,6 +494,7 @@
 				6507852E2587038E001ABDAE /* NYT */,
 				6507851D2587038E001ABDAE /* Reddit */,
 				657B6580277C13C8002C955A /* Robinhood */,
+				D7563B852ADC56390093C3FF /* Threads */,
 				650785202587038E001ABDAE /* Twitter */,
 				650785262587038E001ABDAE /* UIKit */,
 				6590EC3F2589300000FCB10F /* WashingtonPost */,
@@ -558,6 +563,15 @@
 				D7044E2C2AD7635C00D5EC4A /* ArtifactHandler.swift */,
 			);
 			path = Artifact;
+			sourceTree = "<group>";
+		};
+		D7563B852ADC56390093C3FF /* Threads */ = {
+			isa = PBXGroup;
+			children = (
+				D7563B862ADC56390093C3FF /* ThreadsCell.swift */,
+				D7563B872ADC56390093C3FF /* ThreadsHandler.swift */,
+			);
+			path = Threads;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -744,6 +758,7 @@
 				650785492587038F001ABDAE /* NewsCollectionHandler.swift in Sources */,
 				6507854D2587038F001ABDAE /* NYTCell.swift in Sources */,
 				65A01C53258BD4FA007565AB /* NBCNewsCellLarge.swift in Sources */,
+				D7563B882ADC56390093C3FF /* ThreadsCell.swift in Sources */,
 				6507853D2587038F001ABDAE /* FastNewsHandler.swift in Sources */,
 				65C3839F2587255B008F1411 /* Settings.swift in Sources */,
 				656F5BBB26EE799F007C3C53 /* InstagramCell.swift in Sources */,
@@ -760,6 +775,7 @@
 				6507854C2587038F001ABDAE /* NYTHandler.swift in Sources */,
 				6590EC4B2589309200FCB10F /* WashingtonPostHandler.swift in Sources */,
 				65580AB925904C9000D1287F /* AxiosHandler.swift in Sources */,
+				D7563B892ADC56390093C3FF /* ThreadsHandler.swift in Sources */,
 				65C3837625872490008F1411 /* NewsApiModel.swift in Sources */,
 				655C9708258E5E9E00095493 /* AppleNewsHandler.swift in Sources */,
 				656F5BC526EE79B5007C3C53 /* InstagramHandler.swift in Sources */,
