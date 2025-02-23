@@ -26,6 +26,7 @@ class NewsViewController: UIViewController {
     var handlerInstagram = InstagramHandler()
     var handlerNBCNews = NBCNewsHandler()
     var handlerNYT = NYTHandler()
+    var handlerParticle = ParticleHandler()
     var handlerReddit = RedditHandler()
     var handlerRobinhood = RobinhoodHandler()
     var handlerThreads = ThreadsHandler()
@@ -70,6 +71,7 @@ class NewsViewController: UIViewController {
         handlerLilNews.items = articles
         handlerNBCNews.articles = articles
         handlerNYT.articles = articles
+        handlerParticle.articles = articles
         handlerReddit.articles = articles
         handlerRobinhood.articles = articles
         handlerThreads.articles = articles
@@ -204,6 +206,9 @@ private extension NewsViewController {
         case .thenyt:
             viewTable.dataSource = handlerNYT
             viewTable.delegate = handlerNYT
+        case .particle:
+            viewTable.dataSource = handlerParticle
+            viewTable.delegate = handlerParticle
         case .reddit:
             viewTable.dataSource = handlerReddit
             viewTable.delegate = handlerReddit

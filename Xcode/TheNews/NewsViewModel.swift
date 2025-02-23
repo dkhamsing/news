@@ -90,6 +90,7 @@ class NewsViewModel {
              instagram,
              lilnews,
              nbcnews,
+             particle,
              reddit,
              robinhood,
              thenyt,
@@ -125,7 +126,7 @@ class NewsViewModel {
                 return "UIKit"
             case .bbc, .cnn:
                 return self.rawValue.uppercased()
-            case .apollo, .artifact, .axios, .facebook, .flipboard, .instagram, .reddit, .robinhood, .threads:
+            case .apollo, .artifact, .axios, .facebook, .flipboard, .instagram, .reddit, .particle, .robinhood, .threads:
                 return self.rawValue.capitalized
             }
         }
@@ -173,6 +174,8 @@ class NewsViewModel {
                 return [NYTCell.identifier]
             case .reddit:
                 return [RedditCell.identifier]
+            case .particle:
+                return [ParticleCell.identifier]
             case .robinhood:
                 return [RobinhoodCell.identifier, RobinhoodCellLarge.identifier]
             case .threads:                
