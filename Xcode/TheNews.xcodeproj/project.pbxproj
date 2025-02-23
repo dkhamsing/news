@@ -91,6 +91,8 @@
 		65F368A42458952E00A8C398 /* TvExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F368A32458952E00A8C398 /* TvExtension.swift */; };
 		D7044E2D2AD7635C00D5EC4A /* ArtifactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7044E2B2AD7635C00D5EC4A /* ArtifactCell.swift */; };
 		D7044E2E2AD7635C00D5EC4A /* ArtifactHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7044E2C2AD7635C00D5EC4A /* ArtifactHandler.swift */; };
+		D74AB4E62D6AA5CE008DF432 /* ParticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74AB4E42D6AA5CE008DF432 /* ParticleCell.swift */; };
+		D74AB4E72D6AA5CE008DF432 /* ParticleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74AB4E52D6AA5CE008DF432 /* ParticleHandler.swift */; };
 		D7563B882ADC56390093C3FF /* ThreadsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7563B862ADC56390093C3FF /* ThreadsCell.swift */; };
 		D7563B892ADC56390093C3FF /* ThreadsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7563B872ADC56390093C3FF /* ThreadsHandler.swift */; };
 /* End PBXBuildFile section */
@@ -208,6 +210,8 @@
 		65F368A32458952E00A8C398 /* TvExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvExtension.swift; sourceTree = "<group>"; };
 		D7044E2B2AD7635C00D5EC4A /* ArtifactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtifactCell.swift; sourceTree = "<group>"; };
 		D7044E2C2AD7635C00D5EC4A /* ArtifactHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtifactHandler.swift; sourceTree = "<group>"; };
+		D74AB4E42D6AA5CE008DF432 /* ParticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleCell.swift; sourceTree = "<group>"; };
+		D74AB4E52D6AA5CE008DF432 /* ParticleHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleHandler.swift; sourceTree = "<group>"; };
 		D7563B862ADC56390093C3FF /* ThreadsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsCell.swift; sourceTree = "<group>"; };
 		D7563B872ADC56390093C3FF /* ThreadsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -492,6 +496,7 @@
 				6507852B2587038E001ABDAE /* LilNews */,
 				65A01C51258BD4ED007565AB /* NBCNews */,
 				6507852E2587038E001ABDAE /* NYT */,
+				D74AB4E32D6AA5CE008DF432 /* Particle */,
 				6507851D2587038E001ABDAE /* Reddit */,
 				657B6580277C13C8002C955A /* Robinhood */,
 				D7563B852ADC56390093C3FF /* Threads */,
@@ -563,6 +568,15 @@
 				D7044E2C2AD7635C00D5EC4A /* ArtifactHandler.swift */,
 			);
 			path = Artifact;
+			sourceTree = "<group>";
+		};
+		D74AB4E32D6AA5CE008DF432 /* Particle */ = {
+			isa = PBXGroup;
+			children = (
+				D74AB4E42D6AA5CE008DF432 /* ParticleCell.swift */,
+				D74AB4E52D6AA5CE008DF432 /* ParticleHandler.swift */,
+			);
+			path = Particle;
 			sourceTree = "<group>";
 		};
 		D7563B852ADC56390093C3FF /* Threads */ = {
@@ -740,6 +754,7 @@
 				650785412587038F001ABDAE /* RedditHandler.swift in Sources */,
 				65C383B025872597008F1411 /* UserDefault.swift in Sources */,
 				650D8DC5258D5C95006FFC70 /* ApolloHandler.swift in Sources */,
+				D74AB4E62D6AA5CE008DF432 /* ParticleCell.swift in Sources */,
 				6507854A2587038F001ABDAE /* LilNewsHandler.swift in Sources */,
 				6507854F2587038F001ABDAE /* WSJCell.swift in Sources */,
 				650785522587038F001ABDAE /* CNNCell.swift in Sources */,
@@ -790,6 +805,7 @@
 				6507854B2587038F001ABDAE /* LilNewsCell.swift in Sources */,
 				650785AB25871091001ABDAE /* NewsCell.swift in Sources */,
 				650785502587038F001ABDAE /* WSJHandler.swift in Sources */,
+				D74AB4E72D6AA5CE008DF432 /* ParticleHandler.swift in Sources */,
 				650785432587038F001ABDAE /* TwitterCell.swift in Sources */,
 				D7044E2E2AD7635C00D5EC4A /* ArtifactHandler.swift in Sources */,
 				650785442587038F001ABDAE /* FlipboardHandler.swift in Sources */,
