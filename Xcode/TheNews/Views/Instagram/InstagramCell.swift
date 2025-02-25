@@ -16,13 +16,16 @@ class InstagramCell: NewsCell {
     override func config() {
         super.config()
 
+        ago.font = .preferredFont(forTextStyle: .caption1)
+        ago.textColor = .secondaryLabel
+        
         source.font = .boldSystemFont(ofSize: 14)
 
         logo.backgroundColor = .secondarySystemBackground
         logo.layer.cornerRadius = InstagramCell.logoSize.width / 2
         logo.layer.masksToBounds = true
 
-        [logo, source, title, articleImageView].forEach { item in
+        [logo, source, title, articleImageView, ago].forEach { item in
             contentView.addSubviewForAutoLayout(item)
         }
 
@@ -46,7 +49,10 @@ class InstagramCell: NewsCell {
             title.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor),
             contentView.readableContentGuide.trailingAnchor.constraint(equalTo: title.trailingAnchor),
 
-            contentView.bottomAnchor.constraint(equalTo: title.bottomAnchor, constant: 25)
+            ago.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 6),
+            ago.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor),
+
+            contentView.bottomAnchor.constraint(equalTo: ago.bottomAnchor, constant: 25)
         ])
 
     }
@@ -54,6 +60,7 @@ class InstagramCell: NewsCell {
     func load(article: Article) {
         source.text = article.username
         title.attributedText = article.text
+        ago.text = article.ago
         load(urlString: article.urlToImage, downloader: ImageDownloader.shared)
         loadLogo(urlString: article.urlToSourceLogo, size: InstagramCell.logoSize)
     }
