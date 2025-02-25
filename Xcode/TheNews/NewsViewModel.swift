@@ -97,8 +97,8 @@ class NewsViewModel {
              thewashingtonpost,
              thewsj,
              threads,
-             twitter,
-             uikit
+             uikit,
+             twitter // x
 
         var display: String {
             switch self {
@@ -115,7 +115,7 @@ class NewsViewModel {
             case .nbcnews:
                 return "NBC News"
             case .twitter:
-                return "Twitter"
+                return "X"
             case .thenyt:
                 return "The New York Times"
             case .thewashingtonpost:
