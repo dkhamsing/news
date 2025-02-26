@@ -48,8 +48,7 @@ class ThreadsCell: NewsCell {
             author.leadingAnchor.constraint(equalTo: logo.trailingAnchor, constant: inset),
             
             ago.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
-            ago.leadingAnchor.constraint(equalTo: author.trailingAnchor, constant: inset),
-            contentView.readableContentGuide.trailingAnchor.constraint(equalTo: ago.trailingAnchor),
+            ago.leadingAnchor.constraint(equalTo: author.trailingAnchor, constant: 8),
 
             summary.topAnchor.constraint(equalTo: ago.bottomAnchor, constant: inset - 5),
             summary.leadingAnchor.constraint(equalTo: logo.trailingAnchor, constant: inset),
