@@ -14,32 +14,38 @@ class NBCNewsCellLarge: NewsCell {
     override func config() {
         super.config()
 
-        title.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 32)
+        title.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 25)
         title.numberOfLines = 0
-        title.textColor = .white
+        
+        source.textColor = .systemBlue
 
-        source.textColor = .white
-
+        summary.font = UIFont(name: "Times New Roman", size: 17)
+        
         source.font = UIFont.monospacedSystemFont(ofSize: 14, weight: .regular)
 
-        [articleImageView, title, source].forEach {
+        [articleImageView, title, summary, source].forEach {
             contentView.addSubviewForAutoLayout($0)
         }
 
         let inset: CGFloat = 22
         NSLayoutConstraint.activate([
-            articleImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            articleImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            articleImageView.heightAnchor.constraint(equalToConstant: NBCNewsCellLarge.imageHeight),
-            contentView.trailingAnchor.constraint(equalTo: articleImageView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: articleImageView.bottomAnchor),
-
+            source.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            source.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            
+            title.topAnchor.constraint(equalTo: source.bottomAnchor, constant: 8),
             title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
             contentView.trailingAnchor.constraint(equalTo: title.trailingAnchor, constant: inset),
-            articleImageView.bottomAnchor.constraint(equalTo: title.bottomAnchor, constant: 30),
+            
+            summary.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
+            summary.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            contentView.trailingAnchor.constraint(equalTo: summary.trailingAnchor, constant: inset),
 
-            source.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
-            title.topAnchor.constraint(equalTo: source.bottomAnchor, constant: 10)
+            articleImageView.topAnchor.constraint(equalTo: summary.bottomAnchor, constant: 10),
+            articleImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
+            contentView.trailingAnchor.constraint(equalTo: articleImageView.trailingAnchor, constant: inset),
+            articleImageView.heightAnchor.constraint(equalToConstant: 170),
+            
+            contentView.bottomAnchor.constraint(equalTo: articleImageView.bottomAnchor, constant: inset)
         ])
 
     }
@@ -47,10 +53,8 @@ class NBCNewsCellLarge: NewsCell {
     func load(article: Article) {
         title.text = article.titleDisplay
         source.text = article.source?.name?.uppercased()
-
-        articleImageView.load(urlString: article.urlToImage, downloader: ImageDownloader.shared) { [weak self] in
-            self?.articleImageView.addGradient(count: 0, index: 0)
-        }
+        summary.text = article.descriptionOrContent
+        articleImageView.load(urlString: article.urlToImage, downloader: ImageDownloader.shared)
     }
 
 }
