@@ -80,6 +80,7 @@ class NewsViewModel {
              applenews,
              artifact,
              axios,
+             bluesky,
              bbc,
              cashapp,
              cnn,
@@ -126,7 +127,7 @@ class NewsViewModel {
                 return "UIKit"
             case .bbc, .cnn:
                 return self.rawValue.uppercased()
-            case .apollo, .artifact, .axios, .facebook, .flipboard, .instagram, .reddit, .particle, .robinhood, .threads:
+            case .apollo, .artifact, .axios, .bluesky, .facebook, .flipboard, .instagram, .reddit, .particle, .robinhood, .threads:
                 return self.rawValue.capitalized
             }
         }
@@ -152,6 +153,8 @@ class NewsViewModel {
                 return [AxiosCell.identifier]
             case .bbc:
                 return [BBCCell.identifier]
+            case .bluesky:
+                return [BlueskyCell.identifier]
             case .cashapp:
                 return [CashAppCell.identifier]
             case .cnn:
