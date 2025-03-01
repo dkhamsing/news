@@ -30,6 +30,7 @@ class NewsViewController: UIViewController {
     var handlerParticle = ParticleHandler()
     var handlerReddit = RedditHandler()
     var handlerRobinhood = RobinhoodHandler()
+    var handlerTapestry = TapestryHandler()
     var handlerThreads = ThreadsHandler()
     var handlerTwitter = TwitterHandler()
     var handlerUIKit = UIKitHandler()
@@ -76,6 +77,7 @@ class NewsViewController: UIViewController {
         handlerParticle.articles = articles
         handlerReddit.articles = articles
         handlerRobinhood.articles = articles
+        handlerTapestry.articles = articles
         handlerThreads.articles = articles
         handlerTwitter.articles = articles
         handlerUIKit.articles = articles
@@ -220,6 +222,9 @@ private extension NewsViewController {
         case .robinhood:
             viewTable.dataSource = handlerRobinhood
             viewTable.delegate = handlerRobinhood
+        case .tapestry:
+            viewTable.dataSource = handlerTapestry
+            viewTable.delegate = handlerTapestry
         case .threads:
             viewTable.dataSource = handlerThreads
             viewTable.delegate = handlerThreads
