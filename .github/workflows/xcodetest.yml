@@ -20,7 +20,7 @@ jobs:
         cd Xcode/
         xcodebuild clean test -scheme TheNews -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.4' -resultBundlePath TestResults
 
-    - uses: kishikawakatsumi/xcresulttool@v1
-      with:
-        path: Xcode/TestResults.xcresult
-      if: success() || failure()
+    # - uses: kishikawakatsumi/xcresulttool@v1
+    #   with:
+    #     path: Xcode/TestResults.xcresult
+    #   if: success() || failure()
