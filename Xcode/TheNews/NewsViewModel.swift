@@ -88,6 +88,7 @@ class NewsViewModel {
              facebooknews,
              fastnews,
              flipboard,
+             imdb,
              instagram,
              lilnews,
              nbcnews,
@@ -112,6 +113,8 @@ class NewsViewModel {
                 return "Facebook News"
             case .fastnews:
                 return "FastNews"
+            case .imdb:
+                return "IMDb"
             case .lilnews:
                 return "lil news"
             case .nbcnews:
@@ -168,6 +171,8 @@ class NewsViewModel {
                 return [FastNewsCell.identifier]
             case .flipboard:
                 return [FlipboardCell.identifier]
+            case .imdb:
+                return [IMDbCell.identifier]
             case .instagram:
                 return [InstagramCell.identifier]
             case .lilnews:

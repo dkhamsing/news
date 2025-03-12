@@ -24,6 +24,7 @@ class NewsViewController: UIViewController {
     var handlerFacebookNews = FacebookNewsHandler()
     var handlerFastNews = FastNewsHandler()
     var handlerFlipboard = FlipboardHandler()
+    var handlerIMdB = IMDbHandler()
     var handlerInstagram = InstagramHandler()
     var handlerNBCNews = NBCNewsHandler()
     var handlerNYT = NYTHandler()
@@ -70,6 +71,7 @@ class NewsViewController: UIViewController {
         handlerFacebookNews.articles = articles
         handlerFastNews.articles = articles
         handlerFlipboard.articles = articles
+        handlerIMdB.articles = articles
         handlerInstagram.articles = articles
         handlerLilNews.items = articles
         handlerNBCNews.articles = articles
@@ -204,6 +206,9 @@ private extension NewsViewController {
         case .flipboard:
             viewTable.dataSource = handlerFlipboard
             viewTable.delegate = handlerFlipboard
+        case .imdb:
+            viewTable.dataSource = handlerIMdB
+            viewTable.delegate = handlerIMdB
         case .instagram:
             viewTable.dataSource = handlerInstagram
             viewTable.delegate = handlerInstagram

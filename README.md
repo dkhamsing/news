@@ -1,6 +1,6 @@
 ## News
 
-iOS news app in the style of Apollo, Apple News, Artifact, Axios, BBC, Bluesky, Cash App, CNN, Facebook, Facebook News, FastNews, Flipboard, Instagram, Lil News, NBC News, Particle, Reddit, Robinhood, Tapestry, The New York Times, The Washington Post, The Wall Street Journal, Threads, UIKit, X (Twitter) :newspaper:
+iOS news app in the style of Apollo, Apple News, Artifact, Axios, BBC, Bluesky, Cash App, CNN, Facebook, Facebook News, FastNews, Flipboard, IMDb, Instagram, Lil News, NBC News, Particle, Reddit, Robinhood, Tapestry, The New York Times, The Washington Post, The Wall Street Journal, Threads, UIKit, X (Twitter) :newspaper:
 
 ![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-ios17.yml/badge.svg) ![](https://github.com/dkhamsing/news/actions/workflows/xcodebuild-ios18.yml/badge.svg)
 
@@ -9,7 +9,7 @@ iOS news app in the style of Apollo, Apple News, Artifact, Axios, BBC, Bluesky, 
 
 <img width=300 src=Images/demo.gif>
 
-<img src=Images/apollo.png height=400> <img src=Images/applenews.png height=400> <img src=Images/artifact.png height=400> <img src=Images/axios.png height=400> <img src=Images/bbc.png height=400> <img src=Images/bluesky.png height=400> <img src=Images/cashapp.png height=400> <img src=Images/cnn.png height=400> <img src=Images/facebook.png height=400> <img src=Images/facebooknews.png height=400> <img src=Images/flipboard.png height=400> <img src=Images/fastnews.png height=400> <img src=Images/instagram.png height=400> <img src=Images/lilnews.png height=400> <img src=Images/nbcnews.png height=400> <img src=Images/particle2.png height=400> <img src=Images/reddit.png height=400> <img src=Images/robinhood.png height=400> <img src=Images/tapestry.png height=400> <img src=Images/nyt.png height=400> <img src=Images/threads.png height=400> <img src=Images/wsj.png height=400> <img src=Images/washingtonpost.png height=400> <img src=Images/uikit.png height=400> <img src=Images/x.png height=400>
+<img src=Images/apollo.png height=400> <img src=Images/applenews.png height=400> <img src=Images/artifact.png height=400> <img src=Images/axios.png height=400> <img src=Images/bbc.png height=400> <img src=Images/bluesky.png height=400> <img src=Images/cashapp.png height=400> <img src=Images/cnn.png height=400> <img src=Images/facebook.png height=400> <img src=Images/facebooknews.png height=400> <img src=Images/flipboard.png height=400> <img src=Images/fastnews.png height=400> <img src=Images/fastnews.png height=400> <img src=Images/imdb.png height=400> <img src=Images/lilnews.png height=400> <img src=Images/nbcnews.png height=400> <img src=Images/particle2.png height=400> <img src=Images/reddit.png height=400> <img src=Images/robinhood.png height=400> <img src=Images/tapestry.png height=400> <img src=Images/nyt.png height=400> <img src=Images/threads.png height=400> <img src=Images/wsj.png height=400> <img src=Images/washingtonpost.png height=400> <img src=Images/uikit.png height=400> <img src=Images/x.png height=400>
 
 #### Bonus
 
@@ -36,6 +36,7 @@ iOS news app in the style of Apollo, Apple News, Artifact, Axios, BBC, Bluesky, 
 - [Facebook](https://www.facebook.com)
 - [Facebook News](https://www.facebook.com)
 - [Flipboard](https://flipboard.com)
+- [IMDb](https://www.imdb.com)
 - [Instagram](https://www.instagram.com)
 - [Lil News](https://lil.software/)
 - [NBC News](https://www.nbcnews.com)
