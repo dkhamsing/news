@@ -97,6 +97,8 @@
 		D7563B892ADC56390093C3FF /* ThreadsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7563B872ADC56390093C3FF /* ThreadsHandler.swift */; };
 		D79333932D81D4F000115013 /* IMDbHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79333912D81D4F000115013 /* IMDbHandler.swift */; };
 		D79333942D81D4F000115013 /* IMDbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79333922D81D4F000115013 /* IMDbCell.swift */; };
+		D793339D2D81E75B00115013 /* EconomistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D793339B2D81E75B00115013 /* EconomistCell.swift */; };
+		D793339E2D81E75B00115013 /* EconomistHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D793339C2D81E75B00115013 /* EconomistHandler.swift */; };
 		D7BC21C92D726BE10050836A /* TapestryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC21C72D726BE10050836A /* TapestryHandler.swift */; };
 		D7BC21CA2D726BE10050836A /* TapestryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BC21C82D726BE10050836A /* TapestryCell.swift */; };
 		D7E879102D7132D600370650 /* BlueskyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E8790E2D7132D600370650 /* BlueskyCell.swift */; };
@@ -222,6 +224,8 @@
 		D7563B872ADC56390093C3FF /* ThreadsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadsHandler.swift; sourceTree = "<group>"; };
 		D79333912D81D4F000115013 /* IMDbHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMDbHandler.swift; sourceTree = "<group>"; };
 		D79333922D81D4F000115013 /* IMDbCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMDbCell.swift; sourceTree = "<group>"; };
+		D793339B2D81E75B00115013 /* EconomistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EconomistCell.swift; sourceTree = "<group>"; };
+		D793339C2D81E75B00115013 /* EconomistHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EconomistHandler.swift; sourceTree = "<group>"; };
 		D7BC21C72D726BE10050836A /* TapestryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapestryHandler.swift; sourceTree = "<group>"; };
 		D7BC21C82D726BE10050836A /* TapestryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapestryCell.swift; sourceTree = "<group>"; };
 		D7E8790E2D7132D600370650 /* BlueskyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueskyCell.swift; sourceTree = "<group>"; };
@@ -501,6 +505,7 @@
 				D7E8790D2D7132D600370650 /* Bluesky */,
 				65A79AB6277BD55300505313 /* CashApp */,
 				650785352587038E001ABDAE /* CNN */,
+				D793339A2D81E75B00115013 /* Economist */,
 				650785162587038E001ABDAE /* Facebook */,
 				65D47D9B25941140009701BB /* FacebookNews */,
 				650785192587038E001ABDAE /* FastNews */,
@@ -511,9 +516,9 @@
 				65A01C51258BD4ED007565AB /* NBCNews */,
 				6507852E2587038E001ABDAE /* NYT */,
 				D74AB4E32D6AA5CE008DF432 /* Particle */,
-				D7BC21C62D726BE10050836A /* Tapestry */,
 				6507851D2587038E001ABDAE /* Reddit */,
 				657B6580277C13C8002C955A /* Robinhood */,
+				D7BC21C62D726BE10050836A /* Tapestry */,
 				D7563B852ADC56390093C3FF /* Threads */,
 				650785202587038E001ABDAE /* Twitter */,
 				650785262587038E001ABDAE /* UIKit */,
@@ -611,6 +616,16 @@
 			);
 			name = IMDb;
 			path = TheNews/Views/IMDb;
+			sourceTree = SOURCE_ROOT;
+		};
+		D793339A2D81E75B00115013 /* Economist */ = {
+			isa = PBXGroup;
+			children = (
+				D793339B2D81E75B00115013 /* EconomistCell.swift */,
+				D793339C2D81E75B00115013 /* EconomistHandler.swift */,
+			);
+			name = Economist;
+			path = TheNews/Views/Economist;
 			sourceTree = SOURCE_ROOT;
 		};
 		D7BC21C62D726BE10050836A /* Tapestry */ = {
@@ -810,6 +825,7 @@
 				65D47DA725941163009701BB /* FacebookNewsHandler.swift in Sources */,
 				6507850E25870361001ABDAE /* NewsViewModel.swift in Sources */,
 				6560AE5124411C4A00581008 /* AppDelegate.swift in Sources */,
+				D793339E2D81E75B00115013 /* EconomistHandler.swift in Sources */,
 				65580A90258EDA8E00D1287F /* AppleNewsCellStacked.swift in Sources */,
 				6560AE5324411C4A00581008 /* SceneDelegate.swift in Sources */,
 				650785392587038F001ABDAE /* BBCHandler.swift in Sources */,
@@ -831,6 +847,7 @@
 				650D8DBB258D5C7F006FFC70 /* ApolloCell.swift in Sources */,
 				65A01C5F258BD51E007565AB /* NBCNewsHandler.swift in Sources */,
 				650785512587038F001ABDAE /* CNNHandler.swift in Sources */,
+				D793339D2D81E75B00115013 /* EconomistCell.swift in Sources */,
 				6590EC412589300A00FCB10F /* WashingtonPostCell.swift in Sources */,
 				657B6586277C1E1D002C955A /* RobinhoodHandler.swift in Sources */,
 				6507853C2587038F001ABDAE /* FacebookCell.swift in Sources */,
